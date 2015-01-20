@@ -186,7 +186,7 @@ class vidispine::install {
     File["${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/bin/imqbrokerd"],
     Ini_setting['imq-broker-maxbytespermsg'],
     Glassfish::Create_domain[$vidispine::glassfish_domain_name],
-  ],
+  ]
 
   jvmoption {"-Xmx${vidispine::glassfish_jvmoptions_xmx}":
     ensure       => present,
