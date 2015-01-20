@@ -20,7 +20,7 @@ class vidispine::install {
   }
 
   # add glassfish daemon account primary group
-  # may have already been created by zonza_nfs on the same machine
+  # may have already been created by nfs on the same machine
   if !defined(Group[$vidispine::glassfish_group]) {
     group { $vidispine::glassfish_group:
       ensure => 'present',
@@ -29,7 +29,7 @@ class vidispine::install {
   }
 
   # add glassfish daemon account
-  # may have already been created by zonza_nfs on the same machine
+  # may have already been created by nfs on the same machine
   if !defined(User[$vidispine::glassfish_user]) {
     user { $vidispine::glassfish_user:
       ensure     => 'present',
@@ -191,40 +191,40 @@ class vidispine::install {
   jvmoption {"-Xmx${vidispine::glassfish_jvmoptions_xmx}":
     ensure       => present,
     target       => $jvmoption_target,
-    portbase     => $zonza_vidispine::glassfish_admin_portbase,
-    asadminuser  => $zonza_vidispine::glassfish_asadmin_user,
-    passwordfile => $zonza_vidispine::glassfish_asadmin_passfile,
-    user         => $zonza_vidispine::glassfish_user,
+    portbase     => $vidispine::glassfish_admin_portbase,
+    asadminuser  => $vidispine::glassfish_asadmin_user,
+    passwordfile => $vidispine::glassfish_asadmin_passfile,
+    user         => $vidispine::glassfish_user,
     require      => $jvmoption_reqs,
   }
 
   jvmoption {"-Xms${vidispine::glassfish_jvmoptions_xms}":
     ensure       => present,
     target       => $jvmoption_target,
-    portbase     => $zonza_vidispine::glassfish_admin_portbase,
-    asadminuser  => $zonza_vidispine::glassfish_asadmin_user,
-    passwordfile => $zonza_vidispine::glassfish_asadmin_passfile,
-    user         => $zonza_vidispine::glassfish_user,
+    portbase     => $vidispine::glassfish_admin_portbase,
+    asadminuser  => $vidispine::glassfish_asadmin_user,
+    passwordfile => $vidispine::glassfish_asadmin_passfile,
+    user         => $vidispine::glassfish_user,
     require      => $jvmoption_reqs,
   }
 
   jvmoption {"-XX:MaxPermSize=192m":
     ensure       => absent,
     target       => $jvmoption_target,
-    portbase     => $zonza_vidispine::glassfish_admin_portbase,
-    asadminuser  => $zonza_vidispine::glassfish_asadmin_user,
-    passwordfile => $zonza_vidispine::glassfish_asadmin_passfile,
-    user         => $zonza_vidispine::glassfish_user,
+    portbase     => $vidispine::glassfish_admin_portbase,
+    asadminuser  => $vidispine::glassfish_asadmin_user,
+    passwordfile => $vidispine::glassfish_asadmin_passfile,
+    user         => $vidispine::glassfish_user,
     require      => $jvmoption_reqs,
   }
 
   jvmoption {"-XX:MaxPermSize=${vidispine::glassfish_jvmoptions_maxpermsize}":
     ensure       => present,
     target       => $jvmoption_target,
-    portbase     => $zonza_vidispine::glassfish_admin_portbase,
-    asadminuser  => $zonza_vidispine::glassfish_asadmin_user,
-    passwordfile => $zonza_vidispine::glassfish_asadmin_passfile,
-    user         => $zonza_vidispine::glassfish_user,
+    portbase     => $vidispine::glassfish_admin_portbase,
+    asadminuser  => $vidispine::glassfish_asadmin_user,
+    passwordfile => $vidispine::glassfish_asadmin_passfile,
+    user         => $vidispine::glassfish_user,
     require      => $jvmoption_reqs,
   }
 
