@@ -92,7 +92,7 @@ class vidispine::install {
     key_val_separator => '=',
     section           => '',
     path              => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/bin/imqbrokerd",
-    setting           => '_def_jvm_args',
+    setting           => '^_def_jvm_args',
     value             => "\"${vidispine::glassfish_imq_jvm_args}\"",
     require           => Class['glassfish'],
   }
