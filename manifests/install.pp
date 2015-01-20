@@ -252,4 +252,34 @@ class vidispine::install {
     require      => $jvmoption_reqs,
   }
 
+  file {[ '/opt/vidispine-installer', "/opt/vidispine-installer/Vidispine_${vidispine::version}"]:
+    ensure  => directory,
+    owner   => $vidispine::glassfish_user,
+    group   => $vidispine::glassfish_group,
+    mode    => '0755',
+  }
+
+  staging::deploy{"Vidispine_${vidispine::version}.zip":
+    source  => "http://apt.hogarthww.prv/vidispine/Vidispine_${vidispine::version}.zip",
+    target  => "/opt/vidispine-installer/Vidispine_${vidispine::version}",
+    user    => $vidispine::glassfish_user,
+    group   => $vidispine::glassfish_group,
+    #notify  => Exec['SetupTool4.jar'],
+    creates => "/opt/vidispine-installer/Vidispine_${vidispine::version}/SetupTool4.jar",
+    require => [
+      Jvmoption["-Xmx${vidispine::glassfish_jvmoptions_xmx}"],
+      Jvmoption["-Xms${vidispine::glassfish_jvmoptions_xms}"],
+      Jvmoption["-XX:MaxPermSize=${vidispine::glassfish_jvmoptions_maxpermsize}"],
+      File["/opt/vidispine-installer/Vidispine_${vidispine::version}"],
+    ]
+  }
+
+  #file { "/opt/vidispine-installer/Vidispine_${vidispine::version}/config.xml":
+  #  owner   => $vidispine::glassfish_user,
+  #  group   => $vidispine::glassfish_group,
+  #  mode    => '0644',
+  #  content => template('vidispine/config.xml.erb'),
+  #  require => Staging::Deploy["Vidispine_${vidispine::version}.zip"],
+  #}
+
 }
