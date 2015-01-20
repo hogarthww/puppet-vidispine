@@ -11,7 +11,7 @@ class vidispine::params {
   $glassfish_user_homedir            = '/home/vidispine',
   $glassfish_parent_dir              = '/opt',
   $glassfish_install_dir             = 'glassfish3',
-  $glassfish_glassfish_version       = '3.1.2.2',
+  $glassfish_version                 = '3.1.2.2',
   $glassfish_das_portbase            = '4800',
   $glassfish_asadmin_user            = 'admin',
   $glassfish_asadmin_password        = 'adminadmin',

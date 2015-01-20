@@ -37,24 +37,23 @@
 #
 class vidispine (
 
-  $glassfish_java_vendor  = hiera('glassfish_java_vendor',  $vidispine::params::glassfish_java_vendor),
-  $glassfish_java_package = hiera('glassfish_java_package', $vidispine::params::glassfish_java_package),
-  $glassfish_java_version = hiera('glassfish_java_version', $vidispine::params::glassfish_java_version),
-  $glassfish_user         = hiera('glassfish_user',         $vidispine::params::glassfish_user),
-  $glassfish_uid          = hiera('glassfish_uid',          $vidispine::params::glassfish_uid),
-  $glassfish_group        = hiera('glassfish_group',        $vidispine::params::glassfish_group),
-  $glassfish_gid          = hiera('glassfish_gid',          $vidispine::params::glassfish_gid),
-  $glassfish_user_homedir = hiera('glassfish_user_homedir', $vidispine::params::glassfish_user_homedir),
-
-  $glassfish_parent_dir              =
-  $glassfish_install_dir             =
-  $glassfish_glassfish_version       =
-  $glassfish_das_portbase            =
-  $glassfish_asadmin_user            =
-  $glassfish_asadmin_password        =
-  $glassfish_asadmin_master_password =
-  $glassfish_asadmin_jms_password    =
-  $glassfish_asadmin_passfile        =
+  $glassfish_java_vendor             = hiera('glassfish_java_vendor',             $vidispine::params::glassfish_java_vendor),
+  $glassfish_java_package            = hiera('glassfish_java_package',            $vidispine::params::glassfish_java_package),
+  $glassfish_java_version            = hiera('glassfish_java_version',            $vidispine::params::glassfish_java_version),
+  $glassfish_user                    = hiera('glassfish_user',                    $vidispine::params::glassfish_user),
+  $glassfish_uid                     = hiera('glassfish_uid',                     $vidispine::params::glassfish_uid),
+  $glassfish_group                   = hiera('glassfish_group',                   $vidispine::params::glassfish_group),
+  $glassfish_gid                     = hiera('glassfish_gid',                     $vidispine::params::glassfish_gid),
+  $glassfish_user_homedir            = hiera('glassfish_user_homedir',            $vidispine::params::glassfish_user_homedir),
+  $glassfish_parent_dir              = hiera('glassfish_parent_dir',              $vidispine::params::glassfish_parent_dir),
+  $glassfish_install_dir             = hiera('glassfish_install_dir',             $vidispine::params::glassfish_install_dir),
+  $glassfish_version                 = hiera('glassfish_version',                 $vidispine::params::glassfish_version),
+  $glassfish_das_portbase            = hiera('glassfish_das_portbase',            $vidispine::params::glassfish_das_portbase),
+  $glassfish_asadmin_user            = hiera('glassfish_asadmin_user',            $vidispine::params::glassfish_asadmin_user),
+  $glassfish_asadmin_password        = hiera('glassfish_asadmin_password',        $vidispine::params::glassfish_asadmin_password),
+  $glassfish_asadmin_master_password = hiera('glassfish_asadmin_master_password', $vidispine::params::glassfish_asadmin_master_password),
+  $glassfish_asadmin_jms_password    = hiera('glassfish_asadmin_jms_password',    $vidispine::params::glassfish_asadmin_jms_password),
+  $glassfish_asadmin_passfile        = hiera('glassfish_asadmin_passfile',        $vidispine::params::glassfish_asadmin_passfile),
 
 ) inherits vidispine::params {
 
