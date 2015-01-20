@@ -47,7 +47,7 @@ class vidispine::install {
   class {'glassfish':
     parent_dir              => $zonza_vidispine::glassfish_parent_dir,
     install_dir             => $zonza_vidispine::glassfish_install_dir,
-    glassfish_version       => $zonza_vidispine::glassfish_version,
+    version                 => $zonza_vidispine::glassfish_version,
     create_domain           => false,
     create_service          => false,
     manage_accounts         => false,
