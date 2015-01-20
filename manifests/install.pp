@@ -93,7 +93,7 @@ class vidispine::install {
     section           => '',
     path              => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/bin/imqbrokerd",
     setting           => '_def_jvm_args',
-    value             => $vidispine::glassfish_imq_jvm_args,
+    value             => "\"${vidispine::glassfish_imq_jvm_args}\"",
     require           => Class['glassfish'],
   }
 
@@ -103,7 +103,7 @@ class vidispine::install {
     section           => '',
     path              => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/lib/props/broker/default.properties",
     setting           => 'imq.autocreate.destination.maxBytesPerMsg',
-    value             => "\"${vidispine::glassfish_imq_maxbytespermsg}\"",
+    value             => $vidispine::glassfish_imq_maxbytespermsg,
     require           => Class['glassfish'],
   }
 
