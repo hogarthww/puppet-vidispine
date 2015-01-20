@@ -44,6 +44,17 @@ class vidispine (
   $glassfish_uid          = hiera('glassfish_uid',          $vidispine::params::glassfish_uid),
   $glassfish_group        = hiera('glassfish_group',        $vidispine::params::glassfish_group),
   $glassfish_gid          = hiera('glassfish_gid',          $vidispine::params::glassfish_gid),
+  $glassfish_user_homedir = hiera('glassfish_user_homedir', $vidispine::params::glassfish_user_homedir),
+
+  $glassfish_parent_dir              =
+  $glassfish_install_dir             =
+  $glassfish_glassfish_version       =
+  $glassfish_das_portbase            =
+  $glassfish_asadmin_user            =
+  $glassfish_asadmin_password        =
+  $glassfish_asadmin_master_password =
+  $glassfish_asadmin_jms_password    =
+  $glassfish_asadmin_passfile        =
 
 ) inherits vidispine::params {
 
