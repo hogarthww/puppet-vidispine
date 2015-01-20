@@ -67,4 +67,14 @@ class vidispine::install {
   }
   contain 'glassfish'
 
+  ini_setting { 'as-java' :
+    ensure            => present,
+    key_val_separator => '=',
+    section           => '',
+    path              => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/config/asenv.conf",
+    setting           => 'AS_JAVA',
+    value             => "\"/usr/lib/jvm/${vidispine::glassfish_java_package}-${vidispine::glassfish_java_vendor}/jre\"",
+    require           => Class['glassfish'],
+  }
+
 }
