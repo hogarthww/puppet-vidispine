@@ -1,0 +1,14 @@
+{
+  "name": "hww-vidispine",
+  "version": "0.1.0",
+  "author": "hww",
+  "summary": "Vidispine install and basic config",
+  "license": "HWW",
+  "source": "https://github.hogarthww.prv/puppet/hww-vidispine.git",
+  "project_page": "https://github.hogarthww.prv/puppet/hww-vidispinenew/README.md",
+  "issues_url": "https://github.hogarthww.prv/puppet/hww-vidispinenew/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
