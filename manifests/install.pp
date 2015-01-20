@@ -203,7 +203,7 @@ class vidispine::install {
 
   $jvmoption_target = 'server'
 
-  # set jvmoptions requirements if we are running the das
+  # set jvmoption requirements if we are running the das
   $jvmoption_reqs   = [
     Ini_setting['as-java'],
     Ini_setting['imq-java-home'],
@@ -212,6 +212,7 @@ class vidispine::install {
     Glassfish::Create_domain[$vidispine::glassfish_domain_name],
   ]
 
+  # add -Xmx jvm option for vidispine glassfish instance
   jvmoption {"-Xmx${vidispine::glassfish_jvmoptions_xmx}":
     ensure       => present,
     target       => $jvmoption_target,
@@ -222,6 +223,7 @@ class vidispine::install {
     require      => $jvmoption_reqs,
   }
 
+  # add -Xms jvm option for vidispine glassfish instance
   jvmoption {"-Xms${vidispine::glassfish_jvmoptions_xms}":
     ensure       => present,
     target       => $jvmoption_target,
@@ -232,6 +234,7 @@ class vidispine::install {
     require      => $jvmoption_reqs,
   }
 
+  # remove -XX:MaxPermSize=192m jvm option for vidispine glassfish instance
   jvmoption {"-XX:MaxPermSize=192m":
     ensure       => absent,
     target       => $jvmoption_target,
@@ -242,6 +245,7 @@ class vidispine::install {
     require      => $jvmoption_reqs,
   }
 
+  # add -XX:MaxPermSize jvm option for vidispine glassfish instance
   jvmoption {"-XX:MaxPermSize=${vidispine::glassfish_jvmoptions_maxpermsize}":
     ensure       => present,
     target       => $jvmoption_target,
@@ -252,6 +256,8 @@ class vidispine::install {
     require      => $jvmoption_reqs,
   }
 
+  # create directory for vidispine installer
+  # if cluster and not das don't bother **
   file {[ '/opt/vidispine-installer', "/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}"]:
     ensure  => directory,
     owner   => $vidispine::glassfish_user,
@@ -259,12 +265,13 @@ class vidispine::install {
     mode    => '0755',
   }
 
+  # unpack vidispine installer
+  # if cluster and not das don't bother **
   staging::deploy{"Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip":
     source  => "http://apt.hogarthww.prv/vidispine/Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip",
     target  => "/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}",
     user    => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
-    #notify  => Exec['SetupTool4.jar'],
     creates => "/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}/SetupTool4.jar",
     require => [
       Jvmoption["-Xmx${vidispine::glassfish_jvmoptions_xmx}"],
@@ -274,12 +281,15 @@ class vidispine::install {
     ]
   }
 
+  # create silent install config.xml file for vidispine installer
+  # if cluster and not das don't bother **
   #file { "/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}/config.xml":
   #  owner   => $vidispine::glassfish_user,
   #  group   => $vidispine::glassfish_group,
   #  mode    => '0644',
   #  content => template('vidispine/config.xml.erb'),
   #  require => Staging::Deploy["Vidispine_${vidispine::vidispine_version}.zip"],
+  #  notify  => Exec['SetupTool4.jar'],
   #}
 
 }
