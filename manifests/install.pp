@@ -97,4 +97,14 @@ class vidispine::install {
     require           => Class['glassfish'],
   }
 
+  ini_setting { 'imq-broker-maxbytespermsg' :
+    ensure            => present,
+    key_val_separator => '=',
+    section           => '',
+    path              => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/lib/props/broker/default.properties",
+    setting           => 'imq.autocreate.destination.maxBytesPerMsg',
+    value             => $vidispine::glassfish_imq_maxbytespermsg,
+    require           => Class['glassfish'],
+  }
+
 }
