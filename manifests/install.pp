@@ -105,7 +105,7 @@ class vidispine::install {
     require           => Class['glassfish'],
   }
 
-  if ($vidispine::glassfish_das_host == 'localhost') || ($vidispine::glassfish_das_host == $::fqdn) {
+  if ($vidispine::glassfish_das_host == 'localhost') or ($vidispine::glassfish_das_host == $::fqdn) {
     glassfish::create_domain { $vidispine::glassfish_domain_name:
       asadmin_user        => $vidispine::glassfish_asadmin_user,
       asadmin_passfile    => $vidispine::glassfish_asadmin_passfile,
