@@ -109,8 +109,8 @@ class vidispine::install {
     require           => Class['glassfish'],
   }
 
-  # create glassfish domain if we are running the das
   if ($vidispine::glassfish_das_host == 'localhost') or ($vidispine::glassfish_das_host == $::fqdn) {
+    # create glassfish domain if we are running the das
     glassfish::create_domain { $vidispine::glassfish_domain_name:
       asadmin_user        => $vidispine::glassfish_asadmin_user,
       asadmin_passfile    => $vidispine::glassfish_asadmin_passfile,
@@ -127,16 +127,105 @@ class vidispine::install {
       ],
     }
 
+    # set default java-home if we are running the das
     set { 'default-config.java-config.java-home':
+      ensure       => present,
       value        => "/usr/lib/jvm/${vidispine::glassfish_java_package}-${vidispine::glassfish_java_vendor}/jre",
       dashost      => $vidispine::glassfish_das_host,
-      dasport      => $vidispine::glassfish_das_portbase + 48,
       portbase     => $vidispine::glassfish_das_portbase,
       asadminuser  => $vidispine::glassfish_asadmin_user,
       passwordfile => $vidispine::glassfish_asadmin_passfile,
       user         => $vidispine::glassfish_user,
       require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],
     }
+
+    # set server java-home if we are running the das
+    set { 'server.java-config.java-home':
+      ensure       => present,
+      value        => "/usr/lib/jvm/${vidispine::glassfish_java_package}-${vidispine::glassfish_java_vendor}/jre",
+      dashost      => $vidispine::glassfish_das_host,
+      portbase     => $vidispine::glassfish_das_portbase,
+      asadminuser  => $vidispine::glassfish_asadmin_user,
+      passwordfile => $vidispine::glassfish_asadmin_passfile,
+      user         => $vidispine::glassfish_user,
+      require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],
+    }
+
+    if ($vidispine::glassfish_cluster) {
+      # set cluster_name java-home we we are running the das and part of a cluster
+      set { "${vidispine::glassfish_cluster_name}-config.java-config.java-home":
+        ensure       => present,
+        value        => "/usr/lib/jvm/${vidispine::glassfish_java_package}-${vidispine::glassfish_java_vendor}/jre",
+        dashost      => $vidispine::glassfish_das_host,
+        portbase     => $vidispine::glassfish_das_portbase,
+        asadminuser  => $vidispine::glassfish_asadmin_user,
+        passwordfile => $vidispine::glassfish_asadmin_passfile,
+        user         => $vidispine::glassfish_user,
+        require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],
+      }
+
+    }
+
+  }
+
+#      # set jvmoptions for cluster_name if we are running the das and part of a cluster
+#      $jvmoption_target = $vidispine::glassfish_cluster_name,
+#
+#    } else {
+#      # set jvmoptions for 'server' if we are running the das and not part of a cluster
+#      $jvmoption_target = 'server',
+#
+#    }
+
+  $jvmoption_target = 'server',
+
+  # set jvmoptions requirements if we are running the das
+  $jvmoption_reqs   = [
+    Ini_setting['as-java'],
+    Ini_setting['imq-java-home'],
+    File["${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/bin/imqbrokerd"],
+    Ini_setting['imq-broker-maxbytespermsg'],
+    Glassfish::Create_domain[$vidispine::glassfish_domain_name],
+  ],
+
+  jvmoption {"-Xmx${vidispine::glassfish_jvmoptions_xmx}":
+    ensure       => present,
+    target       => $jvmoption_target,
+    portbase     => $zonza_vidispine::glassfish_admin_portbase,
+    asadminuser  => $zonza_vidispine::glassfish_asadmin_user,
+    passwordfile => $zonza_vidispine::glassfish_asadmin_passfile,
+    user         => $zonza_vidispine::glassfish_user,
+    require      => $jvmoption_reqs,
+  }
+
+  jvmoption {"-Xms${vidispine::glassfish_jvmoptions_xms}":
+    ensure       => present,
+    target       => $jvmoption_target,
+    portbase     => $zonza_vidispine::glassfish_admin_portbase,
+    asadminuser  => $zonza_vidispine::glassfish_asadmin_user,
+    passwordfile => $zonza_vidispine::glassfish_asadmin_passfile,
+    user         => $zonza_vidispine::glassfish_user,
+    require      => $jvmoption_reqs,
+  }
+
+  jvmoption {"-XX\:MaxPermSize=192m":
+    ensure       => absent,
+    target       => $jvmoption_target,
+    portbase     => $zonza_vidispine::glassfish_admin_portbase,
+    asadminuser  => $zonza_vidispine::glassfish_asadmin_user,
+    passwordfile => $zonza_vidispine::glassfish_asadmin_passfile,
+    user         => $zonza_vidispine::glassfish_user,
+    require      => $jvmoption_reqs,
+  }
+
+  jvmoption {"-XX\:MaxPermSize=${vidispine::glassfish_jvmoptions_maxpermsize}":
+    ensure       => present,
+    target       => $jvmoption_target,
+    portbase     => $zonza_vidispine::glassfish_admin_portbase,
+    asadminuser  => $zonza_vidispine::glassfish_asadmin_user,
+    passwordfile => $zonza_vidispine::glassfish_asadmin_passfile,
+    user         => $zonza_vidispine::glassfish_user,
+    require      => $jvmoption_reqs,
   }
 
 }

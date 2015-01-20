@@ -22,6 +22,11 @@ class vidispine::params {
   $glassfish_imq_maxbytespermsg      = '-1'
   $glassfish_domain_name             = 'vidispine-domain'
   $glassfish_das_host                = 'localhost'
+  $glassfish_cluster_enable          = false,
+  $glassfish_cluster_name            = 'vidispine-cluster',
+  $glassfish_jvmoptions_xmx          = '1024m',
+  $glassfish_jvmoptions_xms          = '256m',
+  $glassfish_jvmoptions_maxpermsize  = '512m',
 
   case $::osfamily {
     'debian': {

@@ -58,6 +58,11 @@ class vidispine (
   $glassfish_imq_maxbytespermsg      = hiera('glassfish_imq_maxbytespermsg',      $vidispine::params::glassfish_imq_maxbytespermsg),
   $glassfish_domain_name             = hiera('glassfish_domain_name',             $vidispine::params::glassfish_domain_name),
   $glassfish_das_host                = hiera('glassfish_das_host',                $vidispine::params::glassfish_das_host),
+  $glassfish_cluster_enable          = hiera('glassfish_cluster_enable',          $vidispine::params::glassfish_cluster_enable),
+  $glassfish_cluster_name            = hiera('glassfish_cluster_name',            $vidispine::params::glassfish_cluster_name),
+  $glassfish_jvmoptions_xmx          = hiera('glassfish_jvmoptions_xmx',          $vidispine::params::glassfish_jvmoptions_xmx),
+  $glassfish_jvmoptions_xms          = hiera('glassfish_jvmoptions_xms',          $vidispine::params::glassfish_jvmoptions_xms),
+  $glassfish_jvmoptions_maxpermsize  = hiera('glassfish_jvmoptions_maxpermsize',  $vidispine::params::glassfish_jvmoptions_maxpermsize),
 
 ) inherits vidispine::params {
 
