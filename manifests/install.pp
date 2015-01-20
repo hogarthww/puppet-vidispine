@@ -151,8 +151,32 @@ class vidispine::install {
       require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],
     }
 
+    # set server http-listener-1.port if we are running the das
+    set { 'server-config.network-config.network-listeners.network-listener.http-listener-1.port':
+      ensure       => present,
+      value        => $vidispine::glassfish_http_port,
+      dashost      => $vidispine::glassfish_das_host,
+      portbase     => $vidispine::glassfish_das_portbase,
+      asadminuser  => $vidispine::glassfish_asadmin_user,
+      passwordfile => $vidispine::glassfish_asadmin_passfile,
+      user         => $vidispine::glassfish_user,
+      require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],
+    }
+
+    # set server system-property.HTTP_LISTENER_PORT.value if we are running the das
+    set { 'default-config.system-property.HTTP_LISTENER_PORT.value':
+      ensure       => present,
+      value        => $vidispine::glassfish_http_port,
+      dashost      => $vidispine::glassfish_das_host,
+      portbase     => $vidispine::glassfish_das_portbase,
+      asadminuser  => $vidispine::glassfish_asadmin_user,
+      passwordfile => $vidispine::glassfish_asadmin_passfile,
+      user         => $vidispine::glassfish_user,
+      require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],
+    }
+
     if ($vidispine::glassfish_cluster_enable) {
-      # set cluster_name java-home we we are running the das and part of a cluster
+      # set cluster_name java-home if we are running the das and part of a cluster
       set { "${vidispine::glassfish_cluster_name}-config.java-config.java-home":
         ensure       => present,
         value        => "/usr/lib/jvm/${vidispine::glassfish_java_package}-${vidispine::glassfish_java_vendor}/jre",
