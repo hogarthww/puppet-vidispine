@@ -87,14 +87,22 @@ class vidispine::install {
     require           => Class['glassfish'],
   }
 
-  ini_setting { 'imq-jvm-args' :
-    ensure            => present,
-    key_val_separator => '=',
-    section           => '',
-    path              => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/bin/imqbrokerd",
-    setting           => '_def_jvm_args',
-    value             => "\"${vidispine::glassfish_imq_jvm_args}\"",
-    require           => Class['glassfish'],
+  #ini_setting { 'imq-jvm-args' :
+  #  ensure            => present,
+  #  key_val_separator => '=',
+  #  section           => '',
+  #  path              => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/bin/imqbrokerd",
+  #  setting           => '_def_jvm_args',
+  #  value             => "\"${vidispine::glassfish_imq_jvm_args}\"",
+  #  require           => Class['glassfish'],
+  #}
+
+  file {"${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/bin/imqbrokerd":
+    owner   => $vidispine::glassfish_user,
+    group   => $vidispine::glassfish_group,
+    mode    => '0644',
+    content => template("glassfish-${vidispine::glassfish_version}/mq/bin/imqbrokerd"),
+    require => Class['glassfish'],
   }
 
   ini_setting { 'imq-broker-maxbytespermsg' :
