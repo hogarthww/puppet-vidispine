@@ -54,6 +54,7 @@ class vidispine (
   $glassfish_asadmin_master_password = hiera('glassfish_asadmin_master_password', $vidispine::params::glassfish_asadmin_master_password),
   $glassfish_asadmin_jms_password    = hiera('glassfish_asadmin_jms_password',    $vidispine::params::glassfish_asadmin_jms_password),
   $glassfish_asadmin_passfile        = hiera('glassfish_asadmin_passfile',        $vidispine::params::glassfish_asadmin_passfile),
+  $glassfish_imq_jvm_args            = hiera('glassfish_imq_jvm_args',            $vidispine::params::glassfish_imq_jvm_args),
 
 ) inherits vidispine::params {
 

@@ -18,6 +18,7 @@ class vidispine::params {
   $glassfish_asadmin_master_password = 'changeit'
   $glassfish_asadmin_jms_password    = 'vidispine'
   $glassfish_asadmin_passfile        = '/home/vidispine/asadmin.pass'
+  $glassfish_imq_jvm_args            = '-Xms512m -Xmx512m -Xss228k'
 
   case $::osfamily {
     'debian': {

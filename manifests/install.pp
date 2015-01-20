@@ -77,4 +77,24 @@ class vidispine::install {
     require           => Class['glassfish'],
   }
 
+  ini_setting { 'imq-java-home' :
+    ensure            => present,
+    key_val_separator => '=',
+    section           => '',
+    path              => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/etc/imqenv.conf",
+    setting           => 'IMQ_DEFAULT_JAVAHOME',
+    value             => "\"/usr/lib/jvm/${vidispine::glassfish_java_package}-${vidispine::glassfish_java_vendor}/jre\"",
+    require           => Class['glassfish'],
+  }
+
+  ini_setting { 'imq-jvm-args' :
+    ensure            => present,
+    key_val_separator => '=',
+    section           => '',
+    path              => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/bin/imqbrokerd",
+    setting           => '_def_jvm_args',
+    value             => $vidispine::glassfish_imq_jvm_args,
+    require           => Class['glassfish'],
+  }
+
 }
