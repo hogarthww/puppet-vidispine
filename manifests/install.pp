@@ -14,55 +14,55 @@ class vidispine::install {
   }
 
   # install java package glassfish will use
-  package {"${zonza_vidispine::glassfish_java_vendor}-${zonza_vidispine::glassfish_java_package}":
-    ensure  => $zonza_vidispine::glassfish_java_version,
+  package {"${vidispine::glassfish_java_vendor}-${vidispine::glassfish_java_package}":
+    ensure  => $vidispine::glassfish_java_version,
     require => Apt::Source['hogarthww'],
   }
 
   # add glassfish daemon account primary group
   # may have already been created by zonza_nfs on the same machine
-  if !defined(Group[$zonza_vidispine::glassfish_group]) {
-    group { $zonza_vidispine::glassfish_group:
+  if !defined(Group[$vidispine::glassfish_group]) {
+    group { $vidispine::glassfish_group:
       ensure => 'present',
-      gid    => $zonza_vidispine::glassfish_gid
+      gid    => $vidispine::glassfish_gid
     }
   }
 
   # add glassfish daemon account
   # may have already been created by zonza_nfs on the same machine
-  if !defined(User[$zonza_vidispine::glassfish_user]) {
-    user { $zonza_vidispine::glassfish_user:
+  if !defined(User[$vidispine::glassfish_user]) {
+    user { $vidispine::glassfish_user:
       ensure     => 'present',
       managehome => true,
-      home       => $zonza_vidispine::glassfish_user_homedir,
+      home       => $vidispine::glassfish_user_homedir,
       comment    => 'Glassfish user account',
-      uid        => $zonza_vidispine::glassfish_uid,
-      gid        => $zonza_vidispine::glassfish_group,
-      require    => Group[$zonza_vidispine::glassfish_group]
+      uid        => $vidispine::glassfish_uid,
+      gid        => $vidispine::glassfish_group,
+      require    => Group[$vidispine::glassfish_group]
     }
   }
 
   # install glassfish
   # requires access to http://download.java.net/
   class {'glassfish':
-    parent_dir              => $zonza_vidispine::glassfish_parent_dir,
-    install_dir             => $zonza_vidispine::glassfish_install_dir,
-    version                 => $zonza_vidispine::glassfish_version,
+    parent_dir              => $vidispine::glassfish_parent_dir,
+    install_dir             => $vidispine::glassfish_install_dir,
+    version                 => $vidispine::glassfish_version,
     create_domain           => false,
     create_service          => false,
     manage_accounts         => false,
     manage_java             => false,
-    user                    => $zonza_vidispine::glassfish_user,
-    group                   => $zonza_vidispine::glassfish_group,
-    portbase                => $zonza_vidispine::glassfish_das_portbase,
-    asadmin_user            => $zonza_vidispine::glassfish_asadmin_user,
-    asadmin_password        => $zonza_vidispine::glassfish_asadmin_password,
-    asadmin_master_password => $zonza_vidispine::glassfish_asadmin_master_password,
-    asadmin_jms_password    => $zonza_vidispine::glassfish_asadmin_jms_password,
-    asadmin_passfile        => $zonza_vidispine::glassfish_asadmin_passfile,
+    user                    => $vidispine::glassfish_user,
+    group                   => $vidispine::glassfish_group,
+    portbase                => $vidispine::glassfish_das_portbase,
+    asadmin_user            => $vidispine::glassfish_asadmin_user,
+    asadmin_password        => $vidispine::glassfish_asadmin_password,
+    asadmin_master_password => $vidispine::glassfish_asadmin_master_password,
+    asadmin_jms_password    => $vidispine::glassfish_asadmin_jms_password,
+    asadmin_passfile        => $vidispine::glassfish_asadmin_passfile,
     require                 => [
-      Package["${zonza_vidispine::glassfish_java_vendor}-${zonza_vidispine::glassfish_java_package}"],
-      User[$zonza_vidispine::glassfish_user],
+      Package["${vidispine::glassfish_java_vendor}-${vidispine::glassfish_java_package}"],
+      User[$vidispine::glassfish_user],
     ],
   }
   contain 'glassfish'
