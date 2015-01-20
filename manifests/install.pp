@@ -177,7 +177,7 @@ class vidispine::install {
 #
 #    }
 
-  $jvmoption_target = 'server',
+  $jvmoption_target = 'server'
 
   # set jvmoptions requirements if we are running the das
   $jvmoption_reqs   = [
