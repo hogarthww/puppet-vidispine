@@ -67,6 +67,7 @@ class vidispine::install {
   }
   contain 'glassfish'
 
+  # set glassfish JAVA_HOME
   ini_setting { 'as-java' :
     ensure            => present,
     key_val_separator => '=',
@@ -77,6 +78,7 @@ class vidispine::install {
     require           => Class['glassfish'],
   }
 
+  # set imq JAVA_HOME
   ini_setting { 'imq-java-home' :
     ensure            => present,
     key_val_separator => '=',
@@ -87,6 +89,7 @@ class vidispine::install {
     require           => Class['glassfish'],
   }
 
+  # set imq jvm_args
   file {"${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/bin/imqbrokerd":
     owner   => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
@@ -95,6 +98,7 @@ class vidispine::install {
     require => Class['glassfish'],
   }
 
+  # set imq broker maxbytespermsg
   ini_setting { 'imq-broker-maxbytespermsg' :
     ensure            => present,
     key_val_separator => '=',
@@ -105,6 +109,7 @@ class vidispine::install {
     require           => Class['glassfish'],
   }
 
+  # create glassfish domain if we are running the das
   if ($vidispine::glassfish_das_host == 'localhost') or ($vidispine::glassfish_das_host == $::fqdn) {
     glassfish::create_domain { $vidispine::glassfish_domain_name:
       asadmin_user        => $vidispine::glassfish_asadmin_user,
@@ -120,6 +125,17 @@ class vidispine::install {
         File["${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/bin/imqbrokerd"],
         Ini_setting['imq-broker-maxbytespermsg'],
       ],
+    }
+
+    set { 'default-config.java-config.java-home':
+      value        => "/usr/lib/jvm/${vidispine::glassfish_java_package}-${vidispine::glassfish_java_vendor}/jre",
+      dashost      => $vidispine::glassfish_das_host,
+      dasport      => $vidispine::glassfish_das_portbase + 48,
+      portbase     => $vidispine::glassfish_das_portbase,
+      asadminuser  => $vidispine::glassfish_asadmin_user,
+      passwordfile => $vidispine::glassfish_asadmin_passfile,
+      user         => $vidispine::glassfish_user,
+      require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],
     }
   }
 
