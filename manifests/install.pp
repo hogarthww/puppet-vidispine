@@ -151,7 +151,7 @@ class vidispine::install {
       require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],
     }
 
-    if ($vidispine::glassfish_cluster) {
+    if ($vidispine::glassfish_cluster_enable) {
       # set cluster_name java-home we we are running the das and part of a cluster
       set { "${vidispine::glassfish_cluster_name}-config.java-config.java-home":
         ensure       => present,
