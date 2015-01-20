@@ -208,7 +208,7 @@ class vidispine::install {
     require      => $jvmoption_reqs,
   }
 
-  jvmoption {"-XX\:MaxPermSize=192m":
+  jvmoption {"-XX:MaxPermSize=192m":
     ensure       => absent,
     target       => $jvmoption_target,
     portbase     => $zonza_vidispine::glassfish_admin_portbase,
@@ -218,7 +218,7 @@ class vidispine::install {
     require      => $jvmoption_reqs,
   }
 
-  jvmoption {"-XX\:MaxPermSize=${vidispine::glassfish_jvmoptions_maxpermsize}":
+  jvmoption {"-XX:MaxPermSize=${vidispine::glassfish_jvmoptions_maxpermsize}":
     ensure       => present,
     target       => $jvmoption_target,
     portbase     => $zonza_vidispine::glassfish_admin_portbase,
