@@ -28,6 +28,7 @@ class vidispine::params {
   $glassfish_jvmoptions_xms          = '256m'
   $glassfish_jvmoptions_maxpermsize  = '512m'
   $glassfish_http_port               = '8080'
+  $vidispine_version                 = '4.2.3'
 
   case $::osfamily {
     'debian': {
