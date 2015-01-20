@@ -259,8 +259,8 @@ class vidispine::install {
     mode    => '0755',
   }
 
-  staging::deploy{"Vidispine_${vidispine::vidispine_version}.zip":
-    source  => "http://apt.hogarthww.prv/vidispine/Vidispine_${vidispine::vidispine_version}.zip",
+  staging::deploy{"Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip":
+    source  => "http://apt.hogarthww.prv/vidispine/Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip",
     target  => "/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}",
     user    => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
