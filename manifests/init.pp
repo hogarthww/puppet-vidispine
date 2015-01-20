@@ -37,10 +37,13 @@
 #
 class vidispine (
 
-  $service_ensure  = hiera('vidispine_service_ensure', $vidispine::params::service_ensure),
-  $service_enable  = hiera('vidispine_service_enable,  $vidispine::params::service_enable),
-  $package_ensure  = hiera('vidispine_package_ensure', $vidispine::params::package_ensure),
-  $package_name    = hiera('vidispine_package_name',   $vidispine::params::package_name),
+  $glassfish_java_vendor  = hiera('glassfish_java_vendor',  $vidispine::params::glassfish_java_vendor),
+  $glassfish_java_package = hiera('glassfish_java_package', $vidispine::params::glassfish_java_package),
+  $glassfish_java_version = hiera('glassfish_java_version', $vidispine::params::glassfish_java_version),
+  $glassfish_user         = hiera('glassfish_user',         $vidispine::params::glassfish_user),
+  $glassfish_uid          = hiera('glassfish_uid',          $vidispine::params::glassfish_uid),
+  $glassfish_group        = hiera('glassfish_group',        $vidispine::params::glassfish_group),
+  $glassfish_gid          = hiera('glassfish_gid',          $vidispine::params::glassfish_gid),
 
 ) inherits vidispine::params {
 

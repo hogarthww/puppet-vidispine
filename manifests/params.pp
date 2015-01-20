@@ -1,23 +1,23 @@
 # see README.md
 class vidispine::params {
 
-  $service_ensure  = 'running'
-  $service_enable  = true
-  $package_ensure  = 'present'
+  $glassfish_java_vendor  = 'oracle',
+  $glassfish_java_package = 'j2sdk1.7',
+  $glassfish_java_version = '1.7.0+update67',
+  $glassfish_user         = 'vidispine',
+  $glassfish_uid          = 2000,
+  $glassfish_group        = 'vidispine',
+  $glassfish_gid          = 2000,
 
   case $::osfamily {
     'debian': {
 
       # do something Ubuntu specific
-      $package_name = "${::vidispine}-deb"
-
     }
 
     'redhat': {
 
       # do something RHEL specific
-      $package_name = "${::vidispine}-rhel"
-
     }
 
     default: {
