@@ -20,6 +20,9 @@ class vidispine::params {
   $glassfish_asadmin_passfile        = '/home/vidispine/asadmin.pass'
   $glassfish_imq_jvm_args            = '-Xms512m -Xmx512m -Xss228k'
   $glassfish_imq_maxbytespermsg      = '-1'
+  $glassfish_domain_name             = 'vidispine-domain'
+  $glassfish_das_portbase            = '4800'
+  $glassfish_das_host                = 'localhost'
 
   case $::osfamily {
     'debian': {
