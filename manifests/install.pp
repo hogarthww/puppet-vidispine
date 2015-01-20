@@ -101,7 +101,7 @@ class vidispine::install {
     owner   => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
     mode    => '0644',
-    content => template("glassfish-${vidispine::glassfish_version}/mq/bin/imqbrokerd"),
+    content => template("vidispine/glassfish-${vidispine::glassfish_version}/mq/bin/imqbrokerd"),
     require => Class['glassfish'],
   }
 
