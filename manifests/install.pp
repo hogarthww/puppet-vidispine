@@ -283,13 +283,13 @@ class vidispine::install {
 
   # create silent install config.xml file for vidispine installer
   # if cluster and not das don't bother **
-  #file { "/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}/config.xml":
-  #  owner   => $vidispine::glassfish_user,
-  #  group   => $vidispine::glassfish_group,
-  #  mode    => '0644',
-  #  content => template('vidispine/config.xml.erb'),
-  #  require => Staging::Deploy["Vidispine_${vidispine::vidispine_version}.zip"],
-  #  notify  => Exec['SetupTool4.jar'],
-  #}
+  file { "/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}/config.xml":
+    owner   => $vidispine::glassfish_user,
+    group   => $vidispine::glassfish_group,
+    mode    => '0644',
+    content => template("vidispine/vidispine-${vidispine::vidispine_version}/config.xml.erb"),
+    require => Staging::Deploy["Vidispine_${vidispine::vidispine_version}.zip"],
+    #notify  => Exec['SetupTool4.jar'],
+  }
 
 }

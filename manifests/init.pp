@@ -65,6 +65,17 @@ class vidispine (
   $glassfish_jvmoptions_maxpermsize  = hiera('glassfish_jvmoptions_maxpermsize',  $vidispine::params::glassfish_jvmoptions_maxpermsize),
   $glassfish_http_port               = hiera('glassfish_http_port',               $vidispine::params::glassfish_http_port),
   $vidispine_version                 = hiera('vidispine_version',                 $vidispine::params::vidispine_version),
+  $vidispine_admin_user              = hiera('vidispine_admin_user',              $vidispine::params::vidispine_admin_user),
+  $vidispine_admin_password          = hiera('vidispine_admin_password',          $vidispine::params::vidispine_admin_password),
+  $vidispine_slave_license           = hiera('vidispine_slave_license',           $vidispine::params::vidispine_slave_license),
+  $vidispine_slave_license_master    = hiera('vidispine_slave_license_master',    $vidispine::params::vidispine_slave_license_master),
+  $vidispine_slave_license_id        = hiera('vidispine_slave_license_id',        $vidispine::params::vidispine_slave_license_id),
+  $postgresql_version                = hiera('postgresql_version',                $vidispine::params::postgresql_version),
+  $postgresql_host                   = hiera('postgresql_host',                   $vidispine::params::postgresql_host),
+  $postgresql_port                   = hiera('postgresql_port',                   $vidispine::params::postgresql_port),
+  $postgresql_user                   = hiera('postgresql_user',                   $vidispine::params::postgresql_user),
+  $postgresql_password               = hiera('postgresql_password',               $vidispine::params::postgresql_password),
+  $postgresql_database               = hiera('postgresql_database',               $vidispine::params::postgresql_database),
 
 ) inherits vidispine::params {
 

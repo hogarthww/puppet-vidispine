@@ -29,6 +29,17 @@ class vidispine::params {
   $glassfish_jvmoptions_maxpermsize  = '512m'
   $glassfish_http_port               = '8080'
   $vidispine_version                 = '4.2.3'
+  $vidispine_admin_user              = 'admin'
+  $vidispine_admin_password          = 'admin'
+  $vidispine_slave_license           = true
+  $vidispine_slave_license_master    = 'http://vidi1-devops-licensing.hogarthww.prv:8080/'
+  $vidispine_slave_license_id        = 'hwwdevslaveidentifier'
+  $postgresql_version                = '9.1'
+  $postgresql_host                   = 'localhost'
+  $postgresql_port                   = '5432'
+  $postgresql_user                   = 'vidispine'
+  $postgresql_password               = 'vidispine'
+  $postgresql_database               = 'vidispinedb'
 
   case $::osfamily {
     'debian': {
