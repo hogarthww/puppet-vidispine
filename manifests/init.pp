@@ -64,11 +64,6 @@ class vidispine (
   $glassfish_jvmoptions_xms          = hiera('glassfish_jvmoptions_xms',          $vidispine::params::glassfish_jvmoptions_xms),
   $glassfish_jvmoptions_maxpermsize  = hiera('glassfish_jvmoptions_maxpermsize',  $vidispine::params::glassfish_jvmoptions_maxpermsize),
   $glassfish_http_port               = hiera('glassfish_http_port',               $vidispine::params::glassfish_http_port),
-  $glassfish_http_pool_size          = hiera('glassfish_http_pool_size',          $vidispine::params::glassfish_http_pool_size),
-  $glassfish_http_pool_timeout       = hiera('glassfish_http_pool_timeout',       $vidispine::params::glassfish_http_pool_timeout),
-  $glassfish_noauth_pool_size        = hiera('glassfish_noauth_pool_size',        $vidispine::params::glassfish_noauth_pool_size),
-  $glassfish_noauth_pool_timeout     = hiera('glassfish_noauth_pool_timeout',     $vidispine::params::glassfish_noauth_pool_timeout),
-  $glassfish_solr_pool_size          = hiera('glassfish_solr_pool_size',          $vidispine::params::glassfish_solr_pool_size),
   $vidispine_version                 = hiera('vidispine_version',                 $vidispine::params::vidispine_version),
   $vidispine_admin_user              = hiera('vidispine_admin_user',              $vidispine::params::vidispine_admin_user),
   $vidispine_admin_password          = hiera('vidispine_admin_password',          $vidispine::params::vidispine_admin_password),
@@ -76,6 +71,12 @@ class vidispine (
   $vidispine_slave_license_master    = hiera('vidispine_slave_license_master',    $vidispine::params::vidispine_slave_license_master),
   $vidispine_slave_license_id        = hiera('vidispine_slave_license_id',        $vidispine::params::vidispine_slave_license_id),
   $vidispine_cluster_enable          = hiera('vidispine_cluster_enable',          $vidispine::params::vidispine_cluster_enable),
+  $vidispine_http_pool_size          = hiera('vidispine_http_pool_size',          $vidispine::params::vidispine_http_pool_size),
+  $vidispine_http_pool_timeout       = hiera('vidispine_http_pool_timeout',       $vidispine::params::vidispine_http_pool_timeout),
+  $vidispine_noauth_pool_size        = hiera('vidispine_noauth_pool_size',        $vidispine::params::vidispine_noauth_pool_size),
+  $vidispine_noauth_pool_timeout     = hiera('vidispine_noauth_pool_timeout',     $vidispine::params::vidispine_noauth_pool_timeout),
+  $vidispine_solr_pool_size          = hiera('vidispine_solr_pool_size',          $vidispine::params::vidispine_solr_pool_size),
+  $vidispine_jdbc_max_size           = hiera('vidispine_jdbc_max_size',           $vidispine::params::vidispine_jdbc_max_size),
   $postgresql_version                = hiera('postgresql_version',                $vidispine::params::postgresql_version),
   $postgresql_host                   = hiera('postgresql_host',                   $vidispine::params::postgresql_host),
   $postgresql_port                   = hiera('postgresql_port',                   $vidispine::params::postgresql_port),
@@ -83,6 +84,7 @@ class vidispine (
   $postgresql_password               = hiera('postgresql_password',               $vidispine::params::postgresql_password),
   $postgresql_database               = hiera('postgresql_database',               $vidispine::params::postgresql_database),
   $solr_collection_name              = hiera('solr_collection_name',              $vidispine::params::solr_collection_name),
+
 
 ) inherits vidispine::params {
 
