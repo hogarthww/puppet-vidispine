@@ -187,7 +187,7 @@
 
   <configurationProperty>
     <key>solrHome</key>
-    <value os="linux">/opt/glassfish3/glassfish/solrhome/solr</value>
+    <value os="linux"><%= scope.lookupvar('vidispine::glassfish_parent_dir') %>/<%= scope.lookupvar('vidispine::glassfish_install_dir') %>/glassfish/solrhome/solr</value>
     <value os="windows">c:\glassfish3\glassfish\solrhome\solr</value>
   </configurationProperty>
 
@@ -204,12 +204,20 @@
 
   <configurationProperty>
     <key>glassfishHA</key>
+<% if scope.lookupvar('vidispine::vidispine_cluster_enable') -%>
+    <value>yes</value>
+<% else -%>
     <value>no</value>
+<% end -%>
   </configurationProperty>
 
   <configurationProperty>
     <key>glassfishCluster</key>
+<% if scope.lookupvar('vidispine::vidispine_cluster_enable') -%>
+    <value><%= scope.lookupvar('vidispine::glassfish_cluster_name') %></value>
+<% else -%>
     <value>vs-cluster</value>
+<% end -%>
   </configurationProperty>
 
   <configurationProperty>

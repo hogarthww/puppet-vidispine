@@ -70,6 +70,7 @@ class vidispine (
   $vidispine_slave_license           = hiera('vidispine_slave_license',           $vidispine::params::vidispine_slave_license),
   $vidispine_slave_license_master    = hiera('vidispine_slave_license_master',    $vidispine::params::vidispine_slave_license_master),
   $vidispine_slave_license_id        = hiera('vidispine_slave_license_id',        $vidispine::params::vidispine_slave_license_id),
+  $vidispine_cluster_enable          = hiera('vidispine_cluster_enable',          $vidispine::params::vidispine_cluster_enable),
   $postgresql_version                = hiera('postgresql_version',                $vidispine::params::postgresql_version),
   $postgresql_host                   = hiera('postgresql_host',                   $vidispine::params::postgresql_host),
   $postgresql_port                   = hiera('postgresql_port',                   $vidispine::params::postgresql_port),
