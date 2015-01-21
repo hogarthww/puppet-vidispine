@@ -294,12 +294,12 @@ class vidispine::install {
 
   exec{'vidispine-installer':
     command     => "java -jar /opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}/SetupTool4.jar --no-prompts --only-middleware --run-installer",
-    refreshonly => true,
     path        => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ],
     cwd         => "/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}",
     user        => $vidispine::glassfish_user,
     timeout     => '1800',
-    require     => File["/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}/config.xml"],
+    refreshonly => true,
+    subscribe   => File["/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}/config.xml"],
   }
 
 }
