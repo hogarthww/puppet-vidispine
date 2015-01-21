@@ -288,7 +288,7 @@ class vidispine::install {
     group   => $vidispine::glassfish_group,
     mode    => '0644',
     content => template("vidispine/vidispine-${vidispine::vidispine_version}/config.xml.erb"),
-    require => Staging::Deploy["Vidispine_${vidispine::vidispine_version}.zip"],
+    require => Staging::Deploy["Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip"],
     #notify  => Exec['SetupTool4.jar'],
   }
 

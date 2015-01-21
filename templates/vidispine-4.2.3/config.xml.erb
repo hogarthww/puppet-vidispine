@@ -51,7 +51,7 @@
   </configurationProperty>
   <configurationProperty>
     <key>glassfishAdminPort</key>
-    <value><%= scope.lookupvar('vidispine::glassfish_das_portbase') + 48 %></value>
+    <value><%= scope.lookupvar('vidispine::glassfish_das_portbase').to_i+48.to_s %></value>
   </configurationProperty>
   <configurationProperty>
     <key>glassfishAdminUser</key>
