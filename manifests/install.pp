@@ -302,4 +302,66 @@ class vidispine::install {
     subscribe   => File["/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}/config.xml"],
   }
 
+  if ($vidispine::glassfish_das_host == 'localhost') or ($vidispine::glassfish_das_host == $::fqdn) {
+    # set server http thread pool size if we are running standaline vidispine
+    set { 'server-config.thread-pools.thread-pool.http-thread-pool.max-thread-pool-size':
+      ensure       => present,
+      value        => $vidispine::glassfish_http_pool_size,
+      dashost      => $vidispine::glassfish_das_host,
+      portbase     => $vidispine::glassfish_das_portbase,
+      asadminuser  => $vidispine::glassfish_asadmin_user,
+      passwordfile => $vidispine::glassfish_asadmin_passfile,
+      user         => $vidispine::glassfish_user,
+      require      => Exec['vidispine-installer'],
+    }
+
+    # set server http thread pool timeout if we are running standaline vidispine
+    set { 'server-config.thread-pools.thread-pool.http-thread-pool.idle-thread-timeout-seconds':
+      ensure       => present,
+      value        => $vidispine::glassfish_http_pool_timeout,
+      dashost      => $vidispine::glassfish_das_host,
+      portbase     => $vidispine::glassfish_das_portbase,
+      asadminuser  => $vidispine::glassfish_asadmin_user,
+      passwordfile => $vidispine::glassfish_asadmin_passfile,
+      user         => $vidispine::glassfish_user,
+      require      => Exec['vidispine-installer'],
+    }
+
+    # set server noauth thread pool size if we are running standaline vidispine
+    set { 'server-config.thread-pools.thread-pool.noauth-pool.max-thread-pool-size':
+      ensure       => present,
+      value        => $vidispine::glassfish_noauth_pool_size,
+      dashost      => $vidispine::glassfish_das_host,
+      portbase     => $vidispine::glassfish_das_portbase,
+      asadminuser  => $vidispine::glassfish_asadmin_user,
+      passwordfile => $vidispine::glassfish_asadmin_passfile,
+      user         => $vidispine::glassfish_user,
+      require      => Exec['vidispine-installer'],
+    }
+
+    # set server noauth thread pool idle timeout if we are running standaline vidispine
+    set { 'server-config.thread-pools.thread-pool.noauth-pool.idle-thread-timeout-seconds':
+      ensure       => present,
+      value        => $vidispine::glassfish_noauth_pool_timeout,
+      dashost      => $vidispine::glassfish_das_host,
+      portbase     => $vidispine::glassfish_das_portbase,
+      asadminuser  => $vidispine::glassfish_asadmin_user,
+      passwordfile => $vidispine::glassfish_asadmin_passfile,
+      user         => $vidispine::glassfish_user,
+      require      => Exec['vidispine-installer'],
+    }
+
+    # set server solr thread pool size if we are running standaline vidispine
+    set { 'server-config.thread-pools.thread-pool.solr-pool.max-thread-pool-size':
+      ensure       => present,
+      value        => $vidispine::glassfish_solr_pool_size,
+      dashost      => $vidispine::glassfish_das_host,
+      portbase     => $vidispine::glassfish_das_portbase,
+      asadminuser  => $vidispine::glassfish_asadmin_user,
+      passwordfile => $vidispine::glassfish_asadmin_passfile,
+      user         => $vidispine::glassfish_user,
+      require      => Exec['vidispine-installer'],
+    }
+  }
+
 }
