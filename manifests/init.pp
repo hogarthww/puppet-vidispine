@@ -77,6 +77,7 @@ class vidispine (
   $postgresql_user                   = hiera('postgresql_user',                   $vidispine::params::postgresql_user),
   $postgresql_password               = hiera('postgresql_password',               $vidispine::params::postgresql_password),
   $postgresql_database               = hiera('postgresql_database',               $vidispine::params::postgresql_database),
+  $solr_collection_name              = hiera('solr_collection_name',              $vidispine::params::solr_collection_name),
 
 ) inherits vidispine::params {
 

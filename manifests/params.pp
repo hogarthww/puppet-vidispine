@@ -41,6 +41,7 @@ class vidispine::params {
   $postgresql_user                   = 'vidispine'
   $postgresql_password               = 'vidispine'
   $postgresql_database               = 'vidispinedb'
+  $solr_collection_name              = 'vidispine-collection'
 
   case $::osfamily {
     'debian': {
