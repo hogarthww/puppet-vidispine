@@ -46,7 +46,7 @@
   <!-- Glassfish properties -->
   <configurationProperty>
     <key>glassfishDir</key>
-    <value os="linux"><%= scope.lookupvar('vidispine::glassfish_parent_dir') %>/<%= scope.lookupvar('vidispine::glassfish_install_dir') %></value>
+    <value os="linux"><%= scope.lookupvar('vidispine::glassfish_parent_dir') %>/<%= scope.lookupvar('vidispine::glassfish_install_dir') %>/glassfish</value>
     <value os="windows">c:\glassfish3</value>
   </configurationProperty>
   <configurationProperty>
@@ -166,7 +166,7 @@
   <configurationProperty>
     <key>masterNodeAddress</key>
 <% if scope.lookupvar('vidispine::vidispine_slave_license') -%>
-    <value><% scope.lookupvar('vidispine::vidispine_slave_license_master') %></value>
+    <value><%= scope.lookupvar('vidispine::vidispine_slave_license_master') %></value>
 <% else -%>
     <value>http://master.com:8080/</value>
 <% end -%>
@@ -174,7 +174,7 @@
   <configurationProperty>
     <key>slaveId</key>
 <% if scope.lookupvar('vidispine::vidispine_slave_license') -%>
-    <value><% scope.lookupvar('vidispine::vidispine_slave_license_id') %></value>
+    <value><%= scope.lookupvar('vidispine::vidispine_slave_license_id') %></value>
 <% else -%>
     <value>your-slave-id</value>
 <% end -%>
