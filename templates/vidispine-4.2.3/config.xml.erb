@@ -241,9 +241,9 @@
   <configurationProperty>
     <key>solrCloudCollectionName</key>
 <% if scope.lookupvar('vidispine::vidispine_cluster_enable') -%>
-    <value>collection1</value>
-<% else -%>
     <value><%= scope.lookupvar('vidispine::solr_collection_name') %></value>
+<% else -%>
+    <value>collection1</value>
 <% end -%>
   </configurationProperty>
   

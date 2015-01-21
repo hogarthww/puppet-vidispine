@@ -41,7 +41,7 @@ class vidispine::params {
   $postgresql_user                   = 'vidispine'
   $postgresql_password               = 'vidispine'
   $postgresql_database               = 'vidispinedb'
-  $solr_collection_name              = 'vidispine-collection'
+  $solr_collection_name              = 'vidispine-collection'   # this is only used with an external solr config
 
   case $::osfamily {
     'debian': {
