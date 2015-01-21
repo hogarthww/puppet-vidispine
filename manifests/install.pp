@@ -205,10 +205,10 @@ class vidispine::install {
 
   # set jvmoption requirements if we are running the das
   $jvmoption_reqs   = [
-    Ini_setting['as-java'],
-    Ini_setting['imq-java-home'],
-    File["${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/bin/imqbrokerd"],
-    Ini_setting['imq-broker-maxbytespermsg'],
+    #Ini_setting['as-java'],
+    #Ini_setting['imq-java-home'],
+    #File["${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/bin/imqbrokerd"],
+    #Ini_setting['imq-broker-maxbytespermsg'],
     Glassfish::Create_domain[$vidispine::glassfish_domain_name],
   ]
 
