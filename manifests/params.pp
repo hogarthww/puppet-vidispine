@@ -32,7 +32,7 @@ class vidispine::params {
   $vidispine_admin_user              = 'admin'
   $vidispine_admin_password          = 'admin'
   $vidispine_slave_license           = true
-  $vidispine_slave_license_master    = 'http://vidi1-devops-licensing.hogarthww.prv:8080/'
+  $vidispine_slave_license_master    = 'http://10.9.1.19:8080/' # 'http://vidi1-devops-licensing.hogarthww.prv:8080/'
   $vidispine_slave_license_id        = 'hwwdevslaveidentifier'
   $postgresql_version                = '9.1'
   $postgresql_host                   = 'localhost'
