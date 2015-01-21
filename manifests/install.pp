@@ -93,7 +93,7 @@ class vidispine::install {
   file {"${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/bin/imqbrokerd":
     owner   => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
-    mode    => '0644',
+    mode    => '0755',
     content => template("vidispine/glassfish-${vidispine::glassfish_version}/mq/bin/imqbrokerd"),
     require => Class['glassfish'],
   }
