@@ -46,12 +46,12 @@
   <!-- Glassfish properties -->
   <configurationProperty>
     <key>glassfishDir</key>
-    <value os="linux">/opt/glassfish3/glassfish</value>
+    <value os="linux"><%= scope.lookupvar('vidispine::glassfish_parent_dir') %>/<%= scope.lookupvar('vidispine::glassfish_install_dir') %></value>
     <value os="windows">c:\glassfish3</value>
   </configurationProperty>
   <configurationProperty>
     <key>glassfishAdminPort</key>
-    <value><%= scope.lookupvar('vidispine::glassfish_das_portbase').to_i+48.to_s %></value>
+    <value><%= scope.lookupvar('vidispine::glassfish_das_portbase').to_i + 48 %></value>
   </configurationProperty>
   <configurationProperty>
     <key>glassfishAdminUser</key>
