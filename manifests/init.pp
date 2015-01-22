@@ -60,6 +60,7 @@ class vidispine (
   $glassfish_das_host                = $vidispine::params::glassfish_das_host,
   $glassfish_cluster_enable          = $vidispine::params::glassfish_cluster_enable,
   $glassfish_cluster_name            = $vidispine::params::glassfish_cluster_name,
+  $glassfish_node_name               = $vidispine::params::glassfish_node_name,
   $glassfish_instance_name           = $vidispine::params::glassfish_instance_name,
   $glassfish_jvmoptions_xmx          = $vidispine::params::glassfish_jvmoptions_xmx,
   $glassfish_jvmoptions_xms          = $vidispine::params::glassfish_jvmoptions_xms,

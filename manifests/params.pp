@@ -24,6 +24,7 @@ class vidispine::params {
   $glassfish_das_host                = 'localhost'
   $glassfish_cluster_enable          = false
   $glassfish_cluster_name            = 'vidispine-cluster'
+  $glassfish_node_name               = $::hostname
   $glassfish_instance_name           = "${::hostname}-instance"
   $glassfish_jvmoptions_xmx          = '1024m'
   $glassfish_jvmoptions_xms          = '256m'
