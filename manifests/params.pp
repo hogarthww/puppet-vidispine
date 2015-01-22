@@ -33,7 +33,7 @@ class vidispine::params {
   $vidispine_admin_user              = 'admin'
   $vidispine_admin_password          = 'admin'
   $vidispine_slave_license           = true
-  $vidispine_slave_license_master    = 'http://10.9.1.19:8080/' # 'http://vidi1-devops-licensing.hogarthww.prv:8080/'
+  $vidispine_slave_license_master    = 'http://master.com:8080/'
   $vidispine_slave_license_id        = 'hwwdevslaveidentifier'
   $vidispine_cluster_enable          = false
   $vidispine_http_pool_size          = '50'
@@ -52,13 +52,13 @@ class vidispine::params {
 
   case $::osfamily {
     'debian': {
-
       # do something Ubuntu specific
+
     }
 
     'redhat': {
-
       # do something RHEL specific
+
     }
 
     default: {
