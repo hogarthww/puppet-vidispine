@@ -32,9 +32,9 @@ class vidispine::params {
   $vidispine_version                 = '4.2.3'
   $vidispine_admin_user              = 'admin'
   $vidispine_admin_password          = 'admin'
-  $vidispine_slave_license           = true
+  $vidispine_slave_license           = false
   $vidispine_slave_license_master    = 'http://master.com:8080/'
-  $vidispine_slave_license_id        = 'hwwdevslaveidentifier'
+  $vidispine_slave_license_id        = 'slaveidentifier'
   $vidispine_cluster_enable          = false
   $vidispine_http_pool_size          = '50'
   $vidispine_http_pool_timeout       = '900'

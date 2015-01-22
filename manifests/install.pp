@@ -20,7 +20,6 @@ class vidispine::install {
   }
 
   # add glassfish daemon account primary group
-  # may have already been created by nfs on the same machine
   if !defined(Group[$vidispine::glassfish_group]) {
     group { $vidispine::glassfish_group:
       ensure => 'present',
@@ -29,7 +28,6 @@ class vidispine::install {
   }
 
   # add glassfish daemon account
-  # may have already been created by nfs on the same machine
   if !defined(User[$vidispine::glassfish_user]) {
     user { $vidispine::glassfish_user:
       ensure     => 'present',

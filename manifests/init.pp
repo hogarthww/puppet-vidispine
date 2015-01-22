@@ -86,7 +86,6 @@ class vidispine (
   $postgresql_database               = $vidispine::params::postgresql_database,
   $solr_collection_name              = $vidispine::params::solr_collection_name,
 
-
 ) inherits vidispine::params {
 
   anchor { 'vidispine::begin' : } ->
