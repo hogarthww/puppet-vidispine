@@ -256,7 +256,7 @@ class vidispine::install {
 
   # create directory for vidispine installer
   # if cluster and not das don't bother **
-  file {[ '/opt/vidispine-installer', "/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}"]:
+  file {[ $vidispine::installer_dir, "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}"]:
     ensure  => directory,
     owner   => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
@@ -266,22 +266,22 @@ class vidispine::install {
   # unpack vidispine installer
   # if cluster and not das don't bother **
   staging::deploy{"Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip":
-    source  => "http://apt.hogarthww.prv/vidispine/Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip",
-    target  => "/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}",
+    source  => "${vidispine::vidispine_archive_location}Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip",
+    target  => "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}",
     user    => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
-    creates => "/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}/SetupTool4.jar",
+    creates => "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}/SetupTool4.jar",
     require => [
       Jvmoption["-Xmx${vidispine::glassfish_jvmoptions_xmx}"],
       Jvmoption["-Xms${vidispine::glassfish_jvmoptions_xms}"],
       Jvmoption["-XX:MaxPermSize=${vidispine::glassfish_jvmoptions_maxpermsize}"],
-      File["/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}"],
+      File["${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}"],
     ]
   }
 
   # create silent install config.xml file for vidispine installer
   # if cluster and not das don't bother **
-  file { "/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}/config.xml":
+  file { "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}/config.xml":
     owner   => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
     mode    => '0644',
@@ -291,13 +291,13 @@ class vidispine::install {
   }
 
   exec{'vidispine-installer':
-    command     => "java -jar /opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}/SetupTool4.jar --no-prompts --only-middleware --run-installer; cp -p ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/lib/postgresql-*.jar /opt/glassfish3/mq/lib/ext/",
+    command     => "java -jar ${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}/SetupTool4.jar --no-prompts --only-middleware --run-installer; cp -p ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/lib/postgresql-*.jar /opt/glassfish3/mq/lib/ext/",
     path        => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ],
-    cwd         => "/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}",
+    cwd         => "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}",
     user        => $vidispine::glassfish_user,
     timeout     => '1800',
     refreshonly => true,
-    subscribe   => File["/opt/vidispine-installer/Vidispine_${vidispine::vidispine_version}/config.xml"],
+    subscribe   => File["${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}/config.xml"],
   }
 
 }

@@ -37,6 +37,7 @@
 #
 class vidispine (
 
+  $installer_dir                     = $vidispine::params::installer_dir,
   $glassfish_java_vendor             = $vidispine::params::glassfish_java_vendor,
   $glassfish_java_package            = $vidispine::params::glassfish_java_package,
   $glassfish_java_version            = $vidispine::params::glassfish_java_version,
@@ -48,6 +49,7 @@ class vidispine (
   $glassfish_parent_dir              = $vidispine::params::glassfish_parent_dir,
   $glassfish_install_dir             = $vidispine::params::glassfish_install_dir,
   $glassfish_version                 = $vidispine::params::glassfish_version,
+  $glassfish_archive_location        = $vidispine::params::glassfish_archive_location,
   $glassfish_das_portbase            = $vidispine::params::glassfish_das_portbase,
   $glassfish_asadmin_user            = $vidispine::params::glassfish_asadmin_user,
   $glassfish_asadmin_password        = $vidispine::params::glassfish_asadmin_password,
@@ -67,6 +69,7 @@ class vidispine (
   $glassfish_jvmoptions_maxpermsize  = $vidispine::params::glassfish_jvmoptions_maxpermsize,
   $glassfish_http_port               = $vidispine::params::glassfish_http_port,
   $vidispine_version                 = $vidispine::params::vidispine_version,
+  $vidispine_archive_location        = $vidispine::params::vidispine_archive_location,
   $vidispine_admin_user              = $vidispine::params::vidispine_admin_user,
   $vidispine_admin_password          = $vidispine::params::vidispine_admin_password,
   $vidispine_slave_license           = $vidispine::params::vidispine_slave_license,
