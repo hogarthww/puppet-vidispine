@@ -2,10 +2,10 @@
 class vidispine::install {
 
   # add hogarthww apt repo if we don't have it
-  if !defined(Apt::Source['hogarthww']) {
-    apt::source { 'hogarthww':
-      comment     => 'The hogarth worldwide apt repo',
-      location    => 'http://apt.hogarthww.prv/hogarthww/ubuntu/',
+  if !defined(Apt::Source[$vidispine::glassfish_java_apt_repo['name']]) {
+    apt::source { $vidispine::glassfish_java_apt_repo['name']:
+      comment     => $vidispine::glassfish_java_apt_repo['comment'],
+      location    => $vidispine::glassfish_java_apt_repo['location'],
       release     => $lsbdistcodename,
       repos       => 'main',
       include_src => false,

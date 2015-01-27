@@ -41,6 +41,7 @@ class vidispine (
   $glassfish_java_vendor             = $vidispine::params::glassfish_java_vendor,
   $glassfish_java_package            = $vidispine::params::glassfish_java_package,
   $glassfish_java_version            = $vidispine::params::glassfish_java_version,
+  $glassfish_java_apt_repo           = $vidispine::params::glassfish_java_apt_repo,
   $glassfish_user                    = $vidispine::params::glassfish_user,
   $glassfish_uid                     = $vidispine::params::glassfish_uid,
   $glassfish_group                   = $vidispine::params::glassfish_group,
