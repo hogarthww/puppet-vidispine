@@ -34,7 +34,6 @@ class vidispine::install {
       ensure     => 'present',
       managehome => true,
       home       => $vidispine::glassfish_user_homedir,
-      comment    => 'Glassfish user account',
       uid        => $vidispine::glassfish_uid,
       gid        => $vidispine::glassfish_group,
       require    => Group[$vidispine::glassfish_group]
