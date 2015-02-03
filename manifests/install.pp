@@ -279,13 +279,15 @@ class vidispine::install {
                ]
   }
 
+  $zookeeper_servers = join(sort(keys($vidispine::zookeeper_server_list)), ',')
+
   # create silent install config.xml file for vidispine installer
   # if cluster and not das don't bother **
   file { "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}/config.xml":
     owner   => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
     mode    => '0644',
-    content => template("vidispine/vidispine-${vidispine::vidispine_version}/config.xml.erb"),
+    content => template("vidispine/config.xml.erb"),
     require => Staging::Deploy["Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip"],
     notify  => Exec['vidispine-installer'],
   }

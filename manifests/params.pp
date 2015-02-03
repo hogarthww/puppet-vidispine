@@ -62,6 +62,7 @@ class vidispine::params {
   $postgresql_imq_user               = 'openmq'
   $postgresql_imq_password           = 'openmq'
   $postgresql_imq_database           = 'openmqdb'
+  $zookeeper_server_list             = undef
   $solr_collection_name              = 'collection1'   # this is only used with an external solr config
 
   case $::osfamily {
