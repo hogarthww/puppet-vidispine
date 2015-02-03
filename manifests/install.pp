@@ -260,12 +260,12 @@ class vidispine::install {
             "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/domains/${vidispine::glassfish_domain_name}/imq/instances",
             "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/domains/${vidispine::glassfish_domain_name}/imq/instances/imqbroker",
             "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/domains/${vidispine::glassfish_domain_name}/imq/instances/imqbroker/props",
-          }:
+          ]:
       ensure => directory,
       owner  => $vidispine::glassfish_user,
       group  => $vidispine::glassfish_group,
       mode   => '0755',
-    ]
+    }
 
     ini_setting { 'imq-brokerid' :
       ensure            => present,
