@@ -284,6 +284,8 @@ class vidispine::install {
                  ],
     }
 
+    $glassfish_imq_brokers = join(sort(keys($vidispine::glassfish_imq_broker_list)), ',')
+
     file {"${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/domains/$vidispine::glassfish_domain_name/imq/instances/imqbroker/props/cluster.properties":
       ensure  => present,
       owner   => $vidispine::glassfish_user,
