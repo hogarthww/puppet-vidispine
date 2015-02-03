@@ -260,7 +260,7 @@ class vidispine::install {
       ensure            => present,
       key_val_separator => '=',
       section           => '',
-      path              => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/domains/$vidispine::glassfish_domain_name/imq/instances/imqbroker/props/config.properties",
+      path              => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/domains/${vidispine::glassfish_domain_name}/imq/instances/imqbroker/props/config.properties",
       setting           => 'imq.brokerid',
       value             => $::fqdn,
       require => [
@@ -271,13 +271,16 @@ class vidispine::install {
                  ],
     }
 
+    notify {"${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/domains/${vidispine::glassfish_domain_name}/imq/instances/imqbroker/props/config.properties":}
+    notify {"${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/domains/$vidispine::glassfish_domain_name/imq/instances/imqbroker/props/cluster.properties":}
+
     ini_setting { 'imq-cluster-url' :
       ensure            => present,
       key_val_separator => '=',
       section           => '',
-      path              => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/domains/$vidispine::glassfish_domain_name/imq/instances/imqbroker/props/config.properties",
+      path              => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/domains/${vidispine::glassfish_domain_name}/imq/instances/imqbroker/props/config.properties",
       setting           => 'imq.cluster.url',
-      value             => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/domains/$vidispine::glassfish_domain_name/imq/instances/imqbroker/props/cluster.properties",
+      value             => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/domains/${vidispine::glassfish_domain_name}/imq/instances/imqbroker/props/cluster.properties",
       require => [
                    Glassfish::Create_domain[$vidispine::glassfish_domain_name],
                    Jvmoption["-Xmx${vidispine::glassfish_jvmoptions_xmx}"],
@@ -288,7 +291,7 @@ class vidispine::install {
 
     $glassfish_imq_brokers = join(sort(keys($vidispine::glassfish_imq_broker_list)), ',')
 
-    file {"${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/domains/$vidispine::glassfish_domain_name/imq/instances/imqbroker/props/cluster.properties":
+    file {"${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/domains/${vidispine::glassfish_domain_name}/imq/instances/imqbroker/props/cluster.properties":
       ensure  => present,
       owner   => $vidispine::glassfish_user,
       group   => $vidispine::glassfish_group,
@@ -307,7 +310,7 @@ class vidispine::install {
       File["${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}"],
       Ini_setting['imq-brokerid'],
       Ini_setting['imq-cluster-url'],
-      File["${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/domains/$vidispine::glassfish_domain_name/imq/instances/imqbroker/props/cluster.properties"],
+      File["${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/domains/${vidispine::glassfish_domain_name}/imq/instances/imqbroker/props/cluster.properties"],
     ]
 
   } else {
