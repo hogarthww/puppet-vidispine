@@ -91,6 +91,9 @@ class vidispine (
   $postgresql_user                   = $vidispine::params::postgresql_user,
   $postgresql_password               = $vidispine::params::postgresql_password,
   $postgresql_database               = $vidispine::params::postgresql_database,
+  $postgresql_imq_user               = $vidispine::params::postgresql_imq_user,
+  $postgresql_imq_password           = $vidispine::params::postgresql_imq_password,
+  $postgresql_imq_database           = $vidispine::params::postgresql_imq_database,
   $solr_collection_name              = $vidispine::params::solr_collection_name,
 
 ) inherits vidispine::params {
