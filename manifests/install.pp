@@ -264,6 +264,7 @@ class vidispine::install {
       setting           => 'imq.brokerid',
       value             => $::fqdn,
       require => [
+                   Glassfish::Create_domain[$vidispine::glassfish_domain_name],
                    Jvmoption["-Xmx${vidispine::glassfish_jvmoptions_xmx}"],
                    Jvmoption["-Xms${vidispine::glassfish_jvmoptions_xms}"],
                    Jvmoption["-XX:MaxPermSize=${vidispine::glassfish_jvmoptions_maxpermsize}"],
@@ -278,6 +279,7 @@ class vidispine::install {
       setting           => 'imq.cluster.url',
       value             => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/domains/$vidispine::glassfish_domain_name/imq/instances/imqbroker/props/cluster.properties",
       require => [
+                   Glassfish::Create_domain[$vidispine::glassfish_domain_name],
                    Jvmoption["-Xmx${vidispine::glassfish_jvmoptions_xmx}"],
                    Jvmoption["-Xms${vidispine::glassfish_jvmoptions_xms}"],
                    Jvmoption["-XX:MaxPermSize=${vidispine::glassfish_jvmoptions_maxpermsize}"],
@@ -292,6 +294,10 @@ class vidispine::install {
       group   => $vidispine::glassfish_group,
       mode    => '0644',
       content => template("vidispine/cluster.properties.erb"),
+      require => [
+                   Ini_setting['imq-brokerid'],
+                   Ini_setting['imq-cluster-url'],
+                 ]
     }
 
     $vidispine_reqs = [
