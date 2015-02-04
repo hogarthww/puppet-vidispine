@@ -344,7 +344,7 @@ class vidispine::install {
       path              => $imq_conf,
       setting           => 'imq.persist.store',
       value             => 'jdbc',
-      require           => Ini_setting['imq-cluster-brokerlist'],
+      require           => Ini_setting['imq-cluster-clusterid'],
     }
 
     ini_setting { 'imq-persist-jdbc-dbvendor' :
