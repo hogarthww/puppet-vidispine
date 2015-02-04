@@ -100,7 +100,7 @@ class vidispine (
 ) inherits vidispine::params {
 
   anchor { 'vidispine::begin' : } ->
-    class  { 'vidispine::install' : } ->
+    class  { 'vidispine::install' : } ~>
     class  { 'vidispine::config'  : } ~>
     class  { 'vidispine::service' : } ->
   anchor { 'vidispine::end'   : }
