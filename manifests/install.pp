@@ -307,7 +307,7 @@ class vidispine::install {
 
     $imq_conf = "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/domains/${vidispine::glassfish_domain_name}/imq/instances/imqbroker/props/config.properties"
 
-    $glassfish_imq_brokers = join(sort(keys($vidispine::glassfish_imq_broker_list)), "${vidispine::glassfish_das_portbase+76}", ',')
+    $glassfish_imq_brokers = join(sort(keys($vidispine::glassfish_imq_broker_list)), ',')
 
     ini_setting { 'imq-brokerid' :
       ensure            => present,
@@ -335,7 +335,7 @@ class vidispine::install {
       section           => '',
       path              => $imq_conf,
       setting           => 'imq.cluster.clusterid',
-      value             => $vidispine::glassfish_domain_name,
+      value             => 'vidispineimq',
       require           => Ini_setting['imq-cluster-ha'],
     }
 
@@ -397,7 +397,6 @@ class vidispine::install {
       setting           => 'imq.persist.jdbc.postgresql.password',
       value             => $vidispine::postgresql_imq_password,
       require           => Ini_setting['imq-persist-jdbc-postgresql-user'],
-      notify  => Service[$vidispine::glassfish_domain_name],
     }
 
   }
