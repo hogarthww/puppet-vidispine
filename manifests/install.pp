@@ -307,8 +307,6 @@ class vidispine::install {
 
     $imq_conf = "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/domains/${vidispine::glassfish_domain_name}/imq/instances/imqbroker/props/config.properties"
 
-    $glassfish_imq_brokers = join(sort(keys($vidispine::glassfish_imq_broker_list)), ',')
-
     ini_setting { 'imq-brokerid' :
       ensure            => present,
       key_val_separator => '=',
@@ -337,16 +335,6 @@ class vidispine::install {
       setting           => 'imq.cluster.clusterid',
       value             => 'vidispineimq',
       require           => Ini_setting['imq-cluster-ha'],
-    }
-
-    ini_setting { 'imq-cluster-brokerlist' :
-      ensure            => present,
-      key_val_separator => '=',
-      section           => '',
-      path              => $imq_conf,
-      setting           => 'imq.cluster.brokerlist',
-      value             => $glassfish_imq_brokers,
-      require           => Ini_setting['imq-cluster-clusterid'],
     }
 
     ini_setting { 'imq-persist-store' :
