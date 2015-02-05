@@ -279,7 +279,7 @@ class vidispine::install {
                ]
   }
 
-  if ($vidispine::glassfish_cluster_enable) or ($vidispine::glassfish__imq_cluster_enable) {
+  if ($vidispine::glassfish_cluster_enable) or ($vidispine::glassfish_imq_cluster_enable) {
     $zookeeper_servers = join(sort(keys($vidispine::zookeeper_server_list)), ',')
   }
 
