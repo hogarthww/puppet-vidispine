@@ -72,6 +72,7 @@ class vidispine (
   $glassfish_jvmoptions_maxpermsize  = $vidispine::params::glassfish_jvmoptions_maxpermsize,
   $glassfish_http_port               = $vidispine::params::glassfish_http_port,
   $vidispine_version                 = $vidispine::params::vidispine_version,
+  $vidispine_apphost                 = $vidispine::params::vidispine_apphost,
   $vidispine_archive_location        = $vidispine::params::vidispine_archive_location,
   $vidispine_admin_user              = $vidispine::params::vidispine_admin_user,
   $vidispine_admin_password          = $vidispine::params::vidispine_admin_password,
