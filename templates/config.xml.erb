@@ -193,7 +193,7 @@
 
   <configurationProperty>
     <key>solrPath</key>
-    <value>http://localhost:<%= scope.lookupvar('vidispine::glassfish_http_port') + 8.to_s %>/solr</value>
+    <value>http://localhost:<%= scope.lookupvar('vidispine::glassfish_http_port').to_i + 8 %>/solr</value>
   </configurationProperty>
 
   <configurationProperty>
