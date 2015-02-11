@@ -11,7 +11,7 @@
   </configurationProperty>
   <configurationProperty>
     <key>applicationServerHostname</key>
-    <value>localhost</value>
+    <value><%= scope.lookupvar('vidispine::vidispine_apphost') %></value>
   </configurationProperty>
   <configurationProperty>
     <key>applicationServerStartupScript</key>
@@ -193,7 +193,7 @@
 
   <configurationProperty>
     <key>solrPath</key>
-    <value>http://localhost:8080/solr</value>
+    <value>http://localhost:<%= scope.lookupvar('vidispine::glassfish_http_port')+8 %>/solr</value>
   </configurationProperty>
 
   <configurationProperty>
