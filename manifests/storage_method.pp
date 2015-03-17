@@ -3,6 +3,7 @@
 define vidispine::storage_method (
 
   $ensure     = 'present',
+  $storageuri = undef
   $vshostname = $vidispine::glassfish_das_host,
   $vsport     = $vidispine::glassfish_http_port,
   $vsuser     = $vidispine::vidispine_admin_user,
@@ -18,6 +19,7 @@ define vidispine::storage_method (
   # need to call provider to make call  to the vidispine application server on:/API/resource/transcoder
   vidispine_storage_method {$name:
     ensure     => $ensure,
+    storageuri => $storageuri,
     vshostname => $vshostname,
     vsport     => $vsport,
     vsuser     => $vsuser,
@@ -26,6 +28,7 @@ define vidispine::storage_method (
     read       => $read,
     write      => $write,
     browse     => $browse,
+    type       => $type,
   }
 
 }
