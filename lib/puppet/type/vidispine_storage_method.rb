@@ -5,7 +5,7 @@ Puppet::Type.newtype(:vidispine_storage_method) do
 
   ensurable
 
-  newparam(:storageUri) do
+  newparam(:storageuri) do
     desc "The Storage URI for vidispine."
     isnamevar
 

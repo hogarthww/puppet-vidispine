@@ -13,7 +13,7 @@ Puppet::Type.type(:vidispine_storage_method).provide(:vidispine_storage_method) 
   parent = findParent()
   name    = @resource[:name]
   vsurl   = "http://" + @resource[:vshostname] +":"+ @resource[:vsport] + "/API/storage/" + parent + "/method"
-  vsquery = "url="+ name  +"&read="+ @resource[:read] +"&browse="+ @resource[:write] +"&write=" + @resource[:browse] +"&type=" + @resource[:type]
+  vsquery = "url="+ @resource[:storageuri] +"&read="+ @resource[:read] +"&browse="+ @resource[:write] +"&write=" + @resource[:browse] +"&type=" + @resource[:type]
   vsurl   = vsurl + "?" + vsquery
   vsuser  = @resource[:vsuser]
   vspass  = @resource[:vspass]
@@ -76,7 +76,7 @@ Puppet::Type.type(:vidispine_storage_method).provide(:vidispine_storage_method) 
     methods = parsed["method"]
     methods.each do |method|
        uri  = method['uri']
-       if uri == name
+       if uri == @resource[:storageuri]
        then
 #         return method['id']
           return true
