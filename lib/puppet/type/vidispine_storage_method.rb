@@ -26,9 +26,6 @@ Puppet::Type.newtype(:vidispine_storage_method) do
     end
   end
 
-
-
-
   newparam(:vshostname) do
     desc "The hostname of the vidispine API."
 
@@ -84,12 +81,23 @@ Puppet::Type.newtype(:vidispine_storage_method) do
       end
     end
   end
-   newparam(:browse) do
+  newparam(:browse) do
     desc "The password for the vidispine API."
 
     validate do |value|
        unless value == 'true' || value == 'false'
         raise ArgumentError, "%s valid params are strings containing true of false." % value
+      end
+    end
+  end
+
+  newparam(:type) do
+    desc "The Vidispine storeage_method type."
+    defaultto "NONE"
+
+    validate do |value|
+       unless value == 'AUTO' || value == 'NONE'
+        raise ArgumentError, "%s valid params are strings containing AUTO or NONE." % value
       end
     end
   end
