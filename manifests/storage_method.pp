@@ -3,7 +3,7 @@
 define vidispine::storage_method (
 
   $ensure     = 'present',
-  $storageuri = undef,
+  $storageuri = $name,
   $vshostname = $vidispine::glassfish_das_host,
   $vsport     = $vidispine::glassfish_http_port,
   $vsuser     = $vidispine::vidispine_admin_user,

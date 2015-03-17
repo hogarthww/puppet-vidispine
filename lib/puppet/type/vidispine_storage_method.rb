@@ -5,11 +5,14 @@ Puppet::Type.newtype(:vidispine_storage_method) do
 
   ensurable
 
+  newparam(:name) do
+    desc "The name of the storage_method resource."
+  end
+
   newparam(:storageuri) do
     desc "The Storage URI for vidispine."
-    isnamevar
 
-  validate do |value|
+    validate do |value|
       unless value =~ /\A#{URI::regexp}\z/
          raise ArgumentError, "%s is not a valid storage address." % value
       end
