@@ -11,6 +11,7 @@ define vidispine::storage_method (
   $read       = 'true',
   $write      = 'true',
   $browse     = 'true',
+  $type       = 'NONE',
 
 ){
 
