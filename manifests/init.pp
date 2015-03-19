@@ -98,6 +98,8 @@ class vidispine (
   $postgresql_imq_database           = $vidispine::params::postgresql_imq_database,
   $zookeeper_server_list             = $vidispine::params::zookeeper_server_list,
   $solr_collection_name              = $vidispine::params::solr_collection_name,
+  $newrelic_archive_location         = $vidispine::params::newrelic_archive_location,
+  $newrelic_version                  = $vidispine::params::newrelic_version,
 
 ) inherits vidispine::params {
 
