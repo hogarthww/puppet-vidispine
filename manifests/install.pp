@@ -259,18 +259,20 @@ class vidispine::install {
       passwordfile => $vidispine::glassfish_asadmin_passfile,
       user         => $vidispine::glassfish_user,
       require      => $jvmoption_reqs,
+      before       => Staging::Deploy["Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip"],
     }
-  }
 
-  # add -XX:PermSize jvm option for vidispine glassfish instance
-  jvmoption {"-XX:PermSize=${vidispine::glassfish_jvmoptions_permsize}":
-    ensure       => present,
-    target       => $jvmoption_target,
-    portbase     => $vidispine::glassfish_admin_portbase,
-    asadminuser  => $vidispine::glassfish_asadmin_user,
-    passwordfile => $vidispine::glassfish_asadmin_passfile,
-    user         => $vidispine::glassfish_user,
-    require      => $jvmoption_reqs,
+    # add -XX:PermSize jvm option for vidispine glassfish instance
+    jvmoption {"-XX:PermSize=${vidispine::glassfish_jvmoptions_permsize}":
+      ensure       => present,
+      target       => $jvmoption_target,
+      portbase     => $vidispine::glassfish_admin_portbase,
+      asadminuser  => $vidispine::glassfish_asadmin_user,
+      passwordfile => $vidispine::glassfish_asadmin_passfile,
+      user         => $vidispine::glassfish_user,
+      require      => $jvmoption_reqs,
+      before       => Staging::Deploy["Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip"],
+    }
   }
 
   # We don't want to have duplicate declarations if we are trying to set the
@@ -285,18 +287,20 @@ class vidispine::install {
       passwordfile => $vidispine::glassfish_asadmin_passfile,
       user         => $vidispine::glassfish_user,
       require      => $jvmoption_reqs,
+      before       => Staging::Deploy["Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip"],
     }
-  }
 
-  # add -XX:MaxPermSize jvm option for vidispine glassfish instance
-  jvmoption {"-XX:MaxPermSize=${vidispine::glassfish_jvmoptions_maxpermsize}":
-    ensure       => present,
-    target       => $jvmoption_target,
-    portbase     => $vidispine::glassfish_admin_portbase,
-    asadminuser  => $vidispine::glassfish_asadmin_user,
-    passwordfile => $vidispine::glassfish_asadmin_passfile,
-    user         => $vidispine::glassfish_user,
-    require      => $jvmoption_reqs,
+    # add -XX:MaxPermSize jvm option for vidispine glassfish instance
+    jvmoption {"-XX:MaxPermSize=${vidispine::glassfish_jvmoptions_maxpermsize}":
+      ensure       => present,
+      target       => $jvmoption_target,
+      portbase     => $vidispine::glassfish_admin_portbase,
+      asadminuser  => $vidispine::glassfish_asadmin_user,
+      passwordfile => $vidispine::glassfish_asadmin_passfile,
+      user         => $vidispine::glassfish_user,
+      require      => $jvmoption_reqs,
+      before       => Staging::Deploy["Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip"],
+    }
   }
 
   # create directory for vidispine installer
@@ -319,7 +323,6 @@ class vidispine::install {
     require => [
                  Jvmoption["-Xmx${vidispine::glassfish_jvmoptions_xmx}"],
                  Jvmoption["-Xms${vidispine::glassfish_jvmoptions_xms}"],
-                 Jvmoption["-XX:MaxPermSize=${vidispine::glassfish_jvmoptions_maxpermsize}"],
                  File["${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}"],
                ]
   }
