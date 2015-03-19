@@ -450,7 +450,7 @@ class vidispine::install {
 
   staging::deploy { "newrelic-java-${vidispine::newrelic_version}.zip" :
     source  => "${vidispine::newrelic_archive_location}newrelic-java-${vidispine::newrelic_version}.zip",
-    target  => $new_relic_dir,
+    target  => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/domains/${vidispine::glassfish_domain_name}",
     user    => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
     creates => "${new_relic_dir}/newrelic.jar",
