@@ -248,6 +248,32 @@ class vidispine::install {
   }
 
   # We don't want to have duplicate declarations if we are trying to set the
+  # -XX:PermSize to 64m.
+  if $vidispine::glassfish_jvmoptions_permsize != '64m' {
+  # remove -XX:PermSize=64m jvm option for vidispine glassfish instance
+    jvmoption {"-XX:PermSize=64m":
+      ensure       => absent,
+      target       => $jvmoption_target,
+      portbase     => $vidispine::glassfish_admin_portbase,
+      asadminuser  => $vidispine::glassfish_asadmin_user,
+      passwordfile => $vidispine::glassfish_asadmin_passfile,
+      user         => $vidispine::glassfish_user,
+      require      => $jvmoption_reqs,
+    }
+  }
+
+  # add -XX:PermSize jvm option for vidispine glassfish instance
+  jvmoption {"-XX:PermSize=${vidispine::glassfish_jvmoptions_permsize}":
+    ensure       => present,
+    target       => $jvmoption_target,
+    portbase     => $vidispine::glassfish_admin_portbase,
+    asadminuser  => $vidispine::glassfish_asadmin_user,
+    passwordfile => $vidispine::glassfish_asadmin_passfile,
+    user         => $vidispine::glassfish_user,
+    require      => $jvmoption_reqs,
+  }
+
+  # We don't want to have duplicate declarations if we are trying to set the
   # -XX:MaxPermSize to 192m.
   if $vidispine::glassfish_jvmoptions_maxpermsize != '192m' {
   # remove -XX:MaxPermSize=192m jvm option for vidispine glassfish instance
