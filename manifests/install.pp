@@ -210,6 +210,21 @@ class vidispine::install {
     Glassfish::Create_domain[$vidispine::glassfish_domain_name],
   ]
 
+  # We don't want to have duplicate declarations if we are trying to set the
+  # -Xmx jvm option to 512m.
+  if $vidispine::glassfish_jvmoptions_xmx != '512m' {
+    # remove default -Xmx jvm option for vidispine glassfish instance
+    jvmoption {"-Xmx512m":
+      ensure       => absent,
+      target       => $jvmoption_target,
+      portbase     => $vidispine::glassfish_admin_portbase,
+      asadminuser  => $vidispine::glassfish_asadmin_user,
+      passwordfile => $vidispine::glassfish_asadmin_passfile,
+      user         => $vidispine::glassfish_user,
+      require      => $jvmoption_reqs,
+    }
+  }
+
   # add -Xmx jvm option for vidispine glassfish instance
   jvmoption {"-Xmx${vidispine::glassfish_jvmoptions_xmx}":
     ensure       => present,
@@ -232,15 +247,19 @@ class vidispine::install {
     require      => $jvmoption_reqs,
   }
 
+  # We don't want to have duplicate declarations if we are trying to set the
+  # -XX:MaxPermSize to 192m.
+  if $vidispine::glassfish_jvmoptions_maxpermsize != '192m' {
   # remove -XX:MaxPermSize=192m jvm option for vidispine glassfish instance
-  jvmoption {"-XX:MaxPermSize=192m":
-    ensure       => absent,
-    target       => $jvmoption_target,
-    portbase     => $vidispine::glassfish_admin_portbase,
-    asadminuser  => $vidispine::glassfish_asadmin_user,
-    passwordfile => $vidispine::glassfish_asadmin_passfile,
-    user         => $vidispine::glassfish_user,
-    require      => $jvmoption_reqs,
+    jvmoption {"-XX:MaxPermSize=192m":
+      ensure       => absent,
+      target       => $jvmoption_target,
+      portbase     => $vidispine::glassfish_admin_portbase,
+      asadminuser  => $vidispine::glassfish_asadmin_user,
+      passwordfile => $vidispine::glassfish_asadmin_passfile,
+      user         => $vidispine::glassfish_user,
+      require      => $jvmoption_reqs,
+    }
   }
 
   # add -XX:MaxPermSize jvm option for vidispine glassfish instance
