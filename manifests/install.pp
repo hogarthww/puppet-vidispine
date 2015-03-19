@@ -442,8 +442,8 @@ class vidispine::install {
   $new_relic_dir = "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/domains/${vidispine::glassfish_domain_name}/newrelic"
 
   file { $new_relic_dir :
-    ensure => directory,
-    user    => $vidispine::glassfish_user,
+    ensure  => directory,
+    owner   => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
     require => Exec['vidispine-installer'],
   }
@@ -460,7 +460,7 @@ class vidispine::install {
   file { "${new_relic_dir}/newrelic.yml" :
     ensure  => file,
     content => template("vidispine/newrelic.yml.erb"),
-    user    => $vidispine::glassfish_user,
+    owner   => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
     require => Staging::Deploy["newrelic-java-${vidispine::newrelic_version}.zip"],
     before  => Jvmoption["-javaagent:${new_relic_dir}/newrelic.jar"],
