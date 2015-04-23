@@ -28,6 +28,10 @@ Puppet::Type.type(:vidispine_storage).provide(:vidispine_storage) do
 </StorageDocument>
 xml
     response = http.request(request)
+
+    if response.code != 200 then
+      raise Puppet::Error, "Failed to create Vidispine Storage #{name}: Vidispine responded with HTTP #{response.code}: \"#{response.body}\""
+    end
    end
 
   def exists?
