@@ -10,22 +10,21 @@ Puppet::Type.type(:vidispine_storage_method).provide(:vidispine_storage_method) 
 #this means that all the work is done by the vsquery param (yay?)
 
   def create
-  parent = findParent()
-  name    = @resource[:name]
-  vsurl   = "http://" + @resource[:vshostname] +":"+ @resource[:vsport] + "/API/storage/" + parent + "/method"
-  vsquery = "url="+ @resource[:storageuri] +"&read="+ @resource[:read] +"&browse="+ @resource[:write] +"&write=" + @resource[:browse] +"&type=" + @resource[:type]
-  vsurl   = vsurl + "?" + vsquery
-  vsuser  = @resource[:vsuser]
-  vspass  = @resource[:vspass]
-  uri     = URI(vsurl)
-  http    = Net::HTTP.new(uri.host, uri.port)
-
-
-  request = Net::HTTP::Put.new(uri.request_uri)
-  request.basic_auth @resource[:vsuser], @resource[:vspass]
-  request["Content-Type"] = "application/xml"
-  response = http.request(request)
- end
+    parent = findParent()
+    name    = @resource[:name]
+    vsurl   = "http://" + @resource[:vshostname] +":"+ @resource[:vsport] + "/API/storage/" + parent + "/method"
+    vsquery = "url="+ @resource[:storageuri] +"&read="+ @resource[:read] +"&browse="+ @resource[:write] +"&write=" + @resource[:browse] +"&type=" + @resource[:type]
+    vsurl   = vsurl + "?" + vsquery
+    vsuser  = @resource[:vsuser]
+    vspass  = @resource[:vspass]
+    uri     = URI(vsurl)
+    http    = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Put.new(uri.request_uri)
+    request.basic_auth @resource[:vsuser], @resource[:vspass]
+    request["Content-Type"] = "application/xml"
+    response = http.request(request)
+  end
+ 
   #because we need to find the parent by a feild in the metadata (and these functions are difficult to share)
   #we need to re-define the call that works out if the parent exists and returns its VX-ID
 
@@ -51,10 +50,8 @@ Puppet::Type.type(:vidispine_storage_method).provide(:vidispine_storage_method) 
          end
        end
     end
-   return false
+    return false
   end
-
-
 
 
   #there's a possible bug here to do with changing a storage metod and getting a different vxid.
@@ -84,6 +81,7 @@ Puppet::Type.type(:vidispine_storage_method).provide(:vidispine_storage_method) 
     end
    return false
   end
+  
   def destroy
     parent = findParent()
     id = exists?()

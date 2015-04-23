@@ -7,10 +7,10 @@ Puppet::Type.type(:vidispine_storage).provide(:vidispine_storage) do
   desc "Vidispine Storage."
 
   def create
-  vsurl  = "http://" + @resource[:vshostname] +":"+ @resource[:vsport] + "/API/storage/"
-  name   = @resource[:name]
-  vsuser = @resource[:vsuser]
-  vspass = @resource[:vspass]
+    vsurl  = "http://" + @resource[:vshostname] +":"+ @resource[:vsport] + "/API/storage/"
+    name   = @resource[:name]
+    vsuser = @resource[:vsuser]
+    vspass = @resource[:vspass]
     uri = URI(vsurl)
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Post.new(uri.request_uri)
