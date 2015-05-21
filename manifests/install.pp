@@ -317,6 +317,7 @@ class vidispine::install {
   staging::deploy{"Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip":
     source  => "${vidispine::vidispine_archive_location}Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip",
     target  => "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}",
+    timeout => 600,
     user    => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
     creates => "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}/SetupTool4.jar",
