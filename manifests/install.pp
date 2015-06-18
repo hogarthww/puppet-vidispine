@@ -125,69 +125,47 @@ class vidispine::install {
       ],
     }
 
-    # set default java-home if we are running the das
-    set { 'default-config.java-config.java-home':
+    # We set a bunch of Glassfish domain attributes here. They need to happen before the Vidispine installer
+    # is exec'd. Specifically, if the http-listener-1.port is set too late, the installer will bomb out as
+    # it won't be able to communicate to the Vidispine HTTP API.
+    #
+    Set {
       ensure       => present,
-      value        => "/usr/lib/jvm/${vidispine::glassfish_java_package}-${vidispine::glassfish_java_vendor}/jre",
       dashost      => $vidispine::glassfish_das_host,
       portbase     => $vidispine::glassfish_das_portbase,
       asadminuser  => $vidispine::glassfish_asadmin_user,
       passwordfile => $vidispine::glassfish_asadmin_passfile,
       user         => $vidispine::glassfish_user,
       require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],
+      notify       => Exec['vidispine-installer'],
+    }
+
+    # set default java-home if we are running the das
+    set { 'default-config.java-config.java-home':
+      value => "/usr/lib/jvm/${vidispine::glassfish_java_package}-${vidispine::glassfish_java_vendor}/jre",
     }
 
     # set server java-home if we are running the das
     set { 'server.java-config.java-home':
-      ensure       => present,
-      value        => "/usr/lib/jvm/${vidispine::glassfish_java_package}-${vidispine::glassfish_java_vendor}/jre",
-      dashost      => $vidispine::glassfish_das_host,
-      portbase     => $vidispine::glassfish_das_portbase,
-      asadminuser  => $vidispine::glassfish_asadmin_user,
-      passwordfile => $vidispine::glassfish_asadmin_passfile,
-      user         => $vidispine::glassfish_user,
-      require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],
+      value => "/usr/lib/jvm/${vidispine::glassfish_java_package}-${vidispine::glassfish_java_vendor}/jre",
     }
 
     # set server http-listener-1.port if we are running the das
     set { 'server-config.network-config.network-listeners.network-listener.http-listener-1.port':
-      ensure       => present,
-      value        => $vidispine::glassfish_http_port,
-      dashost      => $vidispine::glassfish_das_host,
-      portbase     => $vidispine::glassfish_das_portbase,
-      asadminuser  => $vidispine::glassfish_asadmin_user,
-      passwordfile => $vidispine::glassfish_asadmin_passfile,
-      user         => $vidispine::glassfish_user,
-      require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],
+      value => $vidispine::glassfish_http_port,
     }
 
     # set server system-property.HTTP_LISTENER_PORT.value if we are running the das
     set { 'default-config.system-property.HTTP_LISTENER_PORT.value':
-      ensure       => present,
-      value        => $vidispine::glassfish_http_port,
-      dashost      => $vidispine::glassfish_das_host,
-      portbase     => $vidispine::glassfish_das_portbase,
-      asadminuser  => $vidispine::glassfish_asadmin_user,
-      passwordfile => $vidispine::glassfish_asadmin_passfile,
-      user         => $vidispine::glassfish_user,
-      require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],
+      value => $vidispine::glassfish_http_port,
     }
 
     if ($vidispine::glassfish_cluster_enable) {
       # set cluster_name java-home if we are running the das and part of a cluster
       set { "${vidispine::glassfish_cluster_name}-config.java-config.java-home":
-        ensure       => present,
-        value        => "/usr/lib/jvm/${vidispine::glassfish_java_package}-${vidispine::glassfish_java_vendor}/jre",
-        dashost      => $vidispine::glassfish_das_host,
-        portbase     => $vidispine::glassfish_das_portbase,
-        asadminuser  => $vidispine::glassfish_asadmin_user,
-        passwordfile => $vidispine::glassfish_asadmin_passfile,
-        user         => $vidispine::glassfish_user,
-        require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],
+        value => "/usr/lib/jvm/${vidispine::glassfish_java_package}-${vidispine::glassfish_java_vendor}/jre",
       }
-
     }
-
   }
 
 #      # set jvmoptions for cluster_name if we are running the das and part of a cluster
