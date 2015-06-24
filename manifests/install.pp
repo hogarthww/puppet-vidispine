@@ -16,7 +16,7 @@ class vidispine::install {
   # install java package glassfish will use
   package {"${vidispine::glassfish_java_vendor}-${vidispine::glassfish_java_package}":
     ensure  => $vidispine::glassfish_java_version,
-    require => Apt::Source['hogarthww'],
+    require => Apt::Source[$vidispine::glassfish_java_apt_repo['name']],
     notify  => Service[$vidispine::glassfish_domain_name],
   }
 
