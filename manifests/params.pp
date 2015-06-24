@@ -4,7 +4,7 @@ class vidispine::params {
   $installer_dir                     = '/opt/installers'
   $glassfish_java_vendor             = 'oracle'
   $glassfish_java_package            = 'j2sdk1.7'
-  $glassfish_java_version            = '1.7.0+update67'
+  $glassfish_java_version            = 'installed'
   $glassfish_java_apt_repo           = {
                                          name     => 'hogarthww',
                                          location => 'http://apt.hogarthww.prv/hogarthww/ubuntu/',
