@@ -65,7 +65,7 @@ class vidispine::params {
   $postgresql_imq_password           = 'openmq'
   $postgresql_imq_database           = 'openmqdb'
   $solrcloud_enable                  = false
-  $zookeeper_server_list             = undef
+  $zookeeper_server_list             = []
   $solr_collection_name              = 'collection1'   # this is only used with an external solr config
   $newrelic_archive_location         = 'http://apt.hogarthww.prv/raw/newrelic/'
   $newrelic_version                  = '3.14.0'

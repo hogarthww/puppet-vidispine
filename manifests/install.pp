@@ -1,6 +1,9 @@
 # see README.md
 class vidispine::install {
 
+  # Template vars
+  $zookeeper_servers = join(sort(keys($vidispine::zookeeper_server_list)), ',')
+
   # add hogarthww apt repo if we don't have it
   if !defined(Apt::Source[$vidispine::glassfish_java_apt_repo['name']]) {
     apt::source { $vidispine::glassfish_java_apt_repo['name']:
@@ -304,10 +307,6 @@ class vidispine::install {
                  Jvmoption["-Xms${vidispine::glassfish_jvmoptions_xms}"],
                  File["${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}"],
                ]
-  }
-
-  if ($vidispine::glassfish_cluster_enable) or ($vidispine::glassfish_imq_cluster_enable) or ($vidispine::solrcloud_enable) {
-    $zookeeper_servers = join(sort(keys($vidispine::zookeeper_server_list)), ',')
   }
 
   # create silent install config.xml file for vidispine installer
