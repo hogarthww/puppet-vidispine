@@ -320,6 +320,23 @@ class vidispine::install {
     notify  => Exec['vidispine-installer'],
   }
 
+  # 02/07/2015 - decision made to only ever run the Vidispine installer once, by adding
+  # a 'creates' parameter.
+  #
+  # Why?
+  #  * We're moving towards an immutable server model where Vidispine is never upgraded
+  #    in-place; instead we always build a new box. Running the installer to execute an
+  #    upgrade is not a valid use case any more.
+  #
+  #  * When a config parameter is changed which would have gone into the installer's
+  #    config.xml and also into the REST API as a System Field, we don't want to run
+  #    the installer again. Before, a refresh of this exec resource would be triggered
+  #    by a change to the config.xml. Even though re-running the installer is (supposed
+  #    to be) idempotent, it can take a very long time to complete.
+  #
+  # Of course Vidispine 4.3 replaces the installer with a Debian package and this will
+  # all go away very soon.
+  #
   exec{'vidispine-installer':
     command     => "java -jar ${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}/SetupTool4.jar --no-prompts --only-middleware --run-installer; cp -p ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/lib/postgresql-*.jar /opt/glassfish3/mq/lib/ext/",
     path        => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ],
@@ -327,7 +344,7 @@ class vidispine::install {
     user        => $vidispine::glassfish_user,
     timeout     => 0,
     refreshonly => true,
-    subscribe   => File["${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}/config.xml"],
+    creates     => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/domains/${vidispine::glassfish_domain_name}/applications/vidispine",
   }
 
   # we need to have started imqbrokerd before configuring the enhanced broker cluster
