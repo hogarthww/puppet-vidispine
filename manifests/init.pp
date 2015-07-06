@@ -38,9 +38,6 @@
 class vidispine (
 
   $installer_dir                     = $vidispine::params::installer_dir,
-  $glassfish_java_vendor             = $vidispine::params::glassfish_java_vendor,
-  $glassfish_java_package            = $vidispine::params::glassfish_java_package,
-  $glassfish_java_version            = $vidispine::params::glassfish_java_version,
   $glassfish_java_apt_repo           = $vidispine::params::glassfish_java_apt_repo,
   $glassfish_user                    = $vidispine::params::glassfish_user,
   $glassfish_uid                     = $vidispine::params::glassfish_uid,
@@ -49,7 +46,6 @@ class vidispine (
   $glassfish_user_homedir            = $vidispine::params::glassfish_user_homedir,
   $glassfish_parent_dir              = $vidispine::params::glassfish_parent_dir,
   $glassfish_install_dir             = $vidispine::params::glassfish_install_dir,
-  $glassfish_version                 = $vidispine::params::glassfish_version,
   $glassfish_archive_location        = $vidispine::params::glassfish_archive_location,
   $glassfish_das_portbase            = $vidispine::params::glassfish_das_portbase,
   $glassfish_asadmin_user            = $vidispine::params::glassfish_asadmin_user,
@@ -103,6 +99,17 @@ class vidispine (
   $newrelic_version                  = $vidispine::params::newrelic_version,
 
 ) inherits vidispine::params {
+
+  # Vidispine is very perticular about the version of glassfish and java that
+  # is installed. Set these based on the Vidispine version.
+  case $vidispine_version {
+    default: {
+      $glassfish_java_vendor  = 'oracle'
+      $glassfish_java_package = 'j2sdk1.7'
+      $glassfish_java_version = '1.7.0+update67'
+      $glassfish_version      = '3.1.2.2'
+    }
+  }
 
   anchor { 'vidispine::begin' : } ->
     class  { 'vidispine::install' : } ->
