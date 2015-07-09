@@ -50,7 +50,6 @@ class vidispine::params {
   $vidispine_noauth_pool_size        = '50'
   $vidispine_noauth_pool_timeout     = '900'
   $vidispine_solr_pool_size          = '50'
-  $vidispine_jdbc_max_size           = '32'
   $postgresql_version                = '9.1'
   $postgresql_host                   = 'localhost'
   $postgresql_port                   = '5432'

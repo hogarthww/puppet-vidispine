@@ -38,8 +38,17 @@ class vidispine::config {
     }
 
     # set vidispine jdbc pool max size if we running the glassfish das
-    set { 'resources.jdbc-connection-pool.VidispinePool.max-pool-size':
-      value => $vidispine::vidispine_jdbc_max_size,
+    if ($vidispine::vidispine_jdbc_max_size) {
+      set { 'resources.jdbc-connection-pool.VidispinePool.max-pool-size':
+        value => $vidispine::vidispine_jdbc_max_size,
+      }
+    }
+
+    # How long the JDBC connection pool manager should make a thread wait for an available slot
+    if ($vidispine::vidispine_jdbc_max_wait_time) {
+      set { 'resources.jdbc-connection-pool.VidispinePool.max-wait-time-in-millis':
+        value => $vidispine::vidispine_jdbc_max_wait_time,
+      }
     }
   }
 
