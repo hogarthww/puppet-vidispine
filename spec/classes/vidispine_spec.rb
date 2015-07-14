@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'vidispine' do
 
-  #context 'trivial test' do
+  context 'production-like system' do
     let(:facts) {{
       :operatingsystem    => 'Ubuntu',
       :osfamily           => 'debian',
@@ -16,6 +16,12 @@ describe 'vidispine' do
 
     let(:params) {{ }}
     it { should compile }
-  #end
+
+    it do
+      should contain_class('vidispine::install')
+      should contain_class('vidispine::config')
+      should contain_class('vidispine::service')
+    end
+  end
 end
 
