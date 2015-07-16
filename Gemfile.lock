@@ -2,7 +2,10 @@ GEM
   remote: https://rubygems.org/
   specs:
     CFPropertyList (2.2.8)
+    addressable (2.3.8)
     builder (3.2.2)
+    crack (0.4.2)
+      safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
     excon (0.45.4)
     facter (2.4.4)
@@ -159,8 +162,13 @@ GEM
       systemu (~> 2.5)
     rspec-system-puppet (2.2.1)
       rspec-system (~> 2.0)
+    safe_yaml (1.0.4)
     systemu (2.6.5)
     trollop (2.1.2)
+    vcr (2.9.3)
+    webmock (1.21.0)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
 
 PLATFORMS
   ruby
@@ -173,3 +181,5 @@ DEPENDENCIES
   rake
   rspec-puppet (~> 2.2.0)
   rspec-system-puppet
+  vcr
+  webmock
