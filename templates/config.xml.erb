@@ -222,36 +222,25 @@
 
 <%- if scope.lookupvar('vidispine::vidispine_cluster_enable') or scope.lookupvar('vidispine::solrcloud_enable') %>
   <configurationProperty>
-    <key>solrCloud</key>
-    <value>yes</value>
-  </configurationProperty>
-
-  <configurationProperty>
-    <key>zookeeperHost</key>
+    <key>zkHost</key>
     <value><%= scope.lookupvar('zookeeper_servers') %></value>
   </configurationProperty>
 
   <configurationProperty>
-    <key>solrCloudCollectionName</key>
+    <key>solrCollection</key>
     <value><%= scope.lookupvar('vidispine::solr_collection_name') %></value>
   </configurationProperty>
 
 <%- else %>
   <configurationProperty>
-    <key>solrCloud</key>
-    <value>no</value>
-  </configurationProperty>
-  
-  <configurationProperty>
-    <key>zookeeperHost</key>
+    <key>zkHost</key>
     <value>127.0.0.1</value>
   </configurationProperty>
 
   <configurationProperty>
-    <key>solrCloudCollectionName</key>
+    <key>solrCollection</key>
     <value>collection1</value>
   </configurationProperty>
 
 <%- end %>
-
 </ConfigurationDocument>
