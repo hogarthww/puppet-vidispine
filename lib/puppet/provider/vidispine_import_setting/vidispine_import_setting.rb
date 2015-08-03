@@ -58,7 +58,7 @@ xml
     return false
   end
   def destroy
-    settingId = exits?()
+    settingId = exists?()
     vsurl  = "http://" + @resource[:vshostname] +":"+ @resource[:vsport] + "/API/import/settings/" + settingId
     vsuser = @resource[:vsuser]
     vspass = @resource[:vspass]    
