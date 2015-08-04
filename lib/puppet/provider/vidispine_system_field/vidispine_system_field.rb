@@ -33,11 +33,12 @@ Puppet::Type.type(:vidispine_system_field).provide(:vidispine_system_field) do
     request.basic_auth vsuser, vspass
     request["Accept"] = "application/json"
     response = http.request(request)
-    if response.code == '404' then 
+    if response.code == '200' then 
+      return true
+    elsif response.code = '404' then
       return false
     else
-      parsed = JSON.parse(response.body)
-      if value == parsed['value'] then return true end
+      raise Puppet::Error, "Vidispine responded with HTTP #{response.code}: \"#{response.body}\""
     end
     return false
   end
