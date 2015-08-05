@@ -35,7 +35,7 @@ Puppet::Type.type(:vidispine_system_field).provide(:vidispine_system_field) do
     response = http.request(request)
     if response.code == '200' then 
       return true
-    elsif response.code = '404' then
+    elsif response.code == '404' then
       return false
     else
       raise Puppet::Error, "Vidispine responded with HTTP #{response.code}: \"#{response.body}\""
