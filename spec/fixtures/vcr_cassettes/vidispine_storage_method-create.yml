@@ -1,0 +1,99 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: get
+        uri: "http://admin:admin@localhost:8080/API/storage/"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept-Encoding: 
+            - "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          Accept: 
+            - application/json
+          User-Agent: 
+            - Ruby
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          X-Powered-By: 
+            - "Servlet/3.0 JSP/2.2 (GlassFish Server Open Source Edition 3.1.2.2 Java/Oracle Corporation/1.7)"
+          Server: 
+            - "GlassFish Server Open Source Edition 3.1.2.2"
+          Set-Cookie: 
+            - "rememberMe=deleteMe; Path=/API; Max-Age=0; Expires=Mon, 17-Aug-2015 11:25:21 GMT"
+          Content-Type: 
+            - application/json
+          Content-Length: 
+            - "1180"
+          Date: 
+            - "Tue, 18 Aug 2015 11:25:21 GMT"
+        body: 
+          encoding: UTF-8
+          string: |
+            {
+                "storage": [
+                    {
+                        "autoDetect": true,
+                        "capacity": 84696301568,
+                        "freeCapacity": 77886914560,
+                        "highWatermark": 84696301568,
+                        "id": "VX-10",
+                        "lowWatermark": 84696301568,
+                        "metadata": {
+                            "field": [
+                                {
+                                    "key": "storageName",
+                                    "value": "storage2"
+                                }
+                            ]
+                        },
+                        "showImportables": true,
+                        "state": "OFFLINE",
+                        "timestamp": "2015-08-18T11:24:03.640+0000",
+                        "type": "LOCAL"
+                    }
+                ]
+            }
+        http_version: 
+      recorded_at: "Tue, 18 Aug 2015 11:39:38 GMT"
+    - request: 
+        method: put
+        uri: "http://admin:admin@localhost:8080/API/storage/VX-10/method?browse=true&read=true&type=NONE&url=file:///opt/vidispine/storage2/&write=true"
+        body: 
+          encoding: UTF-8
+          string: ""
+        headers: 
+          Accept-Encoding: 
+            - "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          Accept: 
+            - "*/*"
+          User-Agent: 
+            - Ruby
+          Content-Type: 
+            - application/xml
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          X-Powered-By: 
+            - "Servlet/3.0 JSP/2.2 (GlassFish Server Open Source Edition 3.1.2.2 Java/Oracle Corporation/1.7)"
+          Server: 
+            - "GlassFish Server Open Source Edition 3.1.2.2"
+          Set-Cookie: 
+            - "rememberMe=deleteMe; Path=/API; Max-Age=0; Expires=Mon, 17-Aug-2015 11:25:21 GMT"
+          Content-Type: 
+            - text/plain
+          Transfer-Encoding: 
+            - chunked
+          Date: 
+            - "Tue, 18 Aug 2015 11:25:21 GMT"
+        body: 
+          encoding: UTF-8
+          string: "VX-13\tfile:///opt/vidispine/storage2/\tNONE\r\n"
+        http_version: 
+      recorded_at: "Tue, 18 Aug 2015 11:39:39 GMT"
+  recorded_with: "VCR 2.9.3"
