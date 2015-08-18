@@ -1,0 +1,43 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: get
+        uri: "http://admin:admin@localhost:8080/API/configuration/properties/rspec_system_field"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept-Encoding: 
+            - "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          Accept: 
+            - application/json
+          User-Agent: 
+            - Ruby
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          X-Powered-By: 
+            - "Servlet/3.0 JSP/2.2 (GlassFish Server Open Source Edition 3.1.2.2 Java/Oracle Corporation/1.7)"
+          Server: 
+            - "GlassFish Server Open Source Edition 3.1.2.2"
+          Set-Cookie: 
+            - "rememberMe=deleteMe; Path=/API; Max-Age=0; Expires=Mon, 17-Aug-2015 16:06:48 GMT"
+          Content-Type: 
+            - application/json
+          Content-Length: 
+            - "123"
+          Date: 
+            - "Tue, 18 Aug 2015 16:06:48 GMT"
+        body: 
+          encoding: UTF-8
+          string: |
+            {
+                "key": "rspec_system_field",
+                "lastChange": "2015-08-18T16:06:20.184+0000",
+                "value": "3ed0cc7c714f530fc2919d369335a1d280fd9686"
+            }
+        http_version: 
+      recorded_at: "Tue, 18 Aug 2015 16:06:48 GMT"
+  recorded_with: "VCR 2.9.3"
