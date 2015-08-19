@@ -13,12 +13,8 @@
               </access>
             </ImportSettingsDocument>
         headers: 
-          Accept-Encoding: 
-            - "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
           Accept: 
             - "*/*"
-          User-Agent: 
-            - Ruby
           Content-Type: 
             - application/xml
       response: 
@@ -26,18 +22,8 @@
           code: 200
           message: OK
         headers: 
-          X-Powered-By: 
-            - "Servlet/3.0 JSP/2.2 (GlassFish Server Open Source Edition 3.1.2.2 Java/Oracle Corporation/1.7)"
-          Server: 
-            - "GlassFish Server Open Source Edition 3.1.2.2"
-          Set-Cookie: 
-            - "rememberMe=deleteMe; Path=/API; Max-Age=0; Expires=Tue, 18-Aug-2015 16:16:59 GMT"
           Content-Type: 
             - application/xml
-          Content-Length: 
-            - "233"
-          Date: 
-            - "Wed, 19 Aug 2015 16:16:59 GMT"
         body: 
           encoding: UTF-8
           string: |

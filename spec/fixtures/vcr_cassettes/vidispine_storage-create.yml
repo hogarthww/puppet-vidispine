@@ -25,8 +25,6 @@
         headers: 
           Content-Type: 
             - application/xml
-          Content-Length: 
-            - "477"
         body: 
           encoding: UTF-8
           string: |
