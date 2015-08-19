@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'pathname'
 require Pathname.new(__FILE__).dirname.dirname.expand_path + 'vidispine'
 
