@@ -94,7 +94,7 @@ class vidispine (
   $postgresql_imq_password           = $vidispine::params::postgresql_imq_password,
   $postgresql_imq_database           = $vidispine::params::postgresql_imq_database,
   $solrcloud_enable                  = $vidispine::params::solrcloud_enable,
-  $zookeeper_server_list             = $vidispine::params::zookeeper_server_list,
+  $zookeeper_servers                 = [],
   $solr_collection_name              = $vidispine::params::solr_collection_name,
   $newrelic_archive_location         = $vidispine::params::newrelic_archive_location,
   $newrelic_version                  = undef,

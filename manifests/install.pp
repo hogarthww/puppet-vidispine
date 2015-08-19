@@ -1,9 +1,6 @@
 # see README.md
 class vidispine::install {
 
-  # Template vars
-  $zookeeper_servers = join(sort(keys($vidispine::zookeeper_server_list)), ',')
-
   # add hogarthww apt repo if we don't have it
   if !defined(Apt::Source[$vidispine::glassfish_java_apt_repo['name']]) {
     apt::source { $vidispine::glassfish_java_apt_repo['name']:
