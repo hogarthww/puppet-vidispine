@@ -9,8 +9,10 @@ As the tests were retrofitted onto an existing codebase, the coverage is low, an
 to the custom types and providers under `lib/puppet/` as well as a very basic "does it compile" test
 of the manifests.
 
-Consult the Wiki documentation for details on how to set up your development environment for working
-on Puppet modules, Ruby, and rspec-puppet, and to put the below into context.
+Consult the [Wiki
+documentation](https://hogarthww.atlassian.net/wiki/display/~doug.neal/Puppet+development) for
+details on how to set up your development environment for working on Puppet modules, Ruby, and
+rspec-puppet, and to put the below into context.
 
 ## Learning more
 
