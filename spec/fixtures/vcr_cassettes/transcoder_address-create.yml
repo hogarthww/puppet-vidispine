@@ -8,7 +8,7 @@
           string: |
             <resource>
                 <transcoder>
-                    <url>http://zonza-vgr-trn01.hogarthww.vagrant:8888/</url>
+                    <url>http://transcoder.zonza.mock:8888/</url>
                 </transcoder>
             </resource>
         headers: 
@@ -28,7 +28,7 @@
             <ResourceDocument xmlns="http://xml.vidispine.com/schema/vidispine">
               <id>VX-6</id>
               <transcoder>
-                <url>http://zonza-vgr-trn01.hogarthww.vagrant:8888/</url>
+                <url>http://transcoder.zonza.mock:8888/</url>
               </transcoder>
             </ResourceDocument>
         http_version: 

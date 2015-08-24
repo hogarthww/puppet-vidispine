@@ -25,7 +25,7 @@
                         "id": "VX-2",
                         "transcoder": {
                             "state": "OFFLINE",
-                            "url": "http://zonza-vgr-trn01.hogarthww.vagrant:8888/",
+                            "url": "http://transcoder.zonza.mock:8888/",
                             "version": "ERROR: Could not connect"
                         }
                     }

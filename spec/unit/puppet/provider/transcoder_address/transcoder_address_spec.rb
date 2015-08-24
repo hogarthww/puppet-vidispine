@@ -7,7 +7,7 @@ describe provider_class do
   let(:name) { 'rspec transcoder_address test' }
 
   let(:resource) { Puppet::Type.type(:transcoder_address).new(
-      :name       => 'http://zonza-vgr-trn01.hogarthww.vagrant:8888/',
+      :name       => 'http://transcoder.zonza.mock:8888/',
       :ensure     => 'present',
       :vshostname => 'localhost',
       :vsport     => '8080',
