@@ -1,0 +1,24 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: put
+        uri: "http://admin:admin@localhost:8080/API/configuration/properties/rspec_system_field"
+        body: 
+          encoding: UTF-8
+          string: "3ed0cc7c714f530fc2919d369335a1d280fd9686"
+        headers: 
+          Accept: 
+            - "*/*"
+          Content-Type: 
+            - text/plain
+      response: 
+        status: 
+          code: 204
+          message: "No Content"
+        headers: {}
+        body: 
+          encoding: UTF-8
+          string: ""
+        http_version: 
+      recorded_at: "Tue, 18 Aug 2015 16:01:59 GMT"
+  recorded_with: "VCR 2.9.3"

@@ -1,0 +1,149 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: get
+        uri: "http://admin:admin@localhost:8080/API/storage/"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept: 
+            - application/json
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/json
+        body: 
+          encoding: UTF-8
+          string: |
+            {
+                "storage": [
+                    {
+                        "autoDetect": true,
+                        "capacity": 84696301568,
+                        "freeCapacity": 77886914560,
+                        "highWatermark": 84696301568,
+                        "id": "VX-10",
+                        "lowWatermark": 84696301568,
+                        "metadata": {
+                            "field": [
+                                {
+                                    "key": "storageName",
+                                    "value": "storage2"
+                                }
+                            ]
+                        },
+                        "method": [
+                            {
+                                "bandwidth": 0,
+                                "browse": true,
+                                "id": "VX-13",
+                                "read": true,
+                                "type": "NONE",
+                                "uri": "file:///opt/vidispine/storage2/",
+                                "write": true
+                            }
+                        ],
+                        "showImportables": true,
+                        "state": "OFFLINE",
+                        "timestamp": "2015-08-18T11:24:03.640+0000",
+                        "type": "LOCAL"
+                    }
+                ]
+            }
+        http_version: 
+      recorded_at: "Tue, 18 Aug 2015 11:39:39 GMT"
+    - request: 
+        method: get
+        uri: "http://admin:admin@localhost:8080/API/storage/"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept: 
+            - application/json
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/json
+        body: 
+          encoding: UTF-8
+          string: |
+            {
+                "storage": [
+                    {
+                        "autoDetect": true,
+                        "capacity": 84696301568,
+                        "freeCapacity": 77886914560,
+                        "highWatermark": 84696301568,
+                        "id": "VX-10",
+                        "lowWatermark": 84696301568,
+                        "metadata": {
+                            "field": [
+                                {
+                                    "key": "storageName",
+                                    "value": "storage2"
+                                }
+                            ]
+                        },
+                        "method": [
+                            {
+                                "bandwidth": 0,
+                                "browse": true,
+                                "id": "VX-13",
+                                "read": true,
+                                "type": "NONE",
+                                "uri": "file:///opt/vidispine/storage2/",
+                                "write": true
+                            }
+                        ],
+                        "showImportables": true,
+                        "state": "OFFLINE",
+                        "timestamp": "2015-08-18T11:24:03.640+0000",
+                        "type": "LOCAL"
+                    }
+                ]
+            }
+        http_version: 
+      recorded_at: "Tue, 18 Aug 2015 11:39:39 GMT"
+    - request: 
+        method: get
+        uri: "http://admin:admin@localhost:8080/API/storage/VX-10/method"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept: 
+            - application/json
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/json
+        body: 
+          encoding: UTF-8
+          string: |
+            {
+                "method": [
+                    {
+                        "bandwidth": 0,
+                        "browse": true,
+                        "id": "VX-13",
+                        "read": true,
+                        "type": "NONE",
+                        "uri": "file:///opt/vidispine/storage2/",
+                        "write": true
+                    }
+                ]
+            }
+        http_version: 
+      recorded_at: "Tue, 18 Aug 2015 11:39:39 GMT"
+  recorded_with: "VCR 2.9.3"

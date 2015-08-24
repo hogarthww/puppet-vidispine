@@ -1,18 +1,23 @@
 require 'rubygems'
-require 'puppetlabs_spec_helper/rake_tasks'
 require 'puppet-lint/tasks/puppet-lint'
-PuppetLint.configuration.send('disable_80chars')
-PuppetLint.configuration.ignore_paths = ["spec/**/*.pp", "pkg/**/*.pp"]
+require 'puppet-syntax/tasks/puppet-syntax'
+require 'puppetlabs_spec_helper/rake_tasks'
+require 'puppetlabs_spec_helper/module_spec_helper'
+require 'rspec-system/rake_task'
 
-desc "Validate manifests, templates, and ruby files"
-task :validate do
-  Dir['manifests/**/*.pp'].each do |manifest|
-    sh "puppet parser validate --noop #{manifest}"
-  end
-  Dir['spec/**/*.rb','lib/**/*.rb'].each do |ruby_file|
-    sh "ruby -c #{ruby_file}" unless ruby_file =~ /spec\/fixtures/
-  end
-  Dir['templates/**/*.erb'].each do |template|
-    sh "erb -P -x -T '-' #{template} | ruby -c"
-  end
-end
+# We don't want to lint the manifest files used within our tests
+exclude_paths = [
+  "spec/**/*",
+  "vendor/**/*",
+  "pkg/**/*"
+]
+
+PuppetLint.configuration.ignore_paths = exclude_paths
+PuppetLint.configuration.send('disable_80chars')
+PuppetLint.configuration.log_format = "%{path}:%{linenumber}:%{check}:%{KIND}:%{message}"
+PuppetLint.configuration.fail_on_warnings = true
+PuppetLint.configuration.send('disable_class_parameter_defaults')
+PuppetLint.configuration.send('disable_class_inherits_from_params_class')
+
+PuppetSyntax.exclude_paths = exclude_paths
+

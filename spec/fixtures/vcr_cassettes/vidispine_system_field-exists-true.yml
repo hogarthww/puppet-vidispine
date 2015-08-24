@@ -1,0 +1,29 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: get
+        uri: "http://admin:admin@localhost:8080/API/configuration/properties/rspec_system_field"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept: 
+            - application/json
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/json
+        body: 
+          encoding: UTF-8
+          string: |
+            {
+                "key": "rspec_system_field",
+                "lastChange": "2015-08-18T16:06:20.184+0000",
+                "value": "3ed0cc7c714f530fc2919d369335a1d280fd9686"
+            }
+        http_version: 
+      recorded_at: "Tue, 18 Aug 2015 16:06:48 GMT"
+  recorded_with: "VCR 2.9.3"

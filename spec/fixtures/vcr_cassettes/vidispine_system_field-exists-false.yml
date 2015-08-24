@@ -1,0 +1,39 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: get
+        uri: "http://admin:admin@localhost:8080/API/configuration/properties/rspec_system_field"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept: 
+            - application/json
+      response: 
+        status: 
+          code: 404
+          message: "Not Found"
+        headers: 
+          Content-Type: 
+            - application/json
+        body: 
+          encoding: UTF-8
+          string: |
+            {
+                "conflict": null,
+                "fileAlreadyExists": null,
+                "forbidden": null,
+                "internalServer": null,
+                "invalidInput": null,
+                "licenseFault": null,
+                "notAuthorized": null,
+                "notFound": {
+                    "context": null,
+                    "id": "rspec_system_field",
+                    "type": "property"
+                },
+                "notYetImplemented": null
+            }
+        http_version: 
+      recorded_at: "Tue, 18 Aug 2015 16:01:59 GMT"
+  recorded_with: "VCR 2.9.3"

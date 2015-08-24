@@ -1,0 +1,40 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: post
+        uri: "http://admin:admin@localhost:8080/API/import/settings/"
+        body: 
+          encoding: UTF-8
+          string: |
+            <ImportSettingsDocument xmlns="http://xml.vidispine.com/schema/vidispine">
+              <access>
+                  <permission>READ</permission>
+                  <group>rspec</group>
+              </access>
+            </ImportSettingsDocument>
+        headers: 
+          Accept: 
+            - "*/*"
+          Content-Type: 
+            - application/xml
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/xml
+        body: 
+          encoding: UTF-8
+          string: |
+            <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+            <ImportSettingsDocument xmlns="http://xml.vidispine.com/schema/vidispine">
+              <id>VX-1</id>
+              <access>
+                <permission>READ</permission>
+                <group>rspec</group>
+              </access>
+            </ImportSettingsDocument>
+        http_version: 
+      recorded_at: "Wed, 19 Aug 2015 16:16:59 GMT"
+  recorded_with: "VCR 2.9.3"
