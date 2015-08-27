@@ -9,17 +9,20 @@ Puppet::Type.type(:vidispine_storage).provide(:vidispine_storage, :parent => Pup
     name = @resource[:name]
 
     begin
-      self.rest_post '/API/storage/', <<xml
-<StorageDocument xmlns="http://xml.vidispine.com/schema/vidispine">
-    <metadata>
-      <field>
-        <key>storageName</key>
-        <value>#{name}</value>
-      </field>
-    </metadata>
-    <autoDetect>true</autoDetect>
-</StorageDocument>
-xml
+      storage_document = <<-XML.gsub(/^ {6}/, '')
+      <StorageDocument xmlns="http://xml.vidispine.com/schema/vidispine">
+          <metadata>
+            <field>
+              <key>storageName</key>
+              <value>#{name}</value>
+            </field>
+          </metadata>
+          <autoDetect>true</autoDetect>
+      </StorageDocument>
+      XML
+
+      self.rest_post '/API/storage/', storage_document
+
     rescue Exception
       raise Puppet::Error, "Failed to create Vidispine Storage #{name}: #{$!}"
     end
