@@ -29,21 +29,24 @@ Puppet::Type.type(:vidispine_storage).provide(:vidispine_storage, :parent => Pup
 
   def exists?
     name = @resource[:name]
-    
+
     begin
       response = self.rest_get '/API/storage/'
-      storages = response["storage"]
 
-      storages.each do |storage|
-        metadataFields = storage["metadata"]["field"]
-        metadataFields.each do |metadataField|
-          if metadataField['key'] == 'storageName' && metadataField['value'] == name then
-            return storage['id']
+      if response['storage'].nil? then
+        return false
+      else
+        response['storage'].each do |storage|
+          metadataFields = storage['metadata']['field']
+          metadataFields.each do |metadataField|
+            if metadataField['key'] == 'storageName' && metadataField['value'] == name then
+              return storage['id']
+            end
           end
         end
-      end
 
-      return false
+        return false
+      end
 
     rescue Exception
       raise Puppet::Error, "Failed to query Vidispine for Storage #{name}: #{$!}"
