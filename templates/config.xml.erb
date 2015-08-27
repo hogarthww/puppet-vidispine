@@ -223,7 +223,7 @@
 <%- if scope.lookupvar('vidispine::vidispine_cluster_enable') or scope.lookupvar('vidispine::solrcloud_enable') %>
   <configurationProperty>
     <key>zkHost</key>
-    <value><%= scope.lookupvar('vidispine::zookeeper_servers') %></value>
+    <value><%= scope.lookupvar('vidispine::zookeeper_servers_str') %></value>
   </configurationProperty>
 
   <configurationProperty>
