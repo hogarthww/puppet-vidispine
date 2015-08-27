@@ -115,7 +115,7 @@ class vidispine (
   # Need to take the array and change it into a comma seperated list for use
   # in the templates. The sort is there so that with the same data the string
   # is always the same.
-  $zookeeper_servers_str = join(sort($vidispine::zookeeper_server_list), ',')
+  $zookeeper_servers_str = join(sort($zookeeper_servers), ',')
 
   anchor { 'vidispine::begin' : } ->
     class  { 'vidispine::install' : } ->
