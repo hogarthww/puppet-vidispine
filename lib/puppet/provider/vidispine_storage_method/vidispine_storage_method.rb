@@ -106,6 +106,9 @@ Puppet::Type.type(:vidispine_storage_method).provide(:vidispine_storage_method, 
 
   def destroy
     begin
+      # FIXME: This is a bit sucky as we end making three GETs to /API/storage
+      # followed by a DELETE, where one GET and one DELETE would do fine.
+      #
       parent = find_parent()
       id = find_vxid()
       self.rest_delete "/API/storage/#{parent}/method/#{id}"
