@@ -9,12 +9,13 @@ Puppet::Type.newtype(:transcoder_address) do
     desc "The Transcoder address."
     isnamevar
 
-  validate do |value|
+    validate do |value|
       unless value =~ /\A#{URI::regexp(['http', 'https'])}\z/
          raise ArgumentError, "%s is not a valid address." % value
       end
     end
   end
+
   newparam(:vshostname) do
     desc "The hostname of the vidispine API."
 
@@ -24,6 +25,7 @@ Puppet::Type.newtype(:transcoder_address) do
       end
     end
   end
+  
   newparam(:vsport) do
     desc "The port of the vidispine API."
 
@@ -33,6 +35,7 @@ Puppet::Type.newtype(:transcoder_address) do
       end
     end
   end
+  
   newparam(:vsuser) do
     desc "The Username for vidispine API."
 
@@ -42,7 +45,8 @@ Puppet::Type.newtype(:transcoder_address) do
       end
     end
   end
-    newparam(:vspass) do
+
+  newparam(:vspass) do
     desc "The password for the vidispine API."
 
     validate do |value|
@@ -51,6 +55,5 @@ Puppet::Type.newtype(:transcoder_address) do
       end
     end
   end
-
 
 end
