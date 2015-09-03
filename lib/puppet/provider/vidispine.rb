@@ -30,6 +30,8 @@ class Puppet::Provider::Vidispine < Puppet::Provider
 
     if options[:accept] then
       request['Accept'] = options[:accept]
+    else
+      request['Accept'] = 'application/json'
     end
 
     if not content.nil? then
@@ -39,6 +41,8 @@ class Puppet::Provider::Vidispine < Puppet::Provider
         request['Content-Type'] = 'application/xml'
       elsif content =~ /^\s*\{/ then
         request['Content-Type'] = 'application/json'
+      else
+        request['Content-Type'] = 'text/plain'
       end
     end
 
