@@ -14,6 +14,12 @@ Puppet::Type.newtype(:transcoder_address) do
          raise ArgumentError, "%s is not a valid address." % value
       end
     end
+
+    munge do |value|
+      # Add a trailing slash to the URL if it isn't there,
+      # leave it alone if it's there already.
+      value.gsub(/^(.*?)\/*$/, '\1/')
+    end
   end
 
   newparam(:vshostname) do
