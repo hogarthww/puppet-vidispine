@@ -7,21 +7,23 @@ Puppet::Type.newtype(:vidispine_system_field) do
     desc "The system key."
     isnamevar
 
-  validate do |value|
+    validate do |value|
       unless value != ''
          raise ArgumentError, "%s please enter a keyname." % value
       end
     end
   end
+
   newparam(:value) do
     desc "The value for said key."
 
-  validate do |value|
+    validate do |value|
       unless value != ''
          raise ArgumentError, "%s please enter a keyname." % value
       end
     end
   end
+
   newparam(:vshostname) do
     desc "The hostname of the vidispine API."
 
@@ -31,6 +33,7 @@ Puppet::Type.newtype(:vidispine_system_field) do
       end
     end
   end
+
   newparam(:vsport) do
     desc "The port of the vidispine API."
 
@@ -40,6 +43,7 @@ Puppet::Type.newtype(:vidispine_system_field) do
       end
     end
   end
+
   newparam(:vsuser) do
     desc "The Username for vidispine API."
 
@@ -49,7 +53,8 @@ Puppet::Type.newtype(:vidispine_system_field) do
       end
     end
   end
-    newparam(:vspass) do
+
+  newparam(:vspass) do
     desc "The password for the vidispine API."
 
     validate do |value|
