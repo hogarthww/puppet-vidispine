@@ -99,5 +99,16 @@ describe provider_class do
     end
   end
 
+
+  # A slightly more complex test written to expose bug TP-526
+  describe 'update existing field' do
+    it 'should update the value of an existing field' do
+      VCR.use_cassette('vidispine_system_field-update') do
+        expect(provider.exists?).to be_falsy
+        expect(provider.create).to be_truthy
+        expect(provider.exists?).to be_truthy
+      end
+    end
+  end
 end
 
