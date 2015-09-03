@@ -19,7 +19,9 @@ describe provider_class do
   #      ... etc ...
   #   }
   let(:resource) { Puppet::Type.type(:vidispine_system_field).new(
-      :key        => 'rspec_system_field',
+                     # Test the case-insensitivity; Vidispine always
+                     # reports the keys as lowercase
+      :key        => 'RSPEC_system_field',
       :value      => '3ed0cc7c714f530fc2919d369335a1d280fd9686',
       :vshostname => 'localhost',
       :vsport     => '8080',

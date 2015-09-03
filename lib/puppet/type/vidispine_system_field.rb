@@ -12,6 +12,13 @@ Puppet::Type.newtype(:vidispine_system_field) do
          raise ArgumentError, "%s please enter a keyname." % value
       end
     end
+
+    munge do |value|
+      # Vidispine always returns the keys in lowercase, so we
+      # need to make sure our existence checks don't fail
+      # because of a case mismatch.
+      value.downcase
+    end
   end
 
   newparam(:value) do
