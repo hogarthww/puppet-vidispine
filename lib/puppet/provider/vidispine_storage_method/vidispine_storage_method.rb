@@ -84,7 +84,9 @@ Puppet::Type.type(:vidispine_storage_method).provide(:vidispine_storage_method, 
         @resource[:type])
 
       # We're PUTting a zero length document. All the work is done by the query string.
-      self.rest_put uripath, nil
+      # This is an inconsistent API call in general as requesting application/xml or
+      # application/json results in an error! However, text/plain works.
+      self.rest_put uripath, nil, { :accept => 'text/plain' }
 
     rescue Exception
       raise Puppet::Error, "Failed to create Vidispine Storage Method #{name}: #{$!}"
