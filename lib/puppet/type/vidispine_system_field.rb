@@ -29,6 +29,13 @@ Puppet::Type.newtype(:vidispine_system_field) do
          raise ArgumentError, "%s please enter a keyname." % value
       end
     end
+
+    munge do |value|
+      # Be liberal about what types we accept, but the provider
+      # expects to be working with strings, as that's what's sent
+      # over the wire to Vidispine's API
+      value.to_s
+    end
   end
 
   newparam(:vshostname) do
