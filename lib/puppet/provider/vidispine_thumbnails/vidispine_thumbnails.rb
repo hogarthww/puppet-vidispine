@@ -1,80 +1,68 @@
-require 'json'
-require 'net/http'
-require 'uri'
+require 'pathname'
+require Pathname.new(__FILE__).dirname.dirname.expand_path + 'vidispine'
 
-Puppet::Type.type(:vidispine_thumbnails).provide(:vidispine_thumbnails) do
-  desc "Vidispine transcoder."
+Puppet::Type.type(:vidispine_thumbnails).provide(:vidispine_thumbnails, :parent => Puppet::Provider::Vidispine) do
+  desc "Vidispine Thumbnail resource"
 
-  def create
-  vsurl  = "http://" + @resource[:vshostname] +":"+ @resource[:vsport] + "/API/resource/thumbnail"
-  name   = @resource[:name]
-  vsuser = @resource[:vsuser]
-  vspass = @resource[:vspass]
-    uri = URI(vsurl)
-    http = Net::HTTP.new(uri.host, uri.port)
-    request = Net::HTTP::Post.new(uri.request_uri)
-    request.basic_auth @resource[:vsuser], @resource[:vspass]
-    request.body = <<"xml"
-    <resource>
-        <thumbnail>
-            <path>#{name}</path>
-        </thumbnail>
-    </resource>
-xml
-    request["Content-Type"] = "application/xml"
-    response = http.request(request)
-   end
+  def find_vxid
+    begin
+      response = self.rest_get '/API/resource/thumbnail'
+
+      if response['resource'].nil? then
+        return false
+      end
+
+      response['resource'].each do |resource|
+        path = resource['thumbnail']['path']
+
+        if path == @resource[:name] then
+          return resource['id']
+        end
+      end
+
+      return false
+
+    rescue Exception
+      raise Puppet::Error, "Failed to query Vidispine for thumbnail resource #{@resource[:name]}: #{$!}"
+    end
+  end
 
   def exists?
-    vsurl  = "http://" + @resource[:vshostname] +":"+ @resource[:vsport] + "/API/resource/thumbnail"
-    name   = @resource[:name]
-    vsuser = @resource[:vsuser]
-    vspass = @resource[:vspass]
-    uri = URI.parse(vsurl)
-    http = Net::HTTP.new(uri.host, uri.port)
-    request = Net::HTTP::Get.new(uri.request_uri)
-    request.basic_auth vsuser, vspass
-    request["Accept"] = "application/json"
-    response = http.request(request)
-    if response.body == 'null' || response.body == '{}' then return false end
-    parsed = JSON.parse(response.body)
-    resources = parsed["resource"]
-    resources.each do |resource|
-       path = resource["thumbnail"]["path"]
-       if path == name
-       then
-         return true
-       end
+    # An existence check is exactly the same as finding the VX-ID, but we always
+    # want to return a boolean value
+    #
+    if find_vxid then
+      return true
+    else
+      return false
     end
-   return false
   end
+
+  def create
+    begin
+      thumbnail_resource_document = <<-XML.gsub(/^ */, '')
+      <resource>
+          <thumbnail>
+              <path>#{@resource[:name]}</path>
+          </thumbnail>
+      </resource>
+      XML
+
+      self.rest_post '/API/resource/thumbnail', thumbnail_resource_document
+
+    rescue Exception
+      raise Puppet::Error, "Failed to create Vidispine thumbnail resource #{@resource[:name]}: #{$!}"
+    end
+  end
+
   def destroy
-    vsurl  = "http://" + @resource[:vshostname] +":"+ @resource[:vsport] + "/API/resource/thumbnail/"
-    name   = @resource[:name]
-    name   = name + "/"
-    vsuser = @resource[:vsuser]
-    vspass = @resource[:vspass]
-    uri = URI.parse(vsurl)
-    http = Net::HTTP.new(uri.host, uri.port)
-    request = Net::HTTP::Get.new(uri.request_uri)
-    request.basic_auth vsuser, vspass
-    request["Accept"] = "application/json"
-    response = http.request(request)
-    parsed = JSON.parse(response.body)
-    resources = parsed["resource"]
-    resources.each do |resource|
-       path = resource["thumbnail"]["path"]
-       if path == name
-       then
-          vxid = resource["id"]
-          Puppet.debug("deleting VX-id " + vxid)
-          uri = URI(vsurl + vxid)
-          http = Net::HTTP.new(uri.host, uri.port)
-          request = Net::HTTP::Delete.new(uri.request_uri)
-          request.basic_auth vsuser, vspass
-          request["Accept"] = "application/json"
-          response = http.request(request)
-       end
+    begin
+      vxid = find_vxid()
+      self.rest_delete "/API/resource/thumbnail/#{vxid}", { :accept => 'text/plain' }
+
+    rescue Exception
+      raise Puppet::Error, "Failed to destroy Vidispine Transcoder resource #{@resource[:name]}: #{$!}"
     end
   end
+
 end
