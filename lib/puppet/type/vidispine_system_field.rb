@@ -4,12 +4,12 @@ Puppet::Type.newtype(:vidispine_system_field) do
   ensurable
 
   newparam(:key) do
-    desc "The system key."
+    desc "The name of the system property."
     isnamevar
 
     validate do |value|
       unless value != ''
-         raise ArgumentError, "%s please enter a keyname." % value
+         raise ArgumentError, "%s please enter a key name." % value
       end
     end
 
@@ -22,11 +22,11 @@ Puppet::Type.newtype(:vidispine_system_field) do
   end
 
   newparam(:value) do
-    desc "The value for said key."
+    desc "The value for the system property."
 
     validate do |value|
       unless value != ''
-         raise ArgumentError, "%s please enter a keyname." % value
+         raise ArgumentError, "%s please enter a value." % value
       end
     end
 
@@ -39,7 +39,7 @@ Puppet::Type.newtype(:vidispine_system_field) do
   end
 
   newparam(:vshostname) do
-    desc "The hostname of the vidispine API."
+    desc "The hostname of the Vidispine API."
 
     validate do |value|
       unless value =~ /^[\w-]+$/
@@ -49,7 +49,7 @@ Puppet::Type.newtype(:vidispine_system_field) do
   end
 
   newparam(:vsport) do
-    desc "The port of the vidispine API."
+    desc "The port of the Vidispine API."
 
     validate do |value|
       unless value =~ /^\d+$/
@@ -59,24 +59,23 @@ Puppet::Type.newtype(:vidispine_system_field) do
   end
 
   newparam(:vsuser) do
-    desc "The Username for vidispine API."
+    desc "The username for Vidispine API."
 
     validate do |value|
       unless value =~ /^[\w-]+$/
-        raise ArgumentError, "%s is not a valid address." % value
+        raise ArgumentError, "%s is not a valid username." % value
       end
     end
   end
 
   newparam(:vspass) do
-    desc "The password for the vidispine API."
+    desc "The password for the Vidispine API."
 
     validate do |value|
       unless value =~ /^[\w-]+$/
-        raise ArgumentError, "%s is not a valid address." % value
+        raise ArgumentError, "%s is not a valid password." % value
       end
     end
   end
-
 
 end

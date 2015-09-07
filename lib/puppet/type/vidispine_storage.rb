@@ -1,20 +1,21 @@
 Puppet::Type.newtype(:vidispine_storage) do
-  @doc = "Manage Vidispine storage provider"
+  @doc = "Vidispine Storage"
 
   ensurable
 
   newparam(:name) do
-    desc "the vidispine VX-ID for the storage."
+    desc "The name for the Storage."
     isnamevar
 
-  validate do |value|
+    validate do |value|
       unless value != ''
-         raise ArgumentError, "%s please enter a storage name" % value
+        raise ArgumentError, "%s please enter a storage name" % value
       end
     end
   end
+
   newparam(:vshostname) do
-    desc "The hostname of the vidispine API."
+    desc "The hostname of the Vidispine API."
 
     validate do |value|
       unless value =~ /^[\w-]+$/
@@ -22,8 +23,9 @@ Puppet::Type.newtype(:vidispine_storage) do
       end
     end
   end
+
   newparam(:vsport) do
-    desc "The port of the vidispine API."
+    desc "The port of the Vidispine API."
 
     validate do |value|
       unless value =~ /^\d+$/
@@ -31,8 +33,9 @@ Puppet::Type.newtype(:vidispine_storage) do
       end
     end
   end
+
   newparam(:vsuser) do
-    desc "The Username for vidispine API."
+    desc "The username for Vidispine API."
 
     validate do |value|
       unless value =~ /^[\w-]+$/
@@ -40,8 +43,9 @@ Puppet::Type.newtype(:vidispine_storage) do
       end
     end
   end
-    newparam(:vspass) do
-    desc "The password for the vidispine API."
+
+  newparam(:vspass) do
+    desc "The password for the Vidispine API."
 
     validate do |value|
       unless value =~ /^[\w-]+$/
@@ -49,6 +53,5 @@ Puppet::Type.newtype(:vidispine_storage) do
       end
     end
   end
-
 
 end
