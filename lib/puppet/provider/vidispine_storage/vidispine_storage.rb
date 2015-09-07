@@ -23,7 +23,7 @@ Puppet::Type.type(:vidispine_storage).provide(:vidispine_storage, :parent => Pup
       self.rest_post '/API/storage/', storage_document
 
     rescue Exception
-      raise Puppet::Error, "Failed to create Vidispine Storage #{name}: #{$!}"
+      raise Puppet::Error, "Failed to create Vidispine Storage #{@resource[:name]}: #{$!}"
     end
   end
 
@@ -49,7 +49,7 @@ Puppet::Type.type(:vidispine_storage).provide(:vidispine_storage, :parent => Pup
       end
 
     rescue Exception
-      raise Puppet::Error, "Failed to query Vidispine for Storage #{name}: #{$!}"
+      raise Puppet::Error, "Failed to query Vidispine for Storage #{@resource[:name]}: #{$!}"
     end
   end
 
@@ -63,7 +63,7 @@ Puppet::Type.type(:vidispine_storage).provide(:vidispine_storage, :parent => Pup
       end
     
     rescue Exception
-      raise Puppet::Error, "Failed to delete Vidispine Storage #{name}: #{$!}"
+      raise Puppet::Error, "Failed to delete Vidispine Storage #{@resource[:name]}: #{$!}"
     end
   end
 end

@@ -23,7 +23,7 @@ Puppet::Type.type(:transcoder_address).provide(:transcoder_address, :parent => P
       return false
 
     rescue Exception
-      raise Puppet::Error, "Failed to query Vidispine for Transcoder resource #{name}: #{$!}"
+      raise Puppet::Error, "Failed to query Vidispine for Transcoder resource #{@resource[:name]}: #{$!}"
     end
   end
 
@@ -51,7 +51,7 @@ Puppet::Type.type(:transcoder_address).provide(:transcoder_address, :parent => P
       self.rest_post '/API/resource/transcoder', transcoder_resource_document
 
     rescue Exception
-      raise Puppet::Error, "Failed to create Vidispine Transcoder resource #{name}: #{$!}"
+      raise Puppet::Error, "Failed to create Vidispine Transcoder resource #{@resource[:name]}: #{$!}"
     end
   end
   
@@ -61,7 +61,7 @@ Puppet::Type.type(:transcoder_address).provide(:transcoder_address, :parent => P
       self.rest_delete "/API/resource/transcoder/#{vxid}"
 
     rescue Exception
-      raise Puppet::Error, "Failed to destroy Vidispine Transcoder resource #{name}: #{$!}"
+      raise Puppet::Error, "Failed to destroy Vidispine Transcoder resource #{@resource[:name]}: #{$!}"
     end
   end
 

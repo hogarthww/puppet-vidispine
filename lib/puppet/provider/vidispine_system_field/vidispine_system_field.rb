@@ -27,7 +27,7 @@ Puppet::Type.type(:vidispine_system_field).provide(:vidispine_system_field, :par
       return false
 
     rescue Exception
-      raise Puppet::Error, "Failed to query Vidispine for System Field #{name}: #{$!}"
+      raise Puppet::Error, "Failed to query Vidispine for System Field #{@resource[:name]}: #{$!}"
     end
 
   end
@@ -37,7 +37,7 @@ Puppet::Type.type(:vidispine_system_field).provide(:vidispine_system_field, :par
       self.rest_put "/API/configuration/properties/#{@resource[:key]}", @resource[:value]
 
     rescue Exception
-      raise Puppet::Error, "Failed to create Vidispine System Field #{name}: #{$!}"
+      raise Puppet::Error, "Failed to create Vidispine System Field #{@resource[:name]}: #{$!}"
     end
   end
 
@@ -46,7 +46,7 @@ Puppet::Type.type(:vidispine_system_field).provide(:vidispine_system_field, :par
       self.rest_delete "/API/configuration/properties/#{@resource[:key]}"
 
     rescue Exception
-      raise Puppet::Error, "Failed to delete Vidispine System Field #{name}: #{$!}"
+      raise Puppet::Error, "Failed to delete Vidispine System Field #{@resource[:name]}: #{$!}"
     end
   end
 

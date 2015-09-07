@@ -33,7 +33,7 @@ Puppet::Type.type(:vidispine_storage_method).provide(:vidispine_storage_method, 
       end
 
     rescue Exception
-      raise Puppet::Error, "Failed to query Vidispine for Storage #{name}: #{$!}"
+      raise Puppet::Error, "Failed to query Vidispine for Storage #{@resource[:name]}: #{$!}"
     end
   end
 
@@ -65,7 +65,7 @@ Puppet::Type.type(:vidispine_storage_method).provide(:vidispine_storage_method, 
       return false
 
     rescue Exception
-      raise Puppet::Error, "Failed to query Vidispine for Storage Method #{name}: #{$!}"
+      raise Puppet::Error, "Failed to query Vidispine for Storage Method #{@resource[:name]}: #{$!}"
     end
   end
 
@@ -89,7 +89,7 @@ Puppet::Type.type(:vidispine_storage_method).provide(:vidispine_storage_method, 
       self.rest_put uripath, nil, { :accept => 'text/plain' }
 
     rescue Exception
-      raise Puppet::Error, "Failed to create Vidispine Storage Method #{name}: #{$!}"
+      raise Puppet::Error, "Failed to create Vidispine Storage Method #{@resource[:name]}: #{$!}"
     end
   end
 
@@ -116,7 +116,7 @@ Puppet::Type.type(:vidispine_storage_method).provide(:vidispine_storage_method, 
       self.rest_delete "/API/storage/#{parent}/method/#{id}"
 
     rescue Exception
-      raise Puppet::Error, "Failed to destroy Vidispine Storage Method #{name}: #{$!}"
+      raise Puppet::Error, "Failed to destroy Vidispine Storage Method #{@resource[:name]}: #{$!}"
     end
   end
 end
