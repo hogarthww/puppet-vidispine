@@ -1,83 +1,68 @@
-require 'rubygems'
-require 'json'
-require 'net/http'
-require 'uri'
+require 'pathname'
+require Pathname.new(__FILE__).dirname.dirname.expand_path + 'vidispine'
 
-Puppet::Type.type(:transcoder_address).provide(:transcoder_address) do
-  desc "Vidispine transcoder."
+Puppet::Type.type(:transcoder_address).provide(:transcoder_address, :parent => Puppet::Provider::Vidispine) do
+  desc "Vidispine Transcoder resource"
 
-  def create
-  vsurl  = "http://" + @resource[:vshostname] +":"+ @resource[:vsport] + "/API/resource/transcoder"
-  name   = @resource[:name]
-  vsuser = @resource[:vsuser]
-  vspass = @resource[:vspass]
-    uri = URI(vsurl)
-    http = Net::HTTP.new(uri.host, uri.port)
-    request = Net::HTTP::Post.new(uri.request_uri)
-    request.basic_auth @resource[:vsuser], @resource[:vspass]
-    request.body = <<"xml"
-    <resource>
-        <transcoder>
-            <url>#{name}/</url>
-        </transcoder>
-    </resource>
-xml
-    request["Content-Type"] = "application/xml"
-    response = http.request(request)
-   end
+  def find_vxid
+    begin
+      response = self.rest_get '/API/resource/transcoder'
+
+      if response['resource'].nil? then
+        return false
+      end
+
+      response['resource'].each do |resource|
+        url = resource['transcoder']['url']
+
+        if url == @resource[:name] then
+          return resource['id']
+        end
+      end
+
+      return false
+
+    rescue Exception
+      raise Puppet::Error, "Failed to query Vidispine for Transcoder resource #{@resource[:name]}: #{$!}"
+    end
+  end
 
   def exists?
-    vsurl  = "http://" + @resource[:vshostname] +":"+ @resource[:vsport] + "/API/resource/transcoder"
-    name   = @resource[:name]
-    name   = name + "/"
-    vsuser = @resource[:vsuser]
-    vspass = @resource[:vspass]
-    uri = URI.parse(vsurl)
-    http = Net::HTTP.new(uri.host, uri.port)
-    request = Net::HTTP::Get.new(uri.request_uri)
-    request.basic_auth vsuser, vspass
-    request["Accept"] = "application/json"
-    response = http.request(request)
-    if response.body == 'null' || response.body == '{}' then return false end
-    parsed = JSON.parse(response.body)
-    resources = parsed["resource"]
-    resources.each do |resource|
-       url = resource["transcoder"]["url"]
-       Puppet.debug(url + " url<>name " + name)
-       if url == name
-       then
-         return true
-       end
+    # An existence check is exactly the same as finding the VX-ID, but we always
+    # want to return a boolean value
+    #
+    if find_vxid then
+      return true
+    else
+      return false
     end
-   return false
   end
+
+  def create
+    begin
+      transcoder_resource_document = <<-XML.gsub(/^ */, '')
+      <resource>
+        <transcoder>
+          <url>#{@resource[:name]}</url>
+        </transcoder>
+      </resource>
+      XML
+
+      self.rest_post '/API/resource/transcoder', transcoder_resource_document
+
+    rescue Exception
+      raise Puppet::Error, "Failed to create Vidispine Transcoder resource #{@resource[:name]}: #{$!}"
+    end
+  end
+  
   def destroy
-    vsurl  = "http://" + @resource[:vshostname] +":"+ @resource[:vsport] + "/API/resource/transcoder/"
-    name   = @resource[:name]
-    name   = name + "/"
-    vsuser = @resource[:vsuser]
-    vspass = @resource[:vspass]
-    uri = URI.parse(vsurl)
-    http = Net::HTTP.new(uri.host, uri.port)
-    request = Net::HTTP::Get.new(uri.request_uri)
-    request.basic_auth vsuser, vspass
-    request["Accept"] = "application/json"
-    response = http.request(request)
-    parsed = JSON.parse(response.body)
-    resources = parsed["resource"]
-    resources.each do |resource|
-       url = resource["transcoder"]["url"]
-       if url == name
-       then
-          vxid = resource["id"]
-          Puppet.debug("deleting vsid " + vxid)
-          uri = URI(vsurl + vxid)
-          http = Net::HTTP.new(uri.host, uri.port)
-          request = Net::HTTP::Delete.new(uri.request_uri)
-          request.basic_auth vsuser, vspass
-          request["Accept"] = "application/json"
-          response = http.request(request)
-       end
+    begin
+      vxid = find_vxid()
+      self.rest_delete "/API/resource/transcoder/#{vxid}"
+
+    rescue Exception
+      raise Puppet::Error, "Failed to destroy Vidispine Transcoder resource #{@resource[:name]}: #{$!}"
     end
   end
+
 end

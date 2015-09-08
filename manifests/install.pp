@@ -6,7 +6,7 @@ class vidispine::install {
     apt::source { $vidispine::glassfish_java_apt_repo['name']:
       comment     => $vidispine::glassfish_java_apt_repo['comment'],
       location    => $vidispine::glassfish_java_apt_repo['location'],
-      release     => $lsbdistcodename,
+      release     => $::lsbdistcodename,
       repos       => 'main',
       include_src => false,
       include_deb => true,
@@ -192,7 +192,7 @@ class vidispine::install {
   # -Xmx jvm option to 512m.
   if $vidispine::glassfish_jvmoptions_xmx != '512m' {
     # remove default -Xmx jvm option for vidispine glassfish instance
-    jvmoption {"-Xmx512m":
+    jvmoption {'-Xmx512m':
       ensure       => absent,
       target       => $jvmoption_target,
       portbase     => $vidispine::glassfish_admin_portbase,
@@ -229,7 +229,7 @@ class vidispine::install {
   # -XX:PermSize to 64m.
   if $vidispine::glassfish_jvmoptions_permsize != '64m' {
   # remove -XX:PermSize=64m jvm option for vidispine glassfish instance
-    jvmoption {"-XX:PermSize=64m":
+    jvmoption {'-XX:PermSize=64m':
       ensure       => absent,
       target       => $jvmoption_target,
       portbase     => $vidispine::glassfish_admin_portbase,
@@ -257,7 +257,7 @@ class vidispine::install {
   # -XX:MaxPermSize to 192m.
   if $vidispine::glassfish_jvmoptions_maxpermsize != '192m' {
   # remove -XX:MaxPermSize=192m jvm option for vidispine glassfish instance
-    jvmoption {"-XX:MaxPermSize=192m":
+    jvmoption {'-XX:MaxPermSize=192m':
       ensure       => absent,
       target       => $jvmoption_target,
       portbase     => $vidispine::glassfish_admin_portbase,
@@ -284,10 +284,10 @@ class vidispine::install {
   # create directory for vidispine installer
   # if cluster and not das don't bother **
   file {[ $vidispine::installer_dir, "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}"]:
-    ensure  => directory,
-    owner   => $vidispine::glassfish_user,
-    group   => $vidispine::glassfish_group,
-    mode    => '0755',
+    ensure => directory,
+    owner  => $vidispine::glassfish_user,
+    group  => $vidispine::glassfish_group,
+    mode   => '0755',
   }
 
   # unpack vidispine installer
@@ -300,10 +300,10 @@ class vidispine::install {
     group   => $vidispine::glassfish_group,
     creates => "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}/SetupTool4.jar",
     require => [
-                 Jvmoption["-Xmx${vidispine::glassfish_jvmoptions_xmx}"],
-                 Jvmoption["-Xms${vidispine::glassfish_jvmoptions_xms}"],
-                 File["${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}"],
-               ]
+      Jvmoption["-Xmx${vidispine::glassfish_jvmoptions_xmx}"],
+      Jvmoption["-Xms${vidispine::glassfish_jvmoptions_xms}"],
+      File["${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}"],
+    ],
   }
 
   # create silent install config.xml file for vidispine installer
@@ -312,7 +312,7 @@ class vidispine::install {
     owner   => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
     mode    => '0644',
-    content => template("vidispine/config.xml.erb"),
+    content => template('vidispine/config.xml.erb'),
     require => Staging::Deploy["Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip"],
     notify  => Exec['vidispine-installer'],
   }
@@ -355,6 +355,7 @@ class vidispine::install {
       section           => '',
       path              => $imq_conf,
       setting           => 'imq.brokerid',
+                          # This is a linting warning but I don't want to touch it at the moment
       value             => "${vidispine::glassfish_imq_broker_list[$::fqdn][brokerid]}",
       require           => Exec['vidispine-installer'],
     }

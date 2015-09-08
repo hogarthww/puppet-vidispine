@@ -9,9 +9,9 @@ define vidispine::storage_method (
   $vsuser     = $vidispine::vidispine_admin_user,
   $vspass     = $vidispine::vidispine_admin_password,
   $location   = undef,
-  $read       = 'true',
-  $write      = 'true',
-  $browse     = 'true',
+  $read       = true,
+  $write      = true,
+  $browse     = true,
   $type       = 'NONE',
 
 ){

@@ -190,11 +190,8 @@ This appears to be unused.
 ## Limitations
 
 * Only known to work on Ubuntu 12.04. Should also work on 14.04 with minimal changes.
-* Certain edge cases are known to break the custom types.
 * Custom types do not implement prefetching, making Puppet runs very slow and very
   'chatty' with the Vidispine API
 * There is not yet a way to centrally specify `vshostname`, `vsport`, `vsuser`, `vspass`
 * The module does not handle the installation of the Vidispine license
-* Errors from the Vidispine API are not handled or reported
-* Type conversion and validation of parameters is wrong in many places
 

@@ -4,26 +4,42 @@ Puppet::Type.newtype(:vidispine_system_field) do
   ensurable
 
   newparam(:key) do
-    desc "The system key."
+    desc "The name of the system property."
     isnamevar
 
-  validate do |value|
+    validate do |value|
       unless value != ''
-         raise ArgumentError, "%s please enter a keyname." % value
+         raise ArgumentError, "%s please enter a key name." % value
       end
     end
-  end
-  newparam(:value) do
-    desc "The value for said key."
 
-  validate do |value|
-      unless value != ''
-         raise ArgumentError, "%s please enter a keyname." % value
-      end
+    munge do |value|
+      # Vidispine always returns the keys in lowercase, so we
+      # need to make sure our existence checks don't fail
+      # because of a case mismatch.
+      value.downcase
     end
   end
+
+  newparam(:value) do
+    desc "The value for the system property."
+
+    validate do |value|
+      unless value != ''
+         raise ArgumentError, "%s please enter a value." % value
+      end
+    end
+
+    munge do |value|
+      # Be liberal about what types we accept, but the provider
+      # expects to be working with strings, as that's what's sent
+      # over the wire to Vidispine's API
+      value.to_s
+    end
+  end
+
   newparam(:vshostname) do
-    desc "The hostname of the vidispine API."
+    desc "The hostname of the Vidispine API."
 
     validate do |value|
       unless value =~ /^[\w-]+$/
@@ -31,8 +47,9 @@ Puppet::Type.newtype(:vidispine_system_field) do
       end
     end
   end
+
   newparam(:vsport) do
-    desc "The port of the vidispine API."
+    desc "The port of the Vidispine API."
 
     validate do |value|
       unless value =~ /^\d+$/
@@ -40,24 +57,25 @@ Puppet::Type.newtype(:vidispine_system_field) do
       end
     end
   end
+
   newparam(:vsuser) do
-    desc "The Username for vidispine API."
+    desc "The username for Vidispine API."
 
     validate do |value|
       unless value =~ /^[\w-]+$/
-        raise ArgumentError, "%s is not a valid address." % value
-      end
-    end
-  end
-    newparam(:vspass) do
-    desc "The password for the vidispine API."
-
-    validate do |value|
-      unless value =~ /^[\w-]+$/
-        raise ArgumentError, "%s is not a valid address." % value
+        raise ArgumentError, "%s is not a valid username." % value
       end
     end
   end
 
+  newparam(:vspass) do
+    desc "The password for the Vidispine API."
+
+    validate do |value|
+      unless value =~ /^[\w-]+$/
+        raise ArgumentError, "%s is not a valid password." % value
+      end
+    end
+  end
 
 end

@@ -6,7 +6,7 @@ Puppet::Type.newtype(:vidispine_storage_method) do
   ensurable
 
   newparam(:name) do
-    desc "The name of the storage_method resource."
+    desc "The name of the Storage Method resource."
   end
 
   newparam(:storageuri) do
@@ -20,7 +20,7 @@ Puppet::Type.newtype(:vidispine_storage_method) do
   end
 
   newparam(:location) do
-    desc "The parent that this storage method applies to"
+    desc "The Storage that this Storage Method applies to"
 
     validate do |value|
       unless value != ''
@@ -30,7 +30,7 @@ Puppet::Type.newtype(:vidispine_storage_method) do
   end
 
   newparam(:vshostname) do
-    desc "The hostname of the vidispine API."
+    desc "The hostname of the Vidispine API."
 
     validate do |value|
       unless value =~ /^[\w-]+$/
@@ -40,7 +40,7 @@ Puppet::Type.newtype(:vidispine_storage_method) do
   end
 
   newparam(:vsport) do
-    desc "The port of the vidispine API."
+    desc "The port of the Vidispine API."
 
     validate do |value|
       unless value =~ /^\d+$/
@@ -48,8 +48,9 @@ Puppet::Type.newtype(:vidispine_storage_method) do
       end
     end
   end
+
   newparam(:vsuser) do
-    desc "The Username for vidispine API."
+    desc "The username for Vidispine API."
 
     validate do |value|
       unless value =~ /^[\w-]+$/
@@ -57,8 +58,9 @@ Puppet::Type.newtype(:vidispine_storage_method) do
       end
     end
   end
-    newparam(:vspass) do
-    desc "The password for the vidispine API."
+
+  newparam(:vspass) do
+    desc "The password for the Vidispine API."
 
     validate do |value|
       unless value =~ /^[\w-]+$/
@@ -66,40 +68,58 @@ Puppet::Type.newtype(:vidispine_storage_method) do
       end
     end
   end
+
   newparam(:read) do
-    desc "strung value - true or false dependant on if a storage is readable "
+    desc "Boolean value: whether or not the Storage is readable via this method"
 
     validate do |value|
-      unless value == 'true' || value == 'false'
-        raise ArgumentError, "%s valid params are strings containing true of false." % value
+      value_s = value.to_s
+      unless value_s == 'true' || value_s == 'false'
+        raise ArgumentError, "%s valid params are booleans or strings containing 'true' or 'false'." % value
       end
     end
+
+    munge do |value|
+      value.to_s
+    end
   end
+
   newparam(:write) do
-    desc "The password for the vidispine API."
+    desc "Boolean value: whether or not the Storage is writable via this method"
 
     validate do |value|
-       unless value == 'true' || value == 'false'
+      value_s = value.to_s
+      unless value_s == 'true' || value_s == 'false'
         raise ArgumentError, "%s valid params are strings containing true of false." % value
       end
     end
+
+    munge do |value|
+      value.to_s
+    end
   end
+
   newparam(:browse) do
-    desc "The password for the vidispine API."
+    desc "Boolean value: whether or not the Storage is browsable via this method"
 
     validate do |value|
-       unless value == 'true' || value == 'false'
+      value_s = value.to_s
+      unless value_s == 'true' || value_s == 'false'
         raise ArgumentError, "%s valid params are strings containing true of false." % value
       end
+    end
+
+    munge do |value|
+      value.to_s
     end
   end
 
   newparam(:type) do
-    desc "The Vidispine storeage_method type."
+    desc "The Vidispine Storage Method Type."
     defaultto "NONE"
 
     validate do |value|
-       unless value == 'AUTO' || value == 'NONE'
+      unless value == 'AUTO' || value == 'NONE'
         raise ArgumentError, "%s valid params are strings containing AUTO or NONE." % value
       end
     end

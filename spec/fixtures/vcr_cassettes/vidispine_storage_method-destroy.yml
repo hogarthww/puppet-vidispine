@@ -9,6 +9,8 @@
         headers: 
           Accept: 
             - application/json
+          User-Agent: 
+            - Ruby
       response: 
         status: 
           code: 200
@@ -17,14 +19,14 @@
           Content-Type: 
             - application/json
         body: 
-          encoding: UTF-8
+          encoding: US-ASCII
           string: |
             {
                 "storage": [
                     {
                         "autoDetect": true,
                         "capacity": 84696301568,
-                        "freeCapacity": 77886914560,
+                        "freeCapacity": 77886586880,
                         "highWatermark": 84696301568,
                         "id": "VX-10",
                         "lowWatermark": 84696301568,
@@ -41,6 +43,7 @@
                                 "bandwidth": 0,
                                 "browse": true,
                                 "id": "VX-13",
+                                "lastSuccess": "2015-09-03T12:56:03.967+0000",
                                 "read": true,
                                 "type": "NONE",
                                 "uri": "file:///opt/vidispine/storage2/",
@@ -48,14 +51,14 @@
                             }
                         ],
                         "showImportables": true,
-                        "state": "OFFLINE",
-                        "timestamp": "2015-08-18T11:24:03.640+0000",
+                        "state": "NONE",
+                        "timestamp": "2015-09-03T12:56:03.955+0000",
                         "type": "LOCAL"
                     }
                 ]
             }
         http_version: 
-      recorded_at: "Tue, 18 Aug 2015 11:39:39 GMT"
+      recorded_at: "Thu, 03 Sep 2015 12:56:26 GMT"
     - request: 
         method: get
         uri: "http://admin:admin@localhost:8080/API/storage/"
@@ -65,6 +68,8 @@
         headers: 
           Accept: 
             - application/json
+          User-Agent: 
+            - Ruby
       response: 
         status: 
           code: 200
@@ -73,14 +78,14 @@
           Content-Type: 
             - application/json
         body: 
-          encoding: UTF-8
+          encoding: US-ASCII
           string: |
             {
                 "storage": [
                     {
                         "autoDetect": true,
                         "capacity": 84696301568,
-                        "freeCapacity": 77886914560,
+                        "freeCapacity": 77886586880,
                         "highWatermark": 84696301568,
                         "id": "VX-10",
                         "lowWatermark": 84696301568,
@@ -97,6 +102,7 @@
                                 "bandwidth": 0,
                                 "browse": true,
                                 "id": "VX-13",
+                                "lastSuccess": "2015-09-03T12:56:03.967+0000",
                                 "read": true,
                                 "type": "NONE",
                                 "uri": "file:///opt/vidispine/storage2/",
@@ -104,14 +110,14 @@
                             }
                         ],
                         "showImportables": true,
-                        "state": "OFFLINE",
-                        "timestamp": "2015-08-18T11:24:03.640+0000",
+                        "state": "NONE",
+                        "timestamp": "2015-09-03T12:56:03.955+0000",
                         "type": "LOCAL"
                     }
                 ]
             }
         http_version: 
-      recorded_at: "Tue, 18 Aug 2015 11:39:39 GMT"
+      recorded_at: "Thu, 03 Sep 2015 12:56:26 GMT"
     - request: 
         method: get
         uri: "http://admin:admin@localhost:8080/API/storage/VX-10/method"
@@ -121,6 +127,8 @@
         headers: 
           Accept: 
             - application/json
+          User-Agent: 
+            - Ruby
       response: 
         status: 
           code: 200
@@ -129,7 +137,7 @@
           Content-Type: 
             - application/json
         body: 
-          encoding: UTF-8
+          encoding: US-ASCII
           string: |
             {
                 "method": [
@@ -137,6 +145,7 @@
                         "bandwidth": 0,
                         "browse": true,
                         "id": "VX-13",
+                        "lastSuccess": "2015-09-03T12:56:03.967+0000",
                         "read": true,
                         "type": "NONE",
                         "uri": "file:///opt/vidispine/storage2/",
@@ -145,5 +154,26 @@
                 ]
             }
         http_version: 
-      recorded_at: "Tue, 18 Aug 2015 11:39:39 GMT"
+      recorded_at: "Thu, 03 Sep 2015 12:56:26 GMT"
+    - request: 
+        method: delete
+        uri: "http://admin:admin@localhost:8080/API/storage/VX-10/method/VX-13"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept: 
+            - application/json
+          User-Agent: 
+            - Ruby
+      response: 
+        status: 
+          code: 204
+          message: "No Content"
+        headers: {}
+        body: 
+          encoding: US-ASCII
+          string: ""
+        http_version: 
+      recorded_at: "Thu, 03 Sep 2015 12:56:26 GMT"
   recorded_with: "VCR 2.9.3"

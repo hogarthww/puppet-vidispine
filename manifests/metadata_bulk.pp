@@ -24,7 +24,7 @@ define vidispine::metadata_bulk (
   }
 
   exec {$filename:
-    command => "curl -X PUT -H 'Content-Type: application/xml' -d @/tmp/$filename --user ${vsuser}:${vspass} http://${vshostname}:${vsport}/${path}/${groupName}",
+    command => "curl -X PUT -H 'Content-Type: application/xml' -d @/tmp/${filename} --user ${vsuser}:${vspass} http://${vshostname}:${vsport}/${path}/${groupName}",
     unless  => "curl -I --user ${vsuser}:${vspass} http://${vshostname}:${vsport}/${path}/${groupName} | grep 200",
     path    => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ],
     require => File[$filename],

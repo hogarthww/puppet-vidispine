@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'uri'
 
 Puppet::Type.newtype(:vidispine_thumbnails) do
