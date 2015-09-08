@@ -20,7 +20,7 @@ class vidispine::newrelic_agent {
 
   file { "${new_relic_dir}/newrelic.yml" :
     ensure  => file,
-    content => template("vidispine/newrelic.yml.erb"),
+    content => template('vidispine/newrelic.yml.erb'),
     owner   => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
     require => Staging::Deploy["newrelic-java-${vidispine::newrelic_version}.zip"],
@@ -29,12 +29,12 @@ class vidispine::newrelic_agent {
 
   jvmoption {"-javaagent:${new_relic_dir}/newrelic.jar" :
     ensure       => present,
-    target       => $jvmoption_target,
+    target       => $vidispine::install::jvmoption_target,
     portbase     => $vidispine::glassfish_admin_portbase,
     asadminuser  => $vidispine::glassfish_asadmin_user,
     passwordfile => $vidispine::glassfish_asadmin_passfile,
     user         => $vidispine::glassfish_user,
-    require      => $jvmoption_reqs,
+    require      => $vidispine::install::jvmoption_reqs,
   }
 
 }
