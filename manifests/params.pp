@@ -59,6 +59,7 @@ class vidispine::params {
   $postgresql_imq_user               = 'openmq'
   $postgresql_imq_password           = 'openmq'
   $postgresql_imq_database           = 'openmqdb'
+  $installer_database_run_migration  = true
   $solrcloud_enable                  = false
   $solr_collection_name              = 'vidispine'   # this is only used with an external solr config
   $newrelic_archive_location         = 'http://apt.hogarthww.prv/raw/newrelic/'

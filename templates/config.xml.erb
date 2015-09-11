@@ -127,7 +127,7 @@
   </configurationProperty>
   <configurationProperty>
     <key>databaseRunMigration</key>
-    <value>yes</value>
+    <value><%= scope.lookupvar('vidispine::installer_database_run_migration') ? 'yes' : 'no' %></value>
   </configurationProperty>
   <!-- Transcoder properies -->
   <configurationProperty>
