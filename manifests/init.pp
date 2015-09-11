@@ -93,6 +93,7 @@ class vidispine (
   $postgresql_imq_user               = $vidispine::params::postgresql_imq_user,
   $postgresql_imq_password           = $vidispine::params::postgresql_imq_password,
   $postgresql_imq_database           = $vidispine::params::postgresql_imq_database,
+  $installer_database_run_migration  = $vidispine::params::installer_database_run_migration,
   $solrcloud_enable                  = $vidispine::params::solrcloud_enable,
   $zookeeper_servers                 = [],
   $solr_collection_name              = $vidispine::params::solr_collection_name,
