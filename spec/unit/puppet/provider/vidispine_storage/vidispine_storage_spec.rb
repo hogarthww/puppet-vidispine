@@ -52,5 +52,13 @@ describe provider_class do
       end
     end
   end
+
+  describe 'update' do
+    it 'should PUT a StorageDocument to update the Storage' do
+      VCR.use_cassette('vidispine_storage-update') do
+        expect(provider.create).to be_truthy
+      end
+    end
+  end
 end
 
