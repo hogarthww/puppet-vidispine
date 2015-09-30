@@ -20,34 +20,12 @@
           encoding: UTF-8
           string: |
             {
-                "storage": [
-                    {
-                        "autoDetect": true,
-                        "capacity": 84696301568,
-                        "freeCapacity": 77888880640,
-                        "highWatermark": 84696301568,
-                        "id": "VX-2",
-                        "lowWatermark": 84696301568,
-                        "metadata": {
-                            "field": [
-                                {
-                                    "key": "storageName",
-                                    "value": "storage1"
-                                }
-                            ]
-                        },
-                        "showImportables": true,
-                        "state": "NONE",
-                        "timestamp": "2015-07-27T15:49:19.305Z",
-                        "type": "LOCAL"
-                    }
-                ]
             }
         http_version: 
-      recorded_at: "Mon, 27 Jul 2015 14:39:29 GMT"
+      recorded_at: "Mon, 27 Jul 2015 16:19:51 GMT"
     - request: 
-        method: put
-        uri: "http://admin:admin@localhost:8080/API/storage/VX-2"
+        method: post
+        uri: "http://admin:admin@localhost:8080/API/storage/"
         body: 
           encoding: UTF-8
           string: |
@@ -58,7 +36,7 @@
                     <value>storage1</value>
                   </field>
                 </metadata>
-                <scanInterval>60</scanInterval>
+                <scanInterval>120</scanInterval>
                 <autoDetect>true</autoDetect>
             </StorageDocument>
         headers: 
@@ -76,7 +54,7 @@
           string: |
             <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
             <StorageDocument xmlns="http://xml.vidispine.com/schema/vidispine">
-              <id>VX-2</id>
+              <id>VX-6</id>
               <state>NONE</state>
               <type>LOCAL</type>
               <capacity>1000000</capacity>
@@ -89,9 +67,9 @@
               </metadata>
               <lowWatermark>1000000</lowWatermark>
               <highWatermark>1000000</highWatermark>
-              <scanInterval>60</scanInterval>
               <autoDetect>true</autoDetect>
               <showImportables>true</showImportables>
+              <scanInterval>120</scanInterval>
             </StorageDocument>
         http_version: 
       recorded_at: "Mon, 27 Jul 2015 16:19:51 GMT"

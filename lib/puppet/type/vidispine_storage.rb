@@ -54,4 +54,15 @@ Puppet::Type.newtype(:vidispine_storage) do
     end
   end
 
+  newparam(:scan_interval) do
+    desc "The scanInterval in seconds. Defaults to 60."
+
+    defaultto 60
+
+    validate do |value|
+      unless value.is_a? Integer
+        raise ArgumentError, "%s is not a integer." % value
+      end
+    end
+  end
 end

@@ -15,7 +15,30 @@ describe provider_class do
       :provider   => :vidispine_storage,
     )}
 
+
+  let(:resource_absent) { Puppet::Type.type(:vidispine_storage).new(
+      :name       => 'storage1',
+      :vshostname => 'localhost',
+      :vsport     => '8080',
+      :vsuser     => 'admin',
+      :vspass     => 'admin',
+      :provider   => :vidispine_storage,
+      :ensure     => :absent
+    )}
+
+  let(:resource_scan) { Puppet::Type.type(:vidispine_storage).new(
+      :name          => 'storage1',
+      :vshostname    => 'localhost',
+      :vsport        => '8080',
+      :vsuser        => 'admin',
+      :vspass        => 'admin',
+      :provider      => :vidispine_storage,
+      :scan_interval => 120,
+    )}
+
   let(:provider) { resource.provider }
+  let(:provider_absent) { resource_absent.provider }
+  let(:provider_scan) { resource_scan.provider }
 
   let(:instance) { provider.class.instances.first }
 
@@ -35,12 +58,36 @@ describe provider_class do
         expect(provider.exists?).to be_truthy
       end
     end
+
+    it 'should correctly identify Storages with incorret metadata' do
+      VCR.use_cassette('vidispine_storage-exists-incorrect-metadata') do
+        expect(provider.exists?).to be_falsy
+      end
+    end
+
+    it 'should correctly find existing Storages when ensure absent' do
+      VCR.use_cassette('vidispine_storage-exists-true') do
+        expect(provider_absent.exists?).to be_truthy
+      end
+    end
+
+    it 'should correctly identify Storages with different metadata when ensure absent' do
+      VCR.use_cassette('vidispine_storage-exists-incorrect-metadata') do
+        expect(provider_absent.exists?).to be_truthy
+      end
+    end
   end
 
   describe 'create' do
     it 'should POST a StorageDocument to create the Storage' do
       VCR.use_cassette('vidispine_storage-create') do
         expect(provider.create).to be_truthy
+      end
+    end
+
+    it 'should POST a StorageDocument to create the Storage with set ScanInterval' do
+      VCR.use_cassette('vidispine_storage-create-scan') do
+        expect(provider_scan.create).to be_truthy
       end
     end
   end

@@ -139,6 +139,8 @@ Define a storage backend.
 
 `name`: The name of the storage.
 
+`scan_interval`: The scanInterval of the storage.
+
 Vidispine API: http://apidoc.vidispine.com/latest/storage/storage.html
 
 #### `vidispine_storage_method`, `vidispine::storage_method`

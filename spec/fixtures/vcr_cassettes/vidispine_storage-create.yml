@@ -36,6 +36,7 @@
                     <value>storage1</value>
                   </field>
                 </metadata>
+                <scanInterval>60</scanInterval>
                 <autoDetect>true</autoDetect>
             </StorageDocument>
         headers: 
