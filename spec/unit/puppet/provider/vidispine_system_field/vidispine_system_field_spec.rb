@@ -29,13 +29,20 @@ describe provider_class do
       :vspass     => 'admin'
       )}
 
+  # And a second one with ensure => absent set
+  let(:absentresource) { Puppet::Type.type(:vidispine_system_field).new(
+      :key        => 'RSPEC_system_field',
+      :vshostname => 'localhost',
+      :vsport     => '8080',
+      :vsuser     => 'admin',
+      :vspass     => 'admin',
+      :ensure     => :absent,
+      )}
+
   # Each resource has a type and a provider. Just now we generated a new resource using the Type API.
   # The provider is what we're testing, so we need to obtain the provider object from it.
   let(:provider) { resource.provider }
-
-  # I am actually not sure what this is for or whether or not it's needed, but it was present in the
-  # examples I copied. Apologies for the cargo cult engineering here :)
-  let(:instance) { provider.class.instances.first }
+  let(:absentprovider) { absentresource.provider }
 
   # The it .. do .. end blocks are named assertions about the behaviour of the thing under test.
   # Each of these blocks are mini programs that interact with the provider object in a specific
@@ -72,7 +79,27 @@ describe provider_class do
       end
     end
 
-    # This is the same test with the opposite result expected.
+    # If the system field exists in the Vidispine instance but has a different value to the one
+    # declared, we want Puppet to re-create the resource and overwrite the existing one, i.e.
+    # act as though it didn't exist. So the existence check should return false.
+    it 'should report nonexistence for a system field that has a value different to the one declared' do
+      VCR.use_cassette('vidispine_system_field-exists-when-value-no-match') do
+        expect(provider.exists?).to be_falsy
+      end
+    end
+
+    # If we want to *remove* the system field (when ensure => absent), we can't do that.
+    # We are telling Puppet that the resource already doesn't exist and it should move on.
+    # If ensure => absent is set we want the existence check to return true regardless
+    # of what the value is set to.
+    it 'should report existence for a system field with any value that is declared with ensure => absent' do
+      VCR.use_cassette('vidispine_system_field-exists-when-value-no-match') do
+        expect(absentprovider.exists?).to be_truthy
+      end
+    end
+
+    # If the system field is present and has the correct value, the existence check should
+    # return true. Hopefully this is obvious.
     it 'should correctly find existing system fields' do
       VCR.use_cassette('vidispine_system_field-exists-true') do
         expect(provider.exists?).to be_truthy

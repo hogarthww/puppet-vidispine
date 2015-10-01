@@ -1,0 +1,35 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: get
+        uri: "http://admin:admin@localhost:8080/API/configuration/properties/"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept: 
+            - application/json
+          User-Agent: 
+            - Ruby
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/json
+        body: 
+          encoding: US-ASCII
+          string: |
+            {
+                "property": [
+                    {
+                        "key": "RSPEC_system_field",
+                        "lastChange": "2015-08-13T10:27:09.353+0000",
+                        "value": "asdfasdfasd"
+                    }
+                ]
+            }
+        http_version: 
+      recorded_at: "Thu, 03 Sep 2015 11:28:05 GMT"
+  recorded_with: "VCR 2.9.3"

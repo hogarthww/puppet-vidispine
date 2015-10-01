@@ -22,11 +22,14 @@ Puppet::Type.type(:vidispine_system_field).provide(:vidispine_system_field, :par
         # a new resource which overwrites the old one.
         #
         if @resource[:ensure] == :absent then
-          if property['key'] == @resource[:key] then
+          if (property['key'].downcase == @resource[:key].downcase) then
             return true
           end
         else
-          if property['key'] == @resource[:key] and property['value'] == @resource[:value] then
+          if
+            (property['key'].downcase == @resource[:key].downcase) and
+            (property['value']        == @resource[:value])
+          then
             return true
           end
         end
