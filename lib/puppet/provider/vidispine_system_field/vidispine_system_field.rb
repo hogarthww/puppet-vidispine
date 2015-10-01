@@ -16,10 +16,22 @@ Puppet::Type.type(:vidispine_system_field).provide(:vidispine_system_field, :par
       end
 
       response['property'].each do |property|
-        # Both the key and the value have to match. (Fixes TP-526)
+        # If ensure => absent is set, we only want to match the key as we would remove the resource
+        # regardless of its value. Otherwise, we need to match both the key and the value when doing
+        # an existence check: we don't ever update an existing system_field, we just treat it as 
+        # a new resource which overwrites the old one.
         #
-        if property['key'] == @resource[:key] and property['value'] == @resource[:value] then
-          return true
+        if @resource[:ensure] == :absent then
+          if (property['key'].downcase == @resource[:key].downcase) then
+            return true
+          end
+        else
+          if
+            (property['key'].downcase == @resource[:key].downcase) and
+            (property['value']        == @resource[:value])
+          then
+            return true
+          end
         end
       end
 
