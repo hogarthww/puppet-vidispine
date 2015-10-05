@@ -36,7 +36,7 @@
                     <value>storage1</value>
                   </field>
                 </metadata>
-                <scanInterval>60</scanInterval>
+                <scanInterval>120</scanInterval>
                 <autoDetect>true</autoDetect>
             </StorageDocument>
         headers: 
@@ -69,6 +69,7 @@
               <highWatermark>1000000</highWatermark>
               <autoDetect>true</autoDetect>
               <showImportables>true</showImportables>
+              <scanInterval>120</scanInterval>
             </StorageDocument>
         http_version: 
       recorded_at: "Mon, 27 Jul 2015 16:19:51 GMT"

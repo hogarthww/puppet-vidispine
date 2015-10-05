@@ -37,7 +37,6 @@
                             ]
                         },
                         "showImportables": true,
-                        "scanInterval": 60,
                         "state": "NONE",
                         "timestamp": "2015-07-27T15:49:19.305Z",
                         "type": "LOCAL"
