@@ -44,7 +44,7 @@ Vidispine, so that these configuration items can be managed as Puppet resources.
 ### Setup Requirements
 
 This module depends on the following other modules:
-* [hww-glassfish](https://github.hogarthww.prv/puppet/hww-glassfish) - this is
+* [hww-glassfish](https://github.hogarthww.com/puppet/hww-glassfish) - this is
   a private fork of [fatmcgav-glassfish](https://github.com/fatmcgav/puppet-glassfish)
 * [nanliu-staging](https://github.com/nanliu/puppet-staging)
 
@@ -53,7 +53,7 @@ Pluginsync must be enabled.
 ## Usage
 
 The module is currently (August 2015) used in one place: the 
-[zonza_vidispine](https://github.hogarthww.prv/puppet/zonza_vidispine) profile module.
+[zonza_vidispine](https://github.hogarthww.com/puppet/zonza_vidispine) profile module.
 This is the reference use case of this module.
 
 ### Install Vidispine
