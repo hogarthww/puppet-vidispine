@@ -432,6 +432,16 @@ class vidispine::install {
 
   }
 
+  if ($vidispine::solrcloud_enable) {
+    application { 'solr':
+      ensure       => absent,
+      asadminuser  => $vidispine::glassfish_asadmin_user,
+      passwordfile => $vidispine::glassfish_asadmin_passfile,
+      user         => $vidispine::glassfish_user,
+      require      => Exec['vidispine-installer'],
+    }
+  }
+
   if ($vidispine::newrelic_version) {
     include 'vidispine::newrelic_agent'
   }
