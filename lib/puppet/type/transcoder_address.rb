@@ -35,8 +35,14 @@ Puppet::Type.newtype(:transcoder_address) do
   newparam(:vsport) do
     desc "The port of the Vidispine API."
 
+    munge do |value|
+      Integer(value)
+    end
+
     validate do |value|
-      unless value =~ /^\d+$/
+      begin
+        Integer(value)
+      rescue ArgumentError
         raise ArgumentError, "%s is not a valid port number." % value
       end
     end
