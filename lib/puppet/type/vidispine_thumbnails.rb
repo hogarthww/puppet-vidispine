@@ -28,9 +28,15 @@ Puppet::Type.newtype(:vidispine_thumbnails) do
     desc "The port of the vidispine API."
 
     validate do |value|
-      unless value =~ /^\d+$/
+      begin
+        Integer(value)
+      rescue ArgumentError
         raise ArgumentError, "%s is not a valid port number." % value
       end
+    end
+
+    munge do |value|
+      Integer(value)
     end
   end
   newparam(:vsuser) do
