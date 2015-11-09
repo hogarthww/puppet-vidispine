@@ -27,6 +27,10 @@ Puppet::Type.newtype(:vidispine_thumbnails) do
   newparam(:vsport) do
     desc "The port of the vidispine API."
 
+    # Basic integer validation using Ruby's type system. Puppet passes
+    # integer literals in the Puppet DSL into Ruby as strings (!), 
+    # we also want to accept quoted integers.
+    #
     validate do |value|
       begin
         Integer(value)
