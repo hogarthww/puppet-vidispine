@@ -118,10 +118,11 @@ class vidispine (
   # is always the same.
   $zookeeper_servers_str = join(sort($zookeeper_servers), ',')
 
-  anchor { 'vidispine::begin' : } ->
-    class  { 'vidispine::install' : } ->
-    class  { 'vidispine::config'  : } ~>
-    class  { 'vidispine::service' : } ->
-  anchor { 'vidispine::end'   : }
-
+#  anchor { 'vidispine::begin' : } ->
+#    class  { 'vidispine::glassfish' : } ->
+#    class  { 'vidispine::install' : } ->
+#    class  { 'vidispine::config'  : } #~>
+#    #class  { 'vidispine::service' : } ->
+#  anchor { 'vidispine::end'   : }
+  class { 'vidispine::glassfish' : }
 }

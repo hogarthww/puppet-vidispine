@@ -1,5 +1,5 @@
 # see README.md
-class vidispine::service {
+class vidispine::glassfish::domain::service {
 
   # this is used by the glassfish domain service template
   $runuser          = $vidispine::glassfish_user
@@ -30,6 +30,13 @@ class vidispine::service {
       path    => "/etc/init.d/${vidispine::glassfish_domain_name}",
       mode    => '0755',
       content => $domain_service_file,
+    }
+
+    exec { "stop_${vidispine::glassfish_domain_name}":
+      command => "sudo -u ${runuser} ${glassfish::glassfish_asadmin_path} stop-domain ${vidispine::glassfish_domain_name}",
+      path    => ['/sbin', '/usr/sbin', '/bin', '/usr/bin'],
+      before  => Service[$vidispine::glassfish_domain_name],
+      refreshonly => true,
     }
 
     service { $vidispine::glassfish_domain_name:
