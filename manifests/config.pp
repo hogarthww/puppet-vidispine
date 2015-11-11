@@ -8,7 +8,6 @@ class vidispine::config {
     asadminuser  => $vidispine::glassfish_asadmin_user,
     passwordfile => $vidispine::glassfish_asadmin_passfile,
     user         => $vidispine::glassfish_user,
-    require      => Exec['vidispine-installer'],
   }
 
   # set server http thread pool size if we are running standalone vidispine

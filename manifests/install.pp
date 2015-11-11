@@ -19,11 +19,7 @@ class vidispine::install {
     user    => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
     creates => "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}/SetupTool4.jar",
-    require => [
-      Jvmoption["-Xmx${vidispine::glassfish_jvmoptions_xmx}"],
-      Jvmoption["-Xms${vidispine::glassfish_jvmoptions_xms}"],
-      File["${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}"],
-    ],
+    require => File["${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}"],
   }
 
   # create silent install config.xml file for vidispine installer
@@ -60,7 +56,6 @@ class vidispine::install {
     cwd         => "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}",
     user        => $vidispine::glassfish_user,
     timeout     => 0,
-    refreshonly => true,
     creates     => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/domains/${vidispine::glassfish_domain_name}/applications/vidispine",
   }
 
