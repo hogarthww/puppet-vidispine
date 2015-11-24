@@ -27,11 +27,22 @@ Puppet::Type.newtype(:vidispine_storage) do
   newparam(:vsport) do
     desc "The port of the Vidispine API."
 
+    # Basic integer validation using Ruby's type system. Puppet passes
+    # integer literals in the Puppet DSL into Ruby as strings (!), 
+    # we also want to accept quoted integers.
+    #
     validate do |value|
-      unless value =~ /^\d+$/
+      begin
+        Integer(value)
+      rescue ArgumentError
         raise ArgumentError, "%s is not a valid port number." % value
       end
     end
+    
+    munge do |value|
+      Integer(value)
+    end
+
   end
 
   newparam(:vsuser) do
@@ -59,10 +70,22 @@ Puppet::Type.newtype(:vidispine_storage) do
 
     defaultto 60
 
+    # Basic integer validation using Ruby's type system. Puppet passes
+    # integer literals in the Puppet DSL into Ruby as strings (!), 
+    # we also want to accept quoted integers.
+    #
     validate do |value|
-      unless value.is_a? Integer
+      begin
+        Integer(value)
+      rescue ArgumentError
         raise ArgumentError, "%s is not a integer." % value
       end
     end
+    
+    munge do |value|
+      Integer(value)
+    end
+
   end
 end
+
