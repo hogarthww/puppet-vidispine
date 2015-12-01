@@ -16,7 +16,6 @@ class vidispine::glassfish::install {
   package {"${vidispine::glassfish_java_vendor}-${vidispine::glassfish_java_package}":
     ensure  => $vidispine::glassfish_java_version,
     require => Apt::Source[$vidispine::glassfish_java_apt_repo['name']],
-  #  notify  => Service[$vidispine::glassfish_domain_name],
   }
 
   # add glassfish daemon account primary group
