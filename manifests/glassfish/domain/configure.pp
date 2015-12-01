@@ -11,8 +11,6 @@ class vidispine::glassfish::domain::configure {
     asadminuser  => $vidispine::glassfish_asadmin_user,
     passwordfile => $vidispine::glassfish_asadmin_passfile,
     user         => $vidispine::glassfish_user,
-   # require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],
-   # notify       => Exec['vidispine-installer'],
   }
 
   # set default java-home if we are running the das
@@ -42,110 +40,60 @@ class vidispine::glassfish::domain::configure {
     }
   }
 
-  $jvmoption_target = 'server'
-
-  ## These won't be needed anymore
-  ##
-
-  # set jvmoption requirements if we are running the das
-  $jvmoption_reqs   = [
-    #Ini_setting['as-java'],
-    #Ini_setting['imq-java-home'],
-    #File["${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/bin/imqbrokerd"],
-    #Ini_setting['imq-broker-maxbytespermsg'],
-    Glassfish::Create_domain[$vidispine::glassfish_domain_name],
-  ]
+  Jvmoption {
+    target       => 'server',
+    require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],
+    portbase     => $vidispine::glassfish_admin_portbase,
+    asadminuser  => $vidispine::glassfish_asadmin_user,
+    passwordfile => $vidispine::glassfish_asadmin_passfile,
+    user         => $vidispine::glassfish_user,
+  }
 
   # We don't want to have duplicate declarations if we are trying to set the
   # -Xmx jvm option to 512m.
+  #
   if $vidispine::glassfish_jvmoptions_xmx != '512m' {
     # remove default -Xmx jvm option for vidispine glassfish instance
     jvmoption {'-Xmx512m':
-      ensure       => absent,
-      target       => $jvmoption_target,
-      portbase     => $vidispine::glassfish_admin_portbase,
-      asadminuser  => $vidispine::glassfish_asadmin_user,
-      passwordfile => $vidispine::glassfish_asadmin_passfile,
-      user         => $vidispine::glassfish_user,
-      require      => $jvmoption_reqs,
+      ensure => absent,
     }
   }
 
   # add -Xmx jvm option for vidispine glassfish instance
   jvmoption {"-Xmx${vidispine::glassfish_jvmoptions_xmx}":
-    ensure       => present,
-    target       => $jvmoption_target,
-    portbase     => $vidispine::glassfish_admin_portbase,
-    asadminuser  => $vidispine::glassfish_asadmin_user,
-    passwordfile => $vidispine::glassfish_asadmin_passfile,
-    user         => $vidispine::glassfish_user,
-    require      => $jvmoption_reqs,
+    ensure => present,
   }
 
   # add -Xms jvm option for vidispine glassfish instance
   jvmoption {"-Xms${vidispine::glassfish_jvmoptions_xms}":
-    ensure       => present,
-    target       => $jvmoption_target,
-    portbase     => $vidispine::glassfish_admin_portbase,
-    asadminuser  => $vidispine::glassfish_asadmin_user,
-    passwordfile => $vidispine::glassfish_asadmin_passfile,
-    user         => $vidispine::glassfish_user,
-    require      => $jvmoption_reqs,
+    ensure => present,
   }
 
   # We don't want to have duplicate declarations if we are trying to set the
   # -XX:PermSize to 64m.
   if $vidispine::glassfish_jvmoptions_permsize != '64m' {
-  # remove -XX:PermSize=64m jvm option for vidispine glassfish instance
+    # remove -XX:PermSize=64m jvm option for vidispine glassfish instance
     jvmoption {'-XX:PermSize=64m':
-      ensure       => absent,
-      target       => $jvmoption_target,
-      portbase     => $vidispine::glassfish_admin_portbase,
-      asadminuser  => $vidispine::glassfish_asadmin_user,
-      passwordfile => $vidispine::glassfish_asadmin_passfile,
-      user         => $vidispine::glassfish_user,
-      require      => $jvmoption_reqs,
-    #  before       => Staging::Deploy["Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip"],
+      ensure => absent,
     }
 
     # add -XX:PermSize jvm option for vidispine glassfish instance
     jvmoption {"-XX:PermSize=${vidispine::glassfish_jvmoptions_permsize}":
-      ensure       => present,
-      target       => $jvmoption_target,
-      portbase     => $vidispine::glassfish_admin_portbase,
-      asadminuser  => $vidispine::glassfish_asadmin_user,
-      passwordfile => $vidispine::glassfish_asadmin_passfile,
-      user         => $vidispine::glassfish_user,
-      require      => $jvmoption_reqs,
-    #  before       => Staging::Deploy["Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip"],
+      ensure => present,
     }
   }
 
   # We don't want to have duplicate declarations if we are trying to set the
   # -XX:MaxPermSize to 192m.
   if $vidispine::glassfish_jvmoptions_maxpermsize != '192m' {
-  # remove -XX:MaxPermSize=192m jvm option for vidispine glassfish instance
+    # remove -XX:MaxPermSize=192m jvm option for vidispine glassfish instance
     jvmoption {'-XX:MaxPermSize=192m':
-      ensure       => absent,
-      target       => $jvmoption_target,
-      portbase     => $vidispine::glassfish_admin_portbase,
-      asadminuser  => $vidispine::glassfish_asadmin_user,
-      passwordfile => $vidispine::glassfish_asadmin_passfile,
-      user         => $vidispine::glassfish_user,
-      require      => $jvmoption_reqs,
-    #  before       => Staging::Deploy["Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip"],
+      ensure => absent,
     }
 
     # add -XX:MaxPermSize jvm option for vidispine glassfish instance
     jvmoption {"-XX:MaxPermSize=${vidispine::glassfish_jvmoptions_maxpermsize}":
-      ensure       => present,
-      target       => $jvmoption_target,
-      portbase     => $vidispine::glassfish_admin_portbase,
-      asadminuser  => $vidispine::glassfish_asadmin_user,
-      passwordfile => $vidispine::glassfish_asadmin_passfile,
-      user         => $vidispine::glassfish_user,
-      require      => $jvmoption_reqs,
-    #  before       => Staging::Deploy["Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip"],
+      ensure => present,
     }
   }
 
