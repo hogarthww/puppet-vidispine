@@ -8,15 +8,6 @@ class vidispine::glassfish::domain::create {
     enable_secure_admin => true,
     portbase            => $vidispine::glassfish_das_portbase,
     start_domain        => true,
-
-    ## I can use the container's relationships to replace this
-    ##
-   # require             => [
-   #   Ini_setting['as-java'],
-   #   Ini_setting['imq-java-home'],
-   #   File["${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/bin/imqbrokerd"],
-   #   Ini_setting['imq-broker-maxbytespermsg'],
-   # ],
   }
 
 }
