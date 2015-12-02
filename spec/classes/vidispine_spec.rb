@@ -5,11 +5,11 @@ describe 'vidispine' do
   context 'production-like system' do
     let(:facts) {{
       :operatingsystem    => 'Ubuntu',
-      :osfamily           => 'debian',
-      :lsbdistcodename    => 'precise',
-      :lsbdistrelease     => '12.04',
-      :lsbmajdistrelease  => '12.04',
-      :lsbdistdescription => 'Ubuntu 12.04 LTS',
+      :osfamily           => 'Debian',
+      :lsbdistcodename    => 'trusty',
+      :lsbdistrelease     => '14.04',
+      :lsbmajdistrelease  => '14.04',
+      :lsbdistdescription => 'Ubuntu 14.04 LTS',
       :lsbdistid          => 'Ubuntu',
       :path               => '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin'
     }}
@@ -18,9 +18,12 @@ describe 'vidispine' do
     it { should compile }
 
     it do
+      should contain_class('vidispine::glassfish')
+      should contain_class('vidispine::glassfish::install')
+      should contain_class('vidispine::glassfish::domain')
+      should contain_class('vidispine::glassfish::imq')
       should contain_class('vidispine::install')
       should contain_class('vidispine::config')
-      should contain_class('vidispine::service')
     end
   end
 end
