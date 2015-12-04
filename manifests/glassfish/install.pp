@@ -1,21 +1,8 @@
 class vidispine::glassfish::install {
-  
-  # add hogarthww apt repo if we don't have it
-  if !defined(Apt::Source[$vidispine::glassfish_java_apt_repo['name']]) {
-    apt::source { $vidispine::glassfish_java_apt_repo['name']:
-      comment     => $vidispine::glassfish_java_apt_repo['comment'],
-      location    => $vidispine::glassfish_java_apt_repo['location'],
-      release     => $::lsbdistcodename,
-      repos       => 'main',
-      include_src => false,
-      include_deb => true,
-    }
-  }
 
   # install java package glassfish will use
   package {"${vidispine::glassfish_java_vendor}-${vidispine::glassfish_java_package}":
     ensure  => $vidispine::glassfish_java_version,
-    require => Apt::Source[$vidispine::glassfish_java_apt_repo['name']],
   }
 
   # add glassfish daemon account primary group

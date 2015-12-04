@@ -2,11 +2,6 @@
 class vidispine::params {
 
   $installer_dir                     = '/opt/installers'
-  $glassfish_java_apt_repo = {
-    name     => 'hogarthww',
-    location => 'http://apt.hogarthww.prv/hogarthww/ubuntu/',
-    comment  => 'The hogarth worldwide apt repo',
-  }
   $glassfish_user                    = 'vidispine'
   $glassfish_uid                     = 2000
   $glassfish_group                   = 'vidispine'

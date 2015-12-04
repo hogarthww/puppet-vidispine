@@ -38,7 +38,6 @@
 class vidispine (
 
   $installer_dir                     = $vidispine::params::installer_dir,
-  $glassfish_java_apt_repo           = $vidispine::params::glassfish_java_apt_repo,
   $glassfish_user                    = $vidispine::params::glassfish_user,
   $glassfish_uid                     = $vidispine::params::glassfish_uid,
   $glassfish_group                   = $vidispine::params::glassfish_group,
