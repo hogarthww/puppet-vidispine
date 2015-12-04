@@ -61,7 +61,7 @@ class vidispine::install {
 
 
   if ($vidispine::solrcloud_enable) {
-    application { 'solr':
+    glassfish_application { 'solr':
       ensure       => absent,
       asadminuser  => $vidispine::glassfish_asadmin_user,
       passwordfile => $vidispine::glassfish_asadmin_passfile,
