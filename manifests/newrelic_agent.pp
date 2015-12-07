@@ -1,5 +1,7 @@
 class vidispine::newrelic_agent {
 
+  warning("This code is going away soon. New Relic agent installation should be handled from the profile module.")
+
   $new_relic_dir = "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/domains/${vidispine::glassfish_domain_name}/newrelic"
 
   file { $new_relic_dir :
