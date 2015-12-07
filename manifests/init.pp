@@ -45,7 +45,6 @@ class vidispine (
   $glassfish_user_homedir            = $vidispine::params::glassfish_user_homedir,
   $glassfish_parent_dir              = $vidispine::params::glassfish_parent_dir,
   $glassfish_install_dir             = $vidispine::params::glassfish_install_dir,
-  $glassfish_archive_location        = $vidispine::params::glassfish_archive_location,
   $glassfish_das_portbase            = $vidispine::params::glassfish_das_portbase,
   $glassfish_asadmin_user            = $vidispine::params::glassfish_asadmin_user,
   $glassfish_asadmin_password        = $vidispine::params::glassfish_asadmin_password,

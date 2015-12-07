@@ -26,7 +26,6 @@ class vidispine::glassfish::install {
   }
 
   # install glassfish
-  # requires access to http://download.java.net/
   class {'::glassfish':
     parent_dir              => $vidispine::glassfish_parent_dir,
     install_dir             => $vidispine::glassfish_install_dir,

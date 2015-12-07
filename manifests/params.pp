@@ -9,7 +9,6 @@ class vidispine::params {
   $glassfish_user_homedir            = '/home/vidispine'
   $glassfish_parent_dir              = '/opt'
   $glassfish_install_dir             = 'glassfish3'
-  $glassfish_archive_location        = 'http://download.java.net/glassfish/' # this is not currently honoured
   $glassfish_das_portbase            = '4800'
   $glassfish_asadmin_user            = 'admin'
   $glassfish_asadmin_password        = 'adminadmin'
