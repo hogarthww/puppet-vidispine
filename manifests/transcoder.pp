@@ -13,7 +13,7 @@ define vidispine::transcoder (
 ){
 
   # need to call provider to make call  to the vidispine application server on:/API/resource/transcoder
-  transcoder_address {"${trans_addr}:${trans_port}":
+  vidispine_transcoder {"${trans_addr}:${trans_port}":
     ensure     => $ensure,
     vshostname => $vshostname,
     vsport     => $vsport,

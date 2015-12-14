@@ -1,7 +1,7 @@
 require 'pathname'
 require Pathname.new(__FILE__).dirname.dirname.expand_path + 'vidispine'
 
-Puppet::Type.type(:transcoder_address).provide(:transcoder_address, :parent => Puppet::Provider::Vidispine) do
+Puppet::Type.type(:vidispine_transcoder).provide(:vidispine_transcoder, :parent => Puppet::Provider::Vidispine) do
   desc "Vidispine Transcoder resource"
 
   def find_vxid
