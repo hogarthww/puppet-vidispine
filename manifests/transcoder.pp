@@ -2,23 +2,20 @@
 # it requires the transcoders external address and details on how to communicate with vidispine
 define vidispine::transcoder (
 
-  $ensure     = 'present',
-  $vshostname = $vidispine::glassfish_das_host,
-  $vsport     = $vidispine::glassfish_http_port,
-  $vsuser     = $vidispine::vidispine_admin_user,
-  $vspass     = $vidispine::vidispine_admin_password,
-  $trans_addr = $name,
-  $trans_port = '8888',
+  $ensure = 'present',
+  $vsurl  = $vidispine::api_url,
+  $vsuser = $vidispine::vidispine_admin_user,
+  $vspass = $vidispine::vidispine_admin_password,
+  $url    = $name,
 
-){
+) {
 
-  # need to call provider to make call  to the vidispine application server on:/API/resource/transcoder
-  vidispine_transcoder {"${trans_addr}:${trans_port}":
-    ensure     => $ensure,
-    vshostname => $vshostname,
-    vsport     => $vsport,
-    vsuser     => $vsuser,
-    vspass     => $vspass,
+  vidispine_transcoder { $name :
+    ensure => $ensure,
+    vsurl  => $vsurl,
+    vsuser => $vsuser,
+    vspass => $vspass,
+    url    => $url,
   }
 
 }

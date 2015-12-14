@@ -110,8 +110,12 @@ class vidispine (
       $glassfish_java_package = 'j2sdk1.7'
       $glassfish_java_version = '1.7.0+update67'
       $glassfish_version      = '3.1.2.2'
+
+      # We may want to make this a parameter
+      $api_url = "http://${glassfish_das_host}:${glassfish_http_port}"
     }
   }
+
 
   # Need to take the array and change it into a comma seperated list for use
   # in the templates. The sort is there so that with the same data the string

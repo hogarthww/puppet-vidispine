@@ -2,12 +2,11 @@
 # it requires the transcoders external address and details on how to communicate with vidispine
 define vidispine::system_field (
 
-  $ensure     = 'present',
-  $vshostname = $vidispine::glassfish_das_host,
-  $vsport     = $vidispine::glassfish_http_port,
-  $vsuser     = $vidispine::vidispine_admin_user,
-  $vspass     = $vidispine::vidispine_admin_password,
-  $value      = undef
+  $ensure = 'present',
+  $vsurl  = $vidispine::api_url,
+  $vsuser = $vidispine::vidispine_admin_user,
+  $vspass = $vidispine::vidispine_admin_password,
+  $value  = undef
 
 ){
 
