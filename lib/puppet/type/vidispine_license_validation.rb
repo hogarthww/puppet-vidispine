@@ -1,3 +1,5 @@
+require 'timeout'
+
 Puppet::Type.newtype(:vidispine_license_validation) do
 
   @doc = "Manage license validation"
@@ -21,6 +23,15 @@ Puppet::Type.newtype(:vidispine_license_validation) do
     end
   end
 
+  def refresh
+    Timeout::timeout(self[:timeout], Timeout::Error) do
+      while provider.license_status != 'valid' do
+        sleep 1
+      end
+
+      return true
+    end
+  end
 
   # Common params - connection details to the Vidispine API
 
