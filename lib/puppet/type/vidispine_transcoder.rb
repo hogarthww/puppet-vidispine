@@ -6,9 +6,12 @@ Puppet::Type.newtype(:vidispine_transcoder) do
 
   ensurable
 
+  newparam(:name) do
+    isnamevar
+  end
+
   newproperty(:url) do
     desc "The Transcoder URL"
-    isnamevar
 
     validate do |value|
       unless value =~ /\A#{URI::regexp(['http', 'https'])}\z/

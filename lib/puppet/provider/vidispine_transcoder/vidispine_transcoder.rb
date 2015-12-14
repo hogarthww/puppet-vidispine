@@ -15,7 +15,7 @@ Puppet::Type.type(:vidispine_transcoder).provide(:vidispine_transcoder, :parent 
       response['resource'].each do |resource|
         url = resource['transcoder']['url']
 
-        if url == @resource[:name] then
+        if url == @resource[:url] then
           return resource['id']
         end
       end
@@ -43,7 +43,7 @@ Puppet::Type.type(:vidispine_transcoder).provide(:vidispine_transcoder, :parent 
       transcoder_resource_document = <<-XML.gsub(/^ */, '')
       <resource>
         <transcoder>
-          <url>#{@resource[:name]}</url>
+          <url>#{@resource[:url]}</url>
         </transcoder>
       </resource>
       XML
