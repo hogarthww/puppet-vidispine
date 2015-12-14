@@ -7,11 +7,10 @@ describe provider_class do
   let(:name) { 'rspec vidispine_thumbnails test' }
 
   let(:resource) { Puppet::Type.type(:vidispine_thumbnails).new(
-      :path       => 'file:///opt/vidispine/thumbnails/',
-      :vshostname => 'localhost',
-      :vsport     => '8080',
-      :vsuser     => 'admin',
-      :vspass     => 'admin'
+      :path   => 'file:///opt/vidispine/thumbnails/',
+      :vsurl  => 'http://localhost:8080',
+      :vsuser => 'admin',
+      :vspass => 'admin'
       )}
 
   let(:provider) { resource.provider }

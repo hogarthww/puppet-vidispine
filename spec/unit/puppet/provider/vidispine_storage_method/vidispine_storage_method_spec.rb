@@ -9,8 +9,7 @@ describe provider_class do
   let(:resource) { Puppet::Type.type(:vidispine_storage_method).new(
       :name       => 'file:///opt/vidispine/storage2/',
       :storageuri => 'file:///opt/vidispine/storage2/',
-      :vshostname => 'localhost',
-      :vsport     => '8080',
+      :vsurl      => 'http://localhost:8080',
       :vsuser     => 'admin',
       :vspass     => 'admin',
       :location   => 'storage2',
