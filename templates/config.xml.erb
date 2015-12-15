@@ -150,35 +150,6 @@
     <key>vidispineAdminPassword</key>
     <value><%= scope.lookupvar('vidispine::vidispine_admin_password') %></value>
   </configurationProperty>
-  <!-- Vidispine Running Mode -->
-  <configurationProperty>
-    <key>runningAsSlave</key>
-<% if scope.lookupvar('vidispine::vidispine_slave_license') -%>
-    <value>yes</value>
-<% else -%>
-    <value>no</value>
-<% end -%>
-  </configurationProperty>
-  <configurationProperty>
-      <key>useExistingSlaveLicense</key>
-      <value>no</value>
-  </configurationProperty>
-  <configurationProperty>
-    <key>masterNodeAddress</key>
-<% if scope.lookupvar('vidispine::vidispine_slave_license') -%>
-    <value><%= scope.lookupvar('vidispine::vidispine_slave_license_master') %></value>
-<% else -%>
-    <value>http://master.com:8080/</value>
-<% end -%>
-  </configurationProperty>
-  <configurationProperty>
-    <key>slaveId</key>
-<% if scope.lookupvar('vidispine::vidispine_slave_license') -%>
-    <value><%= scope.lookupvar('vidispine::vidispine_slave_license_id') %></value>
-<% else -%>
-    <value>your-slave-id</value>
-<% end -%>
-  </configurationProperty>
   <!-- Config Solr -->
   <configurationProperty>
     <key>solrConfig</key>
