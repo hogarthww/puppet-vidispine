@@ -25,7 +25,8 @@ Puppet::Type.newtype(:vidispine_license_validation) do
 
   def refresh
     Timeout::timeout(self[:timeout], Timeout::Error) do
-      while provider.license_status != 'valid' do
+      while (license_status = provider.license_status) != 'valid' do
+        Puppet.debug("Trying to validate Vidispine's license, current status is #{license_status} ...")
         sleep 1
       end
 
