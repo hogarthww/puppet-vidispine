@@ -30,6 +30,7 @@ Puppet::Type.newtype(:vidispine_license_validation) do
         sleep 1
       end
 
+      Puppet.notice('Vidispine license validated successfully')
       return true
     end
   end
