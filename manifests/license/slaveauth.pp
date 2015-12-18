@@ -33,7 +33,7 @@ define vidispine::license::slaveauth (
   if ($validate) {
     vidispine_license_validation { $title :
       timeout => $validation_timeout,
-      vsurl   => $::vidispine::glassfish_das_host,
+      vsurl   => $::vidispine::api_url,
       vsuser  => $::vidispine::vidispine_admin_user,
       vspass  => $::vidispine::vidispine_admin_password,
       require => [
