@@ -12,12 +12,11 @@ define vidispine::system_field (
 
   # need to call provider to make call  to the vidispine application server on:/API/resource/transcoder
   vidispine_system_field {$name:
-    ensure     => $ensure,
-    vshostname => $vshostname,
-    vsport     => $vsport,
-    vsuser     => $vsuser,
-    vspass     => $vspass,
-    value      => $value
+    ensure => $ensure,
+    vsurl  => $vsurl,
+    vsuser => $vsuser,
+    vspass => $vspass,
+    value  => $value
   }
 
 }

@@ -32,12 +32,11 @@ define vidispine::license::slaveauth (
 
   if ($validate) {
     vidispine_license_validation { $title :
-      timeout    => $validation_timeout,
-      vshostname => $::vidispine::glassfish_das_host,
-      vsport     => $::vidispine::glassfish_http_port,
-      vsuser     => $::vidispine::vidispine_admin_user,
-      vspass     => $::vidispine::vidispine_admin_password,
-      require    => [
+      timeout => $validation_timeout,
+      vsurl   => $::vidispine::glassfish_das_host,
+      vsuser  => $::vidispine::vidispine_admin_user,
+      vspass  => $::vidispine::vidispine_admin_password,
+      require => [
         File[$slaveauth_license_path],
         Vidispine::License::Master['default'],
       ],

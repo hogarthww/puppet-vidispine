@@ -19,13 +19,12 @@ define vidispine::license::master (
 
     if ($validate) {
       vidispine_license_validation { $title :
-        timeout    => $validation_timeout,
-        vshostname => $::vidispine::glassfish_das_host,
-        vsport     => $::vidispine::glassfish_http_port,
-        vsuser     => $::vidispine::vidispine_admin_user,
-        vspass     => $::vidispine::vidispine_admin_password,
-        require    => File[$master_license_path],
-        subscribe  => File[$master_license_path],
+        timeout   => $validation_timeout,
+        vsurl     => $::vidispine::glassfish_das_host,
+        vsuser    => $::vidispine::vidispine_admin_user,
+        vspass    => $::vidispine::vidispine_admin_password,
+        require   => File[$master_license_path],
+        subscribe => File[$master_license_path],
       }
     }
   }
