@@ -170,11 +170,9 @@ only values that are known will have an effect on the application.
 
 Vidispine API: http://apidoc.vidispine.com/latest/system/property.html
 
-#### `transcoder_address`, `vidispine::transcoder`
+#### `vidispine_transcoder`, `vidispine::transcoder`
 
-`trans_addr`: The hostname or IP address of the transcoder
-
-`trans_port`: The TCP port of the transcoder
+`url`: The HTTP URL of the transcoder
 
 #### `vidispine_thumbnails`, `vidispine::thumbnails`
 
@@ -184,10 +182,6 @@ Set up a thumbnail resource. The name of the resource should be the path to the 
 
 Please see the Vidispine 
 [API documentation](http://apidoc.vidispine.com/latest/system/thumbnails.html) for details.
-
-#### `vidispine_import_setting`, `vidispine::import_setting`
-
-This appears to be unused.
 
 ## Limitations
 
