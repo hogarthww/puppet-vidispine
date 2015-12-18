@@ -6,12 +6,11 @@ describe provider_class do
 
   let(:resource) {
     Puppet::Type.type(:vidispine_license_validation).new(
-      :name       => 'rspec',
-      :vshostname => 'localhost',
-      :vsport     => '8080',
-      :vsuser     => 'admin',
-      :vspass     => 'admin',
-      :timeout    => 2,
+      :name    => 'rspec',
+      :vsurl   => 'http://localhost:8080',
+      :vsuser  => 'admin',
+      :vspass  => 'admin',
+      :timeout => 2,
     )
   }
 
