@@ -69,8 +69,7 @@ Configure a storage backend:
 ```
 vidispine::storage {'storage1':
   ensure     => present,
-  vshostname => 'localhost',
-  vsport     => 8080,
+  vsurl      => 'http://localhost:8080'
   vsuser     => 'admin',
   vspass     => 'admin',
 }
@@ -78,8 +77,7 @@ vidispine::storage {'storage1':
 vidispine::storage_method {"auto-http://${::fqdn}:8080/storage1/":
   ensure     => present,
   storageuri => "http://${::fqdn}:8080/storage1/",
-  vshostname => 'localhost',
-  vsport     => 8080,
+  vsurl      => 'http://localhost:8080'
   vsuser     => 'admin',
   vspass     => 'admin',
   location   => "storage1",
@@ -96,8 +94,7 @@ Connect a transcoder:
 ```
 vidispine::transcoder {"http://transcoder1:8080/":
   ensure     => present,
-  vshostname => 'localhost',
-  vsport     => 8080,
+  vsurl      => 'http://localhost:8080'
   vsuser     => 'admin',
   vspass     => 'admin',
   trans_addr => 'http://transcoder1',
@@ -119,9 +116,7 @@ As is standard for any Puppet module:
 * Providers can be found under `lib/puppet/provider`
 
 Parameters shared by all types:
-* `vshostname`: The hostname of the Vidispine instance (always 'localhost' as the
-  Puppet agent runs on the host it is managing)
-* `vsport`: The HTTP port of the Vidispine API, usually 8080
+* `vsurl`: The HTTP URL of the Vidispine API
 * `vsuser`: A username with admin privileges on the Vidispine instance (always 'admin')
 * `vspass`: The password for the admin account
 
@@ -187,7 +182,7 @@ Please see the Vidispine
 
 * Custom types do not implement prefetching, making Puppet runs very slow and very
   'chatty' with the Vidispine API
-* There is not yet a way to centrally specify `vshostname`, `vsport`, `vsuser`, `vspass`
+* There is not yet a way to centrally specify `vsurl`, `vsuser`, `vspass`
 * The module does not handle the installation of the Vidispine license
 * At one point clustering was supported, but a large number of major changes have
   since taken place without being tested against clustering. Clustering should be
