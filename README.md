@@ -47,6 +47,7 @@ This module depends on the following other modules:
 * [hww-glassfish](https://github.hogarthww.com/puppet/hww-glassfish) - this is
   a private fork of [fatmcgav-glassfish](https://github.com/fatmcgav/puppet-glassfish)
 * [nanliu-staging](https://github.com/nanliu/puppet-staging)
+* [puppetlabs-stdlib](https://github.com/puppetlabs/puppetlabs-stdlib) version 4.10.0 or higher
 
 Pluginsync must be enabled.
 
