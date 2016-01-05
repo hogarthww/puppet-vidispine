@@ -14,7 +14,7 @@ common: &default_settings
   # You must specify the license key associated with your New Relic
   # account.  This key binds your Agent's data to your account in the
   # New Relic service.
-  license_key: 'd91313486a5a0442ee08c7941682d77eeea38bab'
+  license_key: <%= scope.lookupvar('vidispine::newrelic_license_key') %>
 
   # Agent Enabled
   # Use this setting to force the agent to run or not run.

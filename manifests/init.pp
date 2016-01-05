@@ -97,6 +97,7 @@ class vidispine (
   $solrcloud_enable                  = $vidispine::params::solrcloud_enable,
   $zookeeper_servers                 = [],
   $solr_collection_name              = $vidispine::params::solr_collection_name,
+  $newrelic_license_key              = $vidispine::params::newrelic_license_key,
   $newrelic_archive_location         = $vidispine::params::newrelic_archive_location,
   $newrelic_version                  = undef,
 
