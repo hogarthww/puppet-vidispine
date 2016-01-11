@@ -14,5 +14,5 @@ fixtures:
       ref: "1.0.2"
     glassfish:
       repo: "https://github.hogarthww.com/puppet/hww-glassfish.git"
-      ref: "1.0.0"
+      ref: "2.0.0"
 
