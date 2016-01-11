@@ -13,14 +13,12 @@ class vidispine::license {
   Class['::vidispine::install'] -> Vidispine::License::Master <||>
   Class['::vidispine::install'] -> Vidispine::License::Slaveauth <||>
 
-  Vidispine::License::Master <||> -> Vidispine::Import_setting <||>
   Vidispine::License::Master <||> -> Vidispine::Storage <||>
   Vidispine::License::Master <||> -> Vidispine::Storage_method <||>
   Vidispine::License::Master <||> -> Vidispine::System_field <||>
   Vidispine::License::Master <||> -> Vidispine::Thumbnails <||>
   Vidispine::License::Master <||> -> Vidispine::Transcoder <||>
 
-  Vidispine::License::Slaveauth <||> -> Vidispine::Import_setting <||>
   Vidispine::License::Slaveauth <||> -> Vidispine::Storage <||>
   Vidispine::License::Slaveauth <||> -> Vidispine::Storage_method <||>
   Vidispine::License::Slaveauth <||> -> Vidispine::System_field <||>
