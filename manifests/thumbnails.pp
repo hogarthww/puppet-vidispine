@@ -13,7 +13,7 @@ define vidispine::thumbnails (
   #need to call provider to make call  to the vidispine application server on:/API/resource/transcoder
   vidispine_thumbnails {$path:
     ensure => $ensure,
-    vsurl  => $vsuser,
+    vsurl  => $vsurl,
     vsuser => $vsuser,
     vspass => $vspass,
   }
