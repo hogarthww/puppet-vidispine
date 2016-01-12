@@ -1,3 +1,5 @@
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),"..",".."))
+
 require 'puppet/parameter/vidispine_api'
 
 Puppet::Type.newtype(:vidispine_system_field) do
