@@ -39,7 +39,6 @@ class vidispine::params {
   $vidispine_noauth_pool_size        = '50'
   $vidispine_noauth_pool_timeout     = '900'
   $vidispine_solr_pool_size          = '50'
-  $postgresql_version                = '9.1'
   $postgresql_host                   = 'localhost'
   $postgresql_port                   = '5432'
   $postgresql_user                   = 'vidispine'
@@ -52,21 +51,20 @@ class vidispine::params {
   $solrcloud_enable                  = false
   $solr_collection_name              = 'vidispine'   # this is only used with an external solr config
 
-  case $::osfamily {
-    'debian': {
-      # do something Ubuntu specific
-
-    }
-
-    'redhat': {
-      # do something RHEL specific
-
+  case $::operatingsystem {
+    'Ubuntu': {
+      case $::lsbdistcodename {
+        'trusty': {
+          $postgresql_version = '9.3'
+        }
+        default: {
+          fail("Unsupported OS version ${::lsbdistcodename}, module ${module_name}")
+        }
+      }
     }
 
     default: {
-
       fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name}")
-
     }
   }
 }
