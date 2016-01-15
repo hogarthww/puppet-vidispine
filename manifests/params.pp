@@ -31,14 +31,8 @@ class vidispine::params {
   $glassfish_jvmoptions_maxpermsize  = '512m'
   $glassfish_jvmoptions_permsize     = '512m'
   $glassfish_http_port               = '8080'
-  $vidispine_version                 = '4.2.4'
-  $vidispine_apphost                 = 'localhost'
-  $vidispine_archive_location        = 'http://apt.hogarthww.prv/files/vidispine/'
   $vidispine_admin_user              = 'admin'
   $vidispine_admin_password          = 'admin'
-  $vidispine_slave_license           = false
-  $vidispine_slave_license_master    = 'http://master.com:8080/'
-  $vidispine_slave_license_id        = 'slaveidentifier'
   $vidispine_cluster_enable          = false
   $vidispine_http_pool_size          = '50'
   $vidispine_http_pool_timeout       = '900'

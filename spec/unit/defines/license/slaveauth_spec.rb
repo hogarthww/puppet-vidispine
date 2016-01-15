@@ -15,12 +15,13 @@ describe 'vidispine::license::slaveauth', :type => :define do
   let(:pre_condition) do
     <<-EOT
     class { '::vidispine':
-      java_home                => '/usr/lib/jvm/j2sdk1.7-oracle/jre',
-      vidispine_version        => '4.2.99',
-      glassfish_das_host       => 'localhost',
-      glassfish_http_port      => '8080',
-      vidispine_admin_user     => 'admin',
-      vidispine_admin_password => 'admin',
+      java_home                  => '/usr/lib/jvm/j2sdk1.7-oracle/jre',
+      vidispine_version          => '4.2.99',
+      vidispine_archive_location => '/tmp',
+      glassfish_das_host         => 'localhost',
+      glassfish_http_port        => '8080',
+      vidispine_admin_user       => 'admin',
+      vidispine_admin_password   => 'admin',
     }
     EOT
   end
