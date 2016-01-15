@@ -14,7 +14,7 @@ class vidispine::glassfish::imq_enhanced {
       path              => $imq_conf,
       setting           => 'imq.brokerid',
                           # This is a linting warning but I don't want to touch it at the moment
-      value             => "${vidispine::glassfish_imq_broker_list[$::fqdn][brokerid]}",
+      value             => $vidispine::glassfish_imq_broker_list[$::fqdn][brokerid],
       require           => Exec['vidispine-installer'],
     }
 
@@ -24,7 +24,7 @@ class vidispine::glassfish::imq_enhanced {
       section           => '',
       path              => $imq_conf,
       setting           => 'imq.cluster.ha',
-      value             => 'true',
+      value             => true,
       require           => Ini_setting['imq-brokerid'],
     }
 

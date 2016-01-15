@@ -51,12 +51,12 @@ class vidispine::install {
   # all go away very soon.
   #
   exec{'vidispine-installer':
-    command     => "java -jar ${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}/SetupTool4.jar --no-prompts --only-middleware --run-installer; cp -p ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/lib/postgresql-*.jar ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/lib/ext/",
-    path        => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ],
-    cwd         => "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}",
-    user        => $vidispine::glassfish_user,
-    timeout     => 0,
-    creates     => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/domains/${vidispine::glassfish_domain_name}/applications/vidispine",
+    command => "java -jar ${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}/SetupTool4.jar --no-prompts --only-middleware --run-installer; cp -p ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/lib/postgresql-*.jar ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/lib/ext/",
+    path    => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ],
+    cwd     => "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}",
+    user    => $vidispine::glassfish_user,
+    timeout => 0,
+    creates => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/domains/${vidispine::glassfish_domain_name}/applications/vidispine",
   }
 
 
