@@ -1,10 +1,5 @@
 class vidispine::glassfish::install {
 
-  # install java package glassfish will use
-  package {"${vidispine::glassfish_java_vendor}-${vidispine::glassfish_java_package}":
-    ensure  => $vidispine::glassfish_java_version,
-  }
-
   # add glassfish daemon account primary group
   if !defined(Group[$vidispine::glassfish_group]) {
     group { $vidispine::glassfish_group:
