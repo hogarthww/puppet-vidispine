@@ -1,7 +1,7 @@
 define vidispine::license::slaveauth (
+  $master_node_address,
   $ensure               = 'present',
   $identifier           = $title,
-  $master_node_address,
   $validate             = true,
   $validation_timeout   = 60,
 ) {

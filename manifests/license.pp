@@ -1,7 +1,7 @@
 class vidispine::license {
 
   # TODO: These will be different for Jetty based installs
-  $path = sprintf("%s/%s/glassfish/domains/%s",
+  $path = sprintf('%s/%s/glassfish/domains/%s',
     $::vidispine::glassfish_parent_dir,
     $::vidispine::glassfish_install_dir,
     $::vidispine::glassfish_domain_name)
