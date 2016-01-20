@@ -23,6 +23,7 @@ class vidispine::glassfish::install {
   # install glassfish
   class {'::glassfish':
     parent_dir              => $vidispine::glassfish_parent_dir,
+    tmp_dir                 => $vidispine::glassfish_tmp_dir,
     install_dir             => $vidispine::glassfish_install_dir,
     version                 => $vidispine::glassfish_version,
     create_domain           => false,
