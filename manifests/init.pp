@@ -37,6 +37,7 @@
 #
 class vidispine (
 
+  $java_home,
   $installer_dir                     = $vidispine::params::installer_dir,
   $glassfish_user                    = $vidispine::params::glassfish_user,
   $glassfish_uid                     = $vidispine::params::glassfish_uid,
@@ -62,7 +63,6 @@ class vidispine (
   $glassfish_cluster_name            = $vidispine::params::glassfish_cluster_name,
   $glassfish_node_name               = $vidispine::params::glassfish_node_name,
   $glassfish_instance_name           = $vidispine::params::glassfish_instance_name,
-  $glassfish_java_home,
   $glassfish_jvmoptions_xmx          = $vidispine::params::glassfish_jvmoptions_xmx,
   $glassfish_jvmoptions_xms          = $vidispine::params::glassfish_jvmoptions_xms,
   $glassfish_jvmoptions_maxpermsize  = $vidispine::params::glassfish_jvmoptions_maxpermsize,

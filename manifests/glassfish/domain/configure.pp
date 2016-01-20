@@ -15,12 +15,12 @@ class vidispine::glassfish::domain::configure {
 
   # set default java-home if we are running the das
   set { 'default-config.java-config.java-home':
-    value => $::vidispine::glassfish_java_home,
+    value => $::vidispine::java_home,
   }
 
   # set server java-home if we are running the das
   set { 'server.java-config.java-home':
-    value => $::vidispine::glassfish_java_home,
+    value => $::vidispine::java_home,
   }
 
   # set server http-listener-1.port if we are running the das
@@ -36,7 +36,7 @@ class vidispine::glassfish::domain::configure {
   if ($vidispine::glassfish_cluster_enable) {
     # set cluster_name java-home if we are running the das and part of a cluster
     set { "${vidispine::glassfish_cluster_name}-config.java-config.java-home":
-      value => $::vidispine::glassfish_java_home,
+      value => $::vidispine::java_home,
     }
   }
 
