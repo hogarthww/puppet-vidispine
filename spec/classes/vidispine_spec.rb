@@ -14,7 +14,9 @@ describe 'vidispine' do
       :path               => '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin'
     }}
 
-    let(:params) {{ }}
+    let(:params) {{
+      :java_home => '/usr/lib/jvm/j2sdk1.7-oracle/jre'
+    }}
     it { should compile }
 
     it do
