@@ -5,6 +5,8 @@ Puppet::Type.type(:vidispine_license_validation).provide(:vidispine_license_vali
 
   desc "Vidispine license validator"
 
+  mk_resource_methods
+
   def license_status
     response = self.rest_get '/API/version'
 

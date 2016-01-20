@@ -4,6 +4,8 @@ require Pathname.new(__FILE__).dirname.dirname.expand_path + 'vidispine'
 Puppet::Type.type(:vidispine_transcoder).provide(:vidispine_transcoder, :parent => Puppet::Provider::Vidispine) do
   desc "Vidispine Transcoder resource"
 
+  mk_resource_methods
+
   def find_vxid
     begin
       response = self.rest_get '/API/resource/transcoder'

@@ -4,6 +4,8 @@ require Pathname.new(__FILE__).dirname.dirname.expand_path + 'vidispine'
 Puppet::Type.type(:vidispine_thumbnails).provide(:vidispine_thumbnails, :parent => Puppet::Provider::Vidispine) do
   desc "Vidispine Thumbnail resource"
 
+  mk_resource_methods
+
   def find_vxid
     begin
       response = self.rest_get '/API/resource/thumbnail'
