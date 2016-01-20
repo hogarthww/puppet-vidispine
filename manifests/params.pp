@@ -57,8 +57,6 @@ class vidispine::params {
   $installer_database_run_migration  = true
   $solrcloud_enable                  = false
   $solr_collection_name              = 'vidispine'   # this is only used with an external solr config
-  $newrelic_license_key              = '0000000000000000000000000000000000000000'
-  $newrelic_archive_location         = 'http://apt.hogarthww.prv/raw/newrelic/'
 
   case $::osfamily {
     'debian': {

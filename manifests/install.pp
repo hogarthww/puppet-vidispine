@@ -70,7 +70,4 @@ class vidispine::install {
     }
   }
 
-  if ($vidispine::newrelic_version) {
-    include 'vidispine::newrelic_agent'
-  }
 }
