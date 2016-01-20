@@ -37,10 +37,7 @@ class vidispine::glassfish::install {
     asadmin_master_password => $vidispine::glassfish_asadmin_master_password,
     asadmin_jms_password    => $vidispine::glassfish_asadmin_jms_password,
     asadmin_passfile        => $vidispine::glassfish_asadmin_passfile,
-    require                 => [
-      Package["${vidispine::glassfish_java_vendor}-${vidispine::glassfish_java_package}"],
-      User[$vidispine::glassfish_user],
-    ],
+    require                 => User[$vidispine::glassfish_user],
   }
   contain '::glassfish'
 
