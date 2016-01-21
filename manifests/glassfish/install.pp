@@ -50,7 +50,7 @@ class vidispine::glassfish::install {
     path              => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/config/asenv.conf",
     setting           => 'AS_JAVA',
     value             => "\"${::vidispine::java_home}\"",
-    require           => Class['::glassfish'],
+    require           => Class['::glassfish::install'],
   }
 
 }
