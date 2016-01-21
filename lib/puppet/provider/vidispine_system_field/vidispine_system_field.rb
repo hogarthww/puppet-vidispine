@@ -4,6 +4,8 @@ require Pathname.new(__FILE__).dirname.dirname.expand_path + 'vidispine'
 Puppet::Type.type(:vidispine_system_field).provide(:vidispine_system_field, :parent => Puppet::Provider::Vidispine) do
   desc "Vidispine Configuration Properties"
 
+  mk_resource_methods
+
   def exists?
     name = @resource[:name]
     

@@ -37,6 +37,7 @@
 #
 class vidispine (
 
+  $java_home,
   $installer_dir                     = $vidispine::params::installer_dir,
   $glassfish_user                    = $vidispine::params::glassfish_user,
   $glassfish_uid                     = $vidispine::params::glassfish_uid,

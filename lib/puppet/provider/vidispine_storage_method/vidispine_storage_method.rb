@@ -4,6 +4,8 @@ require Pathname.new(__FILE__).dirname.dirname.expand_path + 'vidispine'
 Puppet::Type.type(:vidispine_storage_method).provide(:vidispine_storage_method, :parent => Puppet::Provider::Vidispine) do
   desc "Vidispine Storage Method"
 
+  mk_resource_methods
+
   # The following method re-implements the exists? method of the vidispine_storage provider.
   #
   # I think that if vidispine_storage implements self.prefetch, this won't be needed,
