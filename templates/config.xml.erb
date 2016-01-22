@@ -175,23 +175,15 @@
 
   <configurationProperty>
     <key>glassfishHA</key>
-<% if scope.lookupvar('vidispine::glassfish_cluster_enable') -%>
-    <value>yes</value>
-<% else -%>
     <value>no</value>
-<% end -%>
   </configurationProperty>
 
   <configurationProperty>
     <key>glassfishCluster</key>
-<% if scope.lookupvar('vidispine::glassfish_cluster_enable') -%>
-    <value><%= scope.lookupvar('vidispine::glassfish_cluster_name') %></value>
-<% else -%>
     <value>vs-cluster</value>
-<% end -%>
   </configurationProperty>
 
-<%- if scope.lookupvar('vidispine::vidispine_cluster_enable') or scope.lookupvar('vidispine::solrcloud_enable') %>
+<%- if scope.lookupvar('vidispine::solrcloud_enable') %>
   <configurationProperty>
     <key>zkHost</key>
     <value><%= scope.lookupvar('vidispine::zookeeper_servers_str') %></value>
