@@ -56,7 +56,6 @@ class vidispine (
   $glassfish_imq_jvm_args            = $vidispine::params::glassfish_imq_jvm_args,
   $glassfish_imq_maxbytespermsg      = $vidispine::params::glassfish_imq_maxbytespermsg,
   $glassfish_domain_name             = $vidispine::params::glassfish_domain_name,
-  $glassfish_node_name               = $vidispine::params::glassfish_node_name,
   $glassfish_instance_name           = $vidispine::params::glassfish_instance_name,
   $glassfish_jvmoptions_xmx          = $vidispine::params::glassfish_jvmoptions_xmx,
   $glassfish_jvmoptions_xms          = $vidispine::params::glassfish_jvmoptions_xms,
