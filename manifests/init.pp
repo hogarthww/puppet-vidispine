@@ -55,7 +55,6 @@ class vidispine (
   $glassfish_asadmin_passfile        = $vidispine::params::glassfish_asadmin_passfile,
   $glassfish_imq_jvm_args            = $vidispine::params::glassfish_imq_jvm_args,
   $glassfish_imq_maxbytespermsg      = $vidispine::params::glassfish_imq_maxbytespermsg,
-  $glassfish_imq_cluster_enable      = $vidispine::params::glassfish_imq_cluster_enable,
   $glassfish_imq_broker_list         = $vidispine::params::glassfish_imq_broker_list,
   $glassfish_domain_name             = $vidispine::params::glassfish_domain_name,
   $glassfish_das_host                = $vidispine::params::glassfish_das_host,

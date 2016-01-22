@@ -18,7 +18,6 @@ class vidispine::params {
   $glassfish_asadmin_passfile        = '/home/vidispine/asadmin.pass'
   $glassfish_imq_jvm_args            = '-Xms512m -Xmx512m -Xss228k'
   $glassfish_imq_maxbytespermsg      = '-1'
-  $glassfish_imq_cluster_enable      = false
   $glassfish_imq_broker_list         = undef
   $glassfish_domain_name             = 'vidispine-domain'
   $glassfish_das_host                = 'localhost'
