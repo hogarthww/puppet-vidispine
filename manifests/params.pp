@@ -19,7 +19,6 @@ class vidispine::params {
   $glassfish_imq_jvm_args            = '-Xms512m -Xmx512m -Xss228k'
   $glassfish_imq_maxbytespermsg      = '-1'
   $glassfish_domain_name             = 'vidispine-domain'
-  $glassfish_instance_name           = "${::hostname}-instance"
   $glassfish_jvmoptions_xmx          = '1024m'
   $glassfish_jvmoptions_xms          = '256m'
   $glassfish_jvmoptions_maxpermsize  = '512m'
