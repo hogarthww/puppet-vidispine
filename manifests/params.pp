@@ -24,7 +24,6 @@ class vidispine::params {
   $glassfish_jvmoptions_maxpermsize  = '512m'
   $glassfish_jvmoptions_permsize     = '512m'
   $glassfish_http_port               = '8080'
-  $vidispine_admin_user              = 'admin'
   $vidispine_admin_password          = 'admin'
   $vidispine_http_pool_size          = '50'
   $vidispine_http_pool_timeout       = '900'

@@ -63,7 +63,6 @@ class vidispine (
   $glassfish_http_port               = $vidispine::params::glassfish_http_port,
   $vidispine_version,
   $vidispine_archive_location,
-  $vidispine_admin_user              = $vidispine::params::vidispine_admin_user,
   $vidispine_admin_password          = $vidispine::params::vidispine_admin_password,
   $vidispine_http_pool_size          = $vidispine::params::vidispine_http_pool_size,
   $vidispine_http_pool_timeout       = $vidispine::params::vidispine_http_pool_timeout,
@@ -92,6 +91,8 @@ class vidispine (
   $api_url = "http://${glassfish_das_host}:${glassfish_http_port}"
   $glassfish_version = '3.1.2.2'
   $glassfish_das_host = 'localhost'
+
+  $vidispine_admin_user = 'admin'
 
   # Need to take the array and change it into a comma seperated list for use
   # in the templates. The sort is there so that with the same data the string
