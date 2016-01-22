@@ -19,7 +19,6 @@ class vidispine::params {
   $glassfish_imq_jvm_args            = '-Xms512m -Xmx512m -Xss228k'
   $glassfish_imq_maxbytespermsg      = '-1'
   $glassfish_domain_name             = 'vidispine-domain'
-  $glassfish_das_host                = 'localhost'
   $glassfish_cluster_enable          = false
   $glassfish_cluster_name            = 'vidispine-cluster'
   $glassfish_node_name               = $::hostname

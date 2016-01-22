@@ -56,7 +56,6 @@ class vidispine (
   $glassfish_imq_jvm_args            = $vidispine::params::glassfish_imq_jvm_args,
   $glassfish_imq_maxbytespermsg      = $vidispine::params::glassfish_imq_maxbytespermsg,
   $glassfish_domain_name             = $vidispine::params::glassfish_domain_name,
-  $glassfish_das_host                = $vidispine::params::glassfish_das_host,
   $glassfish_cluster_enable          = $vidispine::params::glassfish_cluster_enable,
   $glassfish_cluster_name            = $vidispine::params::glassfish_cluster_name,
   $glassfish_node_name               = $vidispine::params::glassfish_node_name,
@@ -97,6 +96,7 @@ class vidispine (
   # We may want to make this a parameter
   $api_url = "http://${glassfish_das_host}:${glassfish_http_port}"
   $glassfish_version = '3.1.2.2'
+  $glassfish_das_host = 'localhost'
 
   # Need to take the array and change it into a comma seperated list for use
   # in the templates. The sort is there so that with the same data the string
