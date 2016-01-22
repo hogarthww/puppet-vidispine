@@ -19,8 +19,6 @@ class vidispine::params {
   $glassfish_imq_jvm_args            = '-Xms512m -Xmx512m -Xss228k'
   $glassfish_imq_maxbytespermsg      = '-1'
   $glassfish_domain_name             = 'vidispine-domain'
-  $glassfish_cluster_enable          = false
-  $glassfish_cluster_name            = 'vidispine-cluster'
   $glassfish_node_name               = $::hostname
   $glassfish_instance_name           = "${::hostname}-instance"
   $glassfish_jvmoptions_xmx          = '1024m'
@@ -30,7 +28,6 @@ class vidispine::params {
   $glassfish_http_port               = '8080'
   $vidispine_admin_user              = 'admin'
   $vidispine_admin_password          = 'admin'
-  $vidispine_cluster_enable          = false
   $vidispine_http_pool_size          = '50'
   $vidispine_http_pool_timeout       = '900'
   $vidispine_noauth_pool_size        = '50'
