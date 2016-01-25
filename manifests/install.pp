@@ -1,35 +1,46 @@
 # see README.md
 class vidispine::install {
 
-  # create directory for vidispine installer
-  # if cluster and not das don't bother **
-  file {[ $vidispine::installer_dir, "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}"]:
+  # Compose location strings in a robust way that handles trailing slashes
+  #
+  $installer_filename = "Vidispine_${::vidispine::vidispine_version}_SoftwareInstaller.zip"
+
+  $installer_source = sprintf('%s/%s',
+                        regsubst($::vidispine::vidispine_archive_location, '\/$', ''),
+                        $installer_filename)
+
+  $installer_target = sprintf('%s/Vidispine_%s',
+                        regsubst($::vidispine::installer_dir, '\/$', ''),
+                        $::vidispine::vidispine_version)
+
+  $setuptool_jar = "${installer_target}/SetupTool4.jar"
+
+  $config_xml = "${installer_target}/config.xml"
+
+  file {[ $vidispine::installer_dir, $installer_target ]:
     ensure => directory,
     owner  => $vidispine::glassfish_user,
     group  => $vidispine::glassfish_group,
     mode   => '0755',
   }
 
-  # unpack vidispine installer
-  # if cluster and not das don't bother **
-  staging::deploy{"Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip":
-    source  => "${vidispine::vidispine_archive_location}Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip",
-    target  => "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}",
+  staging::deploy { $installer_filename :
+    source  => $installer_source,
+    target  => $installer_target,
     timeout => 0,
     user    => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
-    creates => "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}/SetupTool4.jar",
-    require => File["${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}"],
+    creates => $setuptool_jar,
+    require => File[$installer_target],
   }
 
-  # create silent install config.xml file for vidispine installer
-  # if cluster and not das don't bother **
-  file { "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}/config.xml":
+  # Create silent install config.xml file for Vidispine installer
+  file { $config_xml :
     owner   => $vidispine::glassfish_user,
     group   => $vidispine::glassfish_group,
     mode    => '0644',
     content => template('vidispine/config.xml.erb'),
-    require => Staging::Deploy["Vidispine_${vidispine::vidispine_version}_SoftwareInstaller.zip"],
+    require => Staging::Deploy[$installer_filename],
     notify  => Exec['vidispine-installer'],
   }
 
@@ -50,9 +61,9 @@ class vidispine::install {
   # Of course Vidispine 4.3 replaces the installer with a Debian package and this will
   # all go away very soon.
   #
-  exec{'vidispine-installer':
-    command => "java -jar ${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}/SetupTool4.jar --no-prompts --only-middleware --run-installer; cp -p ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/lib/postgresql-*.jar ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/lib/ext/",
-    path    => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ],
+  exec { 'vidispine-installer' :
+    command => "java -jar ${setuptool_jar} --no-prompts --only-middleware --run-installer; cp -p ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/lib/postgresql-*.jar ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/lib/ext/",
+    path    => [ "${::vidispine::java_home}/bin", '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ],
     cwd     => "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}",
     user    => $vidispine::glassfish_user,
     timeout => 0,
