@@ -62,14 +62,22 @@ class vidispine::install {
   # all go away very soon.
   #
   exec { 'vidispine-installer' :
-    command => "java -jar ${setuptool_jar} --no-prompts --only-middleware --run-installer; cp -p ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/lib/postgresql-*.jar ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/lib/ext/",
+    command => "java -jar ${setuptool_jar} --no-prompts --only-middleware --run-installer",
     path    => [ "${::vidispine::java_home}/bin", '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ],
     cwd     => "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}",
     user    => $vidispine::glassfish_user,
     timeout => 0,
     creates => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/domains/${vidispine::glassfish_domain_name}/applications/vidispine",
-  }
+  } ~>
 
+  exec { 'copy postgresql jars':
+    command     => "cp -p ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/lib/postgresql-*.jar ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/lib/ext/",
+    path        => ['/bin'],
+    cwd         => "${vidispine::installer_dir}/Vidispine_${vidispine::vidispine_version}",
+    user        => $vidispine::glassfish_user,
+    timeout     => 0,
+    refreshonly => true,
+  }
 
   if ($vidispine::solrcloud_enable) {
     glassfish_application { 'solr':
