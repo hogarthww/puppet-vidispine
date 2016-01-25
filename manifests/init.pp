@@ -84,8 +84,9 @@ class vidispine (
 
 ) inherits vidispine::params {
 
-  # We may want to make this a parameter
   $glassfish_das_host = 'localhost'
+  
+  # We may want to make api_url a parameter
   $api_url = "http://${glassfish_das_host}:${glassfish_http_port}"
   $glassfish_version = '3.1.2.2'
 
