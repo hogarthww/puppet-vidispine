@@ -7,13 +7,4 @@ class vidispine::glassfish::domain::service {
     running      => true,
   }
 
-  if ($::vidispine::glassfish_cluster_enable) {
-    glassfish::create_service {$::vidispine::glassfish_instance_name:
-      service_name  => $::vidispine_glassfish_instance_name,
-      instance_name => $::vidispine_glassfish_instance_name,
-      mode          => 'instance',
-      running       => false,
-    }
-  }
-
 }

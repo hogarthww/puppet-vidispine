@@ -48,6 +48,8 @@ This module depends on the following other modules:
   a private fork of [fatmcgav-glassfish](https://github.com/fatmcgav/puppet-glassfish)
 * [nanliu-staging](https://github.com/nanliu/puppet-staging)
 * [puppetlabs-stdlib](https://github.com/puppetlabs/puppetlabs-stdlib) version 4.10.0 or higher
+* [puppetlabs-apt](https://github.com/puppetlabs/puppetlabs-apt) version 1.8.0
+* [puppetlabs-inifile](https://github.com/puppetlabs/puppetlabs-inifile)
 
 Pluginsync must be enabled.
 

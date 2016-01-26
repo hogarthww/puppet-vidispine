@@ -33,13 +33,6 @@ class vidispine::glassfish::domain::configure {
     value => $vidispine::glassfish_http_port,
   }
 
-  if ($vidispine::glassfish_cluster_enable) {
-    # set cluster_name java-home if we are running the das and part of a cluster
-    set { "${vidispine::glassfish_cluster_name}-config.java-config.java-home":
-      value => $::vidispine::java_home,
-    }
-  }
-
   Jvmoption {
     target       => 'server',
     require      => Glassfish::Create_domain[$vidispine::glassfish_domain_name],

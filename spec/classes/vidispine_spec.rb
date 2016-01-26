@@ -15,7 +15,9 @@ describe 'vidispine' do
     }}
 
     let(:params) {{
-      :java_home => '/usr/lib/jvm/j2sdk1.7-oracle/jre'
+      :java_home                  => '/usr/lib/jvm/j2sdk1.7-oracle/jre',
+      :vidispine_version          => '4.2.99',
+      :vidispine_archive_location => '/tmp',
     }}
     it { should compile }
 
