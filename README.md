@@ -186,8 +186,5 @@ Please see the Vidispine
 * Custom types do not implement prefetching, making Puppet runs very slow and very
   'chatty' with the Vidispine API
 * There is not yet a way to centrally specify `vsurl`, `vsuser`, `vspass`
-* The module does not handle the installation of the Vidispine license
-* At one point clustering was supported, but a large number of major changes have
-  since taken place without being tested against clustering. Clustering should be
-  considered *unsupported* until further notice.
+* Clustering is not supported.
 
