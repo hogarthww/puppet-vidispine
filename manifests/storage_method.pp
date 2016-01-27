@@ -4,8 +4,7 @@ define vidispine::storage_method (
 
   $ensure     = 'present',
   $storageuri = $name,
-  $vshostname = $vidispine::glassfish_das_host,
-  $vsport     = $vidispine::glassfish_http_port,
+  $vsurl      = $vidispine::api_url,
   $vsuser     = $vidispine::vidispine_admin_user,
   $vspass     = $vidispine::vidispine_admin_password,
   $location   = undef,
@@ -20,8 +19,7 @@ define vidispine::storage_method (
   vidispine_storage_method {$name:
     ensure     => $ensure,
     storageuri => $storageuri,
-    vshostname => $vshostname,
-    vsport     => $vsport,
+    vsurl      => $vsurl,
     vsuser     => $vsuser,
     vspass     => $vspass,
     location   => $location,

@@ -1,8 +1,0 @@
-imq.cluster.ha=true
-imq.cluster.clusterid=<%= scope.lookupvar('vidispine::glassfish_domain_name') %>
-imq.persist.store=jdbc
-imq.persist.jdbc.dbVendor=postgresql
-imq.persist.jdbc.postgresql.user=<%= scope.lookupvar('vidispine::postgresql_imq_user') %>
-imq.persist.jdbc.postgresql.password=<%= scope.lookupvar('vidispine::postgresql_imq_password') %>
-imq.persist.jdbc.postgresql.property.url=jdbc\:postgresql\://<%= scope.lookupvar('vidispine::postgresql_host') %>\:<%= scope.lookupvar('vidispine::postgresql_port') %>/<%= scope.lookupvar('vidispine::postgresql_imq_database') %>
-imq.cluster.brokerlist=<%= scope.lookupvar('glassfish_imq_brokers') %>

@@ -47,6 +47,9 @@ This module depends on the following other modules:
 * [hww-glassfish](https://github.hogarthww.com/puppet/hww-glassfish) - this is
   a private fork of [fatmcgav-glassfish](https://github.com/fatmcgav/puppet-glassfish)
 * [nanliu-staging](https://github.com/nanliu/puppet-staging)
+* [puppetlabs-stdlib](https://github.com/puppetlabs/puppetlabs-stdlib) version 4.10.0 or higher
+* [puppetlabs-apt](https://github.com/puppetlabs/puppetlabs-apt) version 1.8.0
+* [puppetlabs-inifile](https://github.com/puppetlabs/puppetlabs-inifile)
 
 Pluginsync must be enabled.
 
@@ -69,8 +72,7 @@ Configure a storage backend:
 ```
 vidispine::storage {'storage1':
   ensure     => present,
-  vshostname => 'localhost',
-  vsport     => 8080,
+  vsurl      => 'http://localhost:8080'
   vsuser     => 'admin',
   vspass     => 'admin',
 }
@@ -78,8 +80,7 @@ vidispine::storage {'storage1':
 vidispine::storage_method {"auto-http://${::fqdn}:8080/storage1/":
   ensure     => present,
   storageuri => "http://${::fqdn}:8080/storage1/",
-  vshostname => 'localhost',
-  vsport     => 8080,
+  vsurl      => 'http://localhost:8080'
   vsuser     => 'admin',
   vspass     => 'admin',
   location   => "storage1",
@@ -96,8 +97,7 @@ Connect a transcoder:
 ```
 vidispine::transcoder {"http://transcoder1:8080/":
   ensure     => present,
-  vshostname => 'localhost',
-  vsport     => 8080,
+  vsurl      => 'http://localhost:8080'
   vsuser     => 'admin',
   vspass     => 'admin',
   trans_addr => 'http://transcoder1',
@@ -119,9 +119,7 @@ As is standard for any Puppet module:
 * Providers can be found under `lib/puppet/provider`
 
 Parameters shared by all types:
-* `vshostname`: The hostname of the Vidispine instance (always 'localhost' as the
-  Puppet agent runs on the host it is managing)
-* `vsport`: The HTTP port of the Vidispine API, usually 8080
+* `vsurl`: The HTTP URL of the Vidispine API
 * `vsuser`: A username with admin privileges on the Vidispine instance (always 'admin')
 * `vspass`: The password for the admin account
 
@@ -170,11 +168,9 @@ only values that are known will have an effect on the application.
 
 Vidispine API: http://apidoc.vidispine.com/latest/system/property.html
 
-#### `transcoder_address`, `vidispine::transcoder`
+#### `vidispine_transcoder`, `vidispine::transcoder`
 
-`trans_addr`: The hostname or IP address of the transcoder
-
-`trans_port`: The TCP port of the transcoder
+`url`: The HTTP URL of the transcoder
 
 #### `vidispine_thumbnails`, `vidispine::thumbnails`
 
@@ -185,17 +181,10 @@ Set up a thumbnail resource. The name of the resource should be the path to the 
 Please see the Vidispine 
 [API documentation](http://apidoc.vidispine.com/latest/system/thumbnails.html) for details.
 
-#### `vidispine_import_setting`, `vidispine::import_setting`
-
-This appears to be unused.
-
 ## Limitations
 
 * Custom types do not implement prefetching, making Puppet runs very slow and very
   'chatty' with the Vidispine API
-* There is not yet a way to centrally specify `vshostname`, `vsport`, `vsuser`, `vspass`
-* The module does not handle the installation of the Vidispine license
-* At one point clustering was supported, but a large number of major changes have
-  since taken place without being tested against clustering. Clustering should be
-  considered *unsupported* until further notice.
+* There is not yet a way to centrally specify `vsurl`, `vsuser`, `vspass`
+* Clustering is not supported.
 

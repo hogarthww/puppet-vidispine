@@ -19,24 +19,22 @@ describe provider_class do
   #      ... etc ...
   #   }
   let(:resource) { Puppet::Type.type(:vidispine_system_field).new(
-                     # Test the case-insensitivity; Vidispine always
-                     # reports the keys as lowercase
-      :key        => 'RSPEC_system_field',
-      :value      => '3ed0cc7c714f530fc2919d369335a1d280fd9686',
-      :vshostname => 'localhost',
-      :vsport     => '8080',
-      :vsuser     => 'admin',
-      :vspass     => 'admin'
+                 # Test the case-insensitivity; Vidispine always
+                 # reports the keys as lowercase
+      :key    => 'RSPEC_system_field',
+      :value  => '3ed0cc7c714f530fc2919d369335a1d280fd9686',
+      :vsurl  => 'http://localhost:8080',
+      :vsuser => 'admin',
+      :vspass => 'admin'
       )}
 
   # And a second one with ensure => absent set
   let(:absentresource) { Puppet::Type.type(:vidispine_system_field).new(
-      :key        => 'RSPEC_system_field',
-      :vshostname => 'localhost',
-      :vsport     => '8080',
-      :vsuser     => 'admin',
-      :vspass     => 'admin',
-      :ensure     => :absent,
+      :key    => 'RSPEC_system_field',
+      :vsurl  => 'http://localhost:8080',
+      :vsuser => 'admin',
+      :vspass => 'admin',
+      :ensure => :absent,
       )}
 
   # Each resource has a type and a provider. Just now we generated a new resource using the Type API.

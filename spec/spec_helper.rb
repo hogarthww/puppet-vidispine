@@ -10,7 +10,7 @@ WebMock.disable_net_connect!
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   c.hook_into :webmock
-  c.debug_logger = STDERR
+  # c.debug_logger = STDERR
 end
 
 RSpec.configure do |c|

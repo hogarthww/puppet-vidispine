@@ -7,7 +7,7 @@ class vidispine::glassfish::imq {
     section           => '',
     path              => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/etc/imqenv.conf",
     setting           => 'IMQ_DEFAULT_JAVAHOME',
-    value             => "\"/usr/lib/jvm/${vidispine::glassfish_java_package}-${vidispine::glassfish_java_vendor}/jre\"",
+    value             => "\"${::vidispine::java_home}\"",
   }
 
   # set imq jvm_args

@@ -7,29 +7,26 @@ describe provider_class do
   let(:name) { 'rspec vidispine_storage test' }
   
   let(:resource) { Puppet::Type.type(:vidispine_storage).new(
-      :name       => 'storage1',
-      :vshostname => 'localhost',
-      :vsport     => '8080',
-      :vsuser     => 'admin',
-      :vspass     => 'admin',
-      :provider   => :vidispine_storage,
+      :name     => 'storage1',
+      :vsurl    => 'http://localhost:8080',
+      :vsuser   => 'admin',
+      :vspass   => 'admin',
+      :provider => :vidispine_storage,
     )}
 
 
   let(:resource_absent) { Puppet::Type.type(:vidispine_storage).new(
-      :name       => 'storage1',
-      :vshostname => 'localhost',
-      :vsport     => '8080',
-      :vsuser     => 'admin',
-      :vspass     => 'admin',
-      :provider   => :vidispine_storage,
-      :ensure     => :absent
+      :name     => 'storage1',
+      :vsurl    => 'http://localhost:8080',
+      :vsuser   => 'admin',
+      :vspass   => 'admin',
+      :provider => :vidispine_storage,
+      :ensure   => :absent
     )}
 
   let(:resource_scan) { Puppet::Type.type(:vidispine_storage).new(
       :name          => 'storage1',
-      :vshostname    => 'localhost',
-      :vsport        => '8080',
+      :vsurl         => 'http://localhost:8080',
       :vsuser        => 'admin',
       :vspass        => 'admin',
       :provider      => :vidispine_storage,
@@ -71,7 +68,7 @@ describe provider_class do
       end
     end
 
-    it 'should correctly identify Storages with different metadata when ensure absent' do
+   it 'should correctly identify Storages with different metadata when ensure absent' do
       VCR.use_cassette('vidispine_storage-exists-incorrect-metadata') do
         expect(provider_absent.exists?).to be_truthy
       end

@@ -4,6 +4,8 @@ require Pathname.new(__FILE__).dirname.dirname.expand_path + 'vidispine'
 Puppet::Type.type(:vidispine_storage).provide(:vidispine_storage, :parent => Puppet::Provider::Vidispine) do
   desc "Vidispine Storage."
 
+  mk_resource_methods
+
 #-- Helper methods ------------------------------------------------------------#
   def check_metadata(storage, key, value)
     # The metadata come as an array of hashes, so we need to loop through the

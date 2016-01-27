@@ -21,7 +21,7 @@ class Puppet::Provider::Vidispine < Puppet::Provider
   end
   
   def rest_action (endpoint, method, content, options)
-    uri = URI("http://#{@resource[:vshostname]}:#{@resource[:vsport]}#{endpoint}")
+    uri = URI::join(@resource[:vsurl], endpoint)
     
     http    = Net::HTTP.new(uri.host, uri.port)
     request = method.new(uri.request_uri)

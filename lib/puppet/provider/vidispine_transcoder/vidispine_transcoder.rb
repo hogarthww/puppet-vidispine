@@ -1,8 +1,10 @@
 require 'pathname'
 require Pathname.new(__FILE__).dirname.dirname.expand_path + 'vidispine'
 
-Puppet::Type.type(:transcoder_address).provide(:transcoder_address, :parent => Puppet::Provider::Vidispine) do
+Puppet::Type.type(:vidispine_transcoder).provide(:vidispine_transcoder, :parent => Puppet::Provider::Vidispine) do
   desc "Vidispine Transcoder resource"
+
+  mk_resource_methods
 
   def find_vxid
     begin
@@ -15,7 +17,7 @@ Puppet::Type.type(:transcoder_address).provide(:transcoder_address, :parent => P
       response['resource'].each do |resource|
         url = resource['transcoder']['url']
 
-        if url == @resource[:name] then
+        if url == @resource[:url] then
           return resource['id']
         end
       end
@@ -43,7 +45,7 @@ Puppet::Type.type(:transcoder_address).provide(:transcoder_address, :parent => P
       transcoder_resource_document = <<-XML.gsub(/^ */, '')
       <resource>
         <transcoder>
-          <url>#{@resource[:name]}</url>
+          <url>#{@resource[:url]}</url>
         </transcoder>
       </resource>
       XML

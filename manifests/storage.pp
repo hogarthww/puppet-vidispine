@@ -3,8 +3,7 @@
 define vidispine::storage (
 
   $ensure        = 'present',
-  $vshostname    = $vidispine::glassfish_das_host,
-  $vsport        = $vidispine::glassfish_http_port,
+  $vsurl         = $vidispine::api_url,
   $vsuser        = $vidispine::vidispine_admin_user,
   $vspass        = $vidispine::vidispine_admin_password,
   $scan_interval = 60,
@@ -14,8 +13,7 @@ define vidispine::storage (
   # need to call provider to make call  to the vidispine application server on:/API/resource/transcoder
   vidispine_storage {$name:
     ensure        => $ensure,
-    vshostname    => $vshostname,
-    vsport        => $vsport,
+    vsurl         => $vsurl,
     vsuser        => $vsuser,
     vspass        => $vspass,
     scan_interval => $scan_interval,
