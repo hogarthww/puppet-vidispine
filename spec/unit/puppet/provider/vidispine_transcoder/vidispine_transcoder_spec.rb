@@ -7,7 +7,6 @@ describe provider_class do
   let(:name) { 'rspec vidispine_transcoder test' }
 
   let(:resource) { Puppet::Type.type(:vidispine_transcoder).new(
-      :name     => 'rspec',
       :url      => 'http://transcoder.zonza.mock:8888/',
       :ensure   => 'present',
       :vsurl    => 'http://localhost:8080',

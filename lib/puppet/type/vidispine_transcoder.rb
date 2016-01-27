@@ -8,11 +8,8 @@ Puppet::Type.newtype(:vidispine_transcoder) do
 
   ensurable
 
-  newparam(:name) do
+  newparam(:url) do
     isnamevar
-  end
-
-  newproperty(:url) do
     desc "The Transcoder URL"
 
     validate do |value|
