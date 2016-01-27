@@ -61,10 +61,6 @@ class vidispine::install {
   # Of course Vidispine 4.3 replaces the installer with a Debian package and this will
   # all go away very soon.
   #
-  notify { 'vidispine-installer' :
-    message => 'About to run the Vidispine installer',
-  } ->
-
   exec { 'vidispine-installer' :
     command => "java -jar ${setuptool_jar} --no-prompts --only-middleware --run-installer",
     path    => [ "${::vidispine::java_home}/bin", '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ],
