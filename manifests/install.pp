@@ -68,7 +68,7 @@ class vidispine::install {
     user    => $vidispine::glassfish_user,
     timeout => 0,
     creates => "${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/domains/${vidispine::glassfish_domain_name}/applications/vidispine",
-  } ~>
+  } ->
 
   exec { 'copy postgresql jars':
     command     => "cp -p ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/glassfish/lib/postgresql-*.jar ${vidispine::glassfish_parent_dir}/${vidispine::glassfish_install_dir}/mq/lib/ext/",
