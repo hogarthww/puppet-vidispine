@@ -200,4 +200,20 @@ Please see the Vidispine
   'chatty' with the Vidispine API
 * There is not yet a way to centrally specify `vsurl`, `vsuser`, `vspass`
 * Clustering is not supported.
+* Documentation is patchy
+* Test coverage is not complete
+
+## Development
+
+Pull requests are welcome. Additional functionality should come with additional test coverage.
+Pull requests which cause tests to fail are unlikely to be accepted.
+
+### Contributors
+ * Richard Davies
+ * Adam Scarborough
+ * Doug Neal
+ * Thomas O'Donnell
+ * Chris D'Cunha
+ * Samuel Fekete
+ * Rob Ryan
 
