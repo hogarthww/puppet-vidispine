@@ -57,20 +57,14 @@ Vidispine, so that these configuration items can be managed as Puppet resources.
 ### Setup Requirements
 
 This module depends on the following other modules:
-* [hww-glassfish](https://github.hogarthww.com/puppet/hww-glassfish) - this is
-  a private fork of [fatmcgav-glassfish](https://github.com/fatmcgav/puppet-glassfish)
+* [hww-glassfish](https://github.com/hogarthww/puppet-glassfish) - this is
+  a fork of [fatmcgav-glassfish](https://github.com/fatmcgav/puppet-glassfish)
 * [nanliu-staging](https://github.com/nanliu/puppet-staging)
 * [puppetlabs-stdlib](https://github.com/puppetlabs/puppetlabs-stdlib) version 4.10.0 or higher
 * [puppetlabs-apt](https://github.com/puppetlabs/puppetlabs-apt) version 1.8.0
 * [puppetlabs-inifile](https://github.com/puppetlabs/puppetlabs-inifile)
 
 Pluginsync must be enabled.
-
-## Usage
-
-The module is currently (August 2015) used in one place: the 
-[zonza_vidispine](https://github.hogarthww.com/puppet/zonza_vidispine) profile module.
-This is the reference use case of this module.
 
 ### Install Vidispine
 
@@ -209,11 +203,12 @@ Pull requests are welcome. Additional functionality should come with additional 
 Pull requests which cause tests to fail are unlikely to be accepted.
 
 ### Contributors
- * Richard Davies
  * Adam Scarborough
- * Doug Neal
- * Thomas O'Donnell
  * Chris D'Cunha
- * Samuel Fekete
+ * Doug Neal
+ * Matthew Power
+ * Richard Davies
  * Rob Ryan
+ * Samuel Fekete
+ * Thomas O'Donnell
 
