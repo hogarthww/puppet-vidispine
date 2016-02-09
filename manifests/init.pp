@@ -84,12 +84,6 @@ class vidispine (
 
 ) inherits vidispine::params {
 
-  $glassfish_das_host = 'localhost'
-  
-  # We may want to make api_url a parameter
-  $api_url = "http://${glassfish_das_host}:${glassfish_http_port}"
-  $glassfish_version = '3.1.2.2'
-
   $vidispine_admin_user = 'admin'
 
   # Need to take the array and change it into a comma seperated list for use
@@ -97,12 +91,28 @@ class vidispine (
   # is always the same.
   $zookeeper_servers_str = join(sort($zookeeper_servers), ',')
 
-  class { '::vidispine::glassfish' : } ->
-  class { '::vidispine::install' : } ->
-  class { '::vidispine::config' : }
+  case $vidispine_version {
+    /^4\.2\.[0-9]+$/ : {
+      $legacy_installation = true
+      $glassfish_das_host = 'localhost'
+      
+      # We may want to make api_url a parameter
+      $api_url = "http://${glassfish_das_host}:${glassfish_http_port}"
+      $glassfish_version = '3.1.2.2'
 
-  contain '::vidispine::glassfish'
-  contain '::vidispine::install'
-  contain '::vidispine::config'
+      class { '::vidispine::glassfish' : } ->
+      class { '::vidispine::install' : } ->
+      class { '::vidispine::glassfish::postinstallconfig' : }
+
+      contain '::vidispine::glassfish'
+      contain '::vidispine::install'
+      contain '::vidispine::glassfish::postinstallconfig'
+
+    }
+    /^4\.[3-5]$/ : {
+    }
+    default : {
+    }
+  }
 
 }

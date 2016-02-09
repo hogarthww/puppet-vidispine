@@ -1,5 +1,5 @@
 # see README.md
-class vidispine::config {
+class vidispine::glassfish::postinstallconfig {
 
   Set {
     ensure       => present,

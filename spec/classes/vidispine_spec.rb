@@ -27,7 +27,8 @@ describe 'vidispine' do
       should contain_class('vidispine::glassfish::domain')
       should contain_class('vidispine::glassfish::imq')
       should contain_class('vidispine::install')
-      should contain_class('vidispine::config')
+      should contain_class('vidispine::install::legacy')
+      should contain_class('vidispine::glassfish::postinstallconfig')
     end
   end
 end
