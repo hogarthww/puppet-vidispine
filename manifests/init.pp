@@ -62,7 +62,7 @@ class vidispine (
   $glassfish_jvmoptions_permsize     = $vidispine::params::glassfish_jvmoptions_permsize,
   $glassfish_http_port               = $vidispine::params::glassfish_http_port,
   $vidispine_version,
-  $vidispine_archive_location,
+  $vidispine_archive_location        = undef,
   $vidispine_admin_password          = $vidispine::params::vidispine_admin_password,
   $vidispine_http_pool_size          = $vidispine::params::vidispine_http_pool_size,
   $vidispine_http_pool_timeout       = $vidispine::params::vidispine_http_pool_timeout,
@@ -81,8 +81,11 @@ class vidispine (
   $solrcloud_enable                  = $vidispine::params::solrcloud_enable,
   $zookeeper_servers                 = [],
   $solr_collection_name              = $vidispine::params::solr_collection_name,
+  $manage_repo                       = true,
 
 ) inherits vidispine::params {
+
+  validate_bool($manage_repo)
 
   $vidispine_admin_user = 'admin'
 
@@ -94,6 +97,9 @@ class vidispine (
   case $vidispine_version {
     /^4\.2\.[0-9]+$/ : {
       $legacy_installation = true
+      # We need to be told where the installer archive is
+      validate_string($vidispine_archive_location)
+
       $glassfish_das_host = 'localhost'
       
       # We may want to make api_url a parameter
@@ -109,9 +115,20 @@ class vidispine (
       contain '::vidispine::glassfish::postinstallconfig'
 
     }
-    /^4\.[3-5]$/ : {
+    /^4\.[3-5]\.[0-9]+$/ : {
+      $version_base = regsubst($vidispine_version, '^(4.[3-5]).*', '\1')
+
+      if ($manage_repo) {
+        class { '::vidispine::repository' : }
+        contain '::vidispine::repository'
+      }
+
+      class { '::vidispine::install' : }
+      contain '::vidispine::install'
+
     }
     default : {
+      fail("Vidispine version ${vidispine_version} not supported. Supported versions are 4.2.x, 4.3.x, 4.4.x, 4.5.x")
     }
   }
 
