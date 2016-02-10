@@ -4,9 +4,9 @@
   "author": "hww",
   "summary": "Vidispine install and basic config",
   "license": "GPL v2",
-  "source": "https://github.hogarthww.com/puppet/hww-vidispine.git",
-  "project_page": "https://github.hogarthww.com/puppet/hww-vidispinenew/README.md",
-  "issues_url": "https://github.hogarthww.com/puppet/hww-vidispinenew/issues",
+  "source": "https://github.com/hogarthww/puppet-vidispine.git",
+  "project_page": "https://github.com/hogarthww/puppet-vidispine/blob/master/README.md",
+  "issues_url": "https://github.com/hogarthww/puppet-vidispine/issues",
   "dependencies": [
     {"name":"puppetlabs-apt","version_requirement":">= 2.2.1"},
     {"name":"puppetlabs-stdlib","version_requirement":">= 4.10.0"},
