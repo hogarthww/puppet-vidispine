@@ -1,7 +1,9 @@
 require 'rspec-puppet'
+require 'rspec-puppet-facts'
 require 'puppetlabs_spec_helper/module_spec_helper'
 require 'webmock/rspec'
 require 'vcr'
+include RspecPuppetFacts
 
 fixture_path = File.expand_path(File.join(__FILE__, '..', 'fixtures'))
 
