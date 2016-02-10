@@ -8,6 +8,7 @@
   "project_page": "https://github.hogarthww.com/puppet/hww-vidispinenew/README.md",
   "issues_url": "https://github.hogarthww.com/puppet/hww-vidispinenew/issues",
   "dependencies": [
+    {"name":"puppetlabs-apt","version_requirement":">= 2.2.1"},
     {"name":"puppetlabs-stdlib","version_requirement":">= 4.10.0"},
     {"name":"hww-glassfish","version_requirement":">= 2.0.0"}
   ],
