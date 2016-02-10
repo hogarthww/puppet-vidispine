@@ -10,6 +10,12 @@
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 4.10.0"},
     {"name":"hww-glassfish","version_requirement":">= 2.0.0"}
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [ "14.04" ]
+    }
   ]
 }
 
