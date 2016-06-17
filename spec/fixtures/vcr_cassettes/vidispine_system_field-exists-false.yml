@@ -1,0 +1,60 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: get
+        uri: "http://admin:admin@localhost:8080/API/configuration/properties/"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept: 
+            - application/json
+          User-Agent: 
+            - Ruby
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/json
+        body: 
+          encoding: US-ASCII
+          string: |
+            {
+                "property": [
+                    {
+                        "key": "usejackson",
+                        "lastChange": "2015-08-13T10:27:09.353+0000",
+                        "value": "true"
+                    },
+                    {
+                        "key": "pdf_poster_size",
+                        "lastChange": "2015-08-13T10:31:55.091+0000",
+                        "value": "2500x2500"
+                    },
+                    {
+                        "key": "ai_poster_size",
+                        "lastChange": "2015-08-13T10:31:56.090+0000",
+                        "value": "250x250"
+                    },
+                    {
+                        "key": "thumbnailhierarchy",
+                        "lastChange": "2015-08-13T10:31:56.539+0000",
+                        "value": "1000"
+                    },
+                    {
+                        "key": "indexcollectionitemorder",
+                        "lastChange": "2015-08-13T10:31:57.360+0000",
+                        "value": "false"
+                    },
+                    {
+                        "key": "solrcollection",
+                        "lastChange": "2015-08-14T15:34:00.661+0000",
+                        "value": "vidispine"
+                    }
+                ]
+            }
+        http_version: 
+      recorded_at: "Thu, 03 Sep 2015 11:28:05 GMT"
+  recorded_with: "VCR 2.9.3"

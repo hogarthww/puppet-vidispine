@@ -1,0 +1,75 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: get
+        uri: "http://admin:admin@localhost:8080/API/storage/"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept: 
+            - application/json
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/json
+        body: 
+          encoding: UTF-8
+          string: |
+            {
+            }
+        http_version: 
+      recorded_at: "Mon, 27 Jul 2015 16:19:51 GMT"
+    - request: 
+        method: post
+        uri: "http://admin:admin@localhost:8080/API/storage/"
+        body: 
+          encoding: UTF-8
+          string: |
+            <StorageDocument xmlns="http://xml.vidispine.com/schema/vidispine">
+                <metadata>
+                  <field>
+                    <key>storageName</key>
+                    <value>storage1</value>
+                  </field>
+                </metadata>
+                <scanInterval>60</scanInterval>
+                <autoDetect>true</autoDetect>
+            </StorageDocument>
+        headers: 
+          Content-Type: 
+            - application/xml
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/xml
+        body: 
+          encoding: UTF-8
+          string: |
+            <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+            <StorageDocument xmlns="http://xml.vidispine.com/schema/vidispine">
+              <id>VX-6</id>
+              <state>NONE</state>
+              <type>LOCAL</type>
+              <capacity>1000000</capacity>
+              <freeCapacity>1000000</freeCapacity>
+              <metadata>
+                <field>
+                  <key>storageName</key>
+                  <value>storage1</value>
+                </field>
+              </metadata>
+              <lowWatermark>1000000</lowWatermark>
+              <highWatermark>1000000</highWatermark>
+              <autoDetect>true</autoDetect>
+              <showImportables>true</showImportables>
+            </StorageDocument>
+        http_version: 
+      recorded_at: "Mon, 27 Jul 2015 16:19:51 GMT"
+  recorded_with: "VCR 2.9.3"

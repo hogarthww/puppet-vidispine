@@ -1,0 +1,69 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: get
+        uri: "http://admin:admin@localhost:8080/API/storage/"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept: 
+            - application/json
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/json
+        body: 
+          encoding: UTF-8
+          string: |
+            {
+                "storage": [
+                    {
+                        "autoDetect": true,
+                        "capacity": 84696301568,
+                        "freeCapacity": 77886914560,
+                        "highWatermark": 84696301568,
+                        "id": "VX-8",
+                        "lowWatermark": 84696301568,
+                        "metadata": {
+                            "field": [
+                                {
+                                    "key": "storageName",
+                                    "value": "storage2"
+                                }
+                            ]
+                        },
+                        "showImportables": true,
+                        "state": "NONE",
+                        "timestamp": "2015-08-18T10:53:08.716+0000",
+                        "type": "LOCAL"
+                    }
+                ]
+            }
+        http_version: 
+      recorded_at: "Tue, 18 Aug 2015 11:08:22 GMT"
+    - request: 
+        method: get
+        uri: "http://admin:admin@localhost:8080/API/storage/VX-8/method"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept: 
+            - application/json
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/json
+        body: 
+          encoding: UTF-8
+          string: "{}"
+        http_version: 
+      recorded_at: "Tue, 18 Aug 2015 11:08:22 GMT"
+  recorded_with: "VCR 2.9.3"

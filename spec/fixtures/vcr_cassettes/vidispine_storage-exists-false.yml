@@ -1,0 +1,48 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: get
+        uri: "http://admin:admin@localhost:8080/API/storage/"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept: 
+            - application/json
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/json
+        body: 
+          encoding: UTF-8
+          string: |
+            {
+                "storage": [
+                    {
+                        "autoDetect": true,
+                        "capacity": 84696301568,
+                        "freeCapacity": 77888880640,
+                        "highWatermark": 84696301568,
+                        "id": "VX-1",
+                        "lowWatermark": 84696301568,
+                        "metadata": {
+                            "field": [
+                                {
+                                    "key": "storageName",
+                                    "value": "storage2"
+                                }
+                            ]
+                        },
+                        "showImportables": true,
+                        "state": "NONE",
+                        "timestamp": "2015-07-27T15:49:24.332Z",
+                        "type": "LOCAL"
+                    }
+                ]
+            }
+        http_version: 
+      recorded_at: "Mon, 27 Jul 2015 14:39:29 GMT"
+  recorded_with: "VCR 2.9.3"

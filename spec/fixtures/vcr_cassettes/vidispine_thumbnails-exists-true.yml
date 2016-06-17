@@ -1,0 +1,34 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: get
+        uri: "http://admin:admin@localhost:8080/API/resource/thumbnail"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept: 
+            - application/json
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/json
+        body: 
+          encoding: UTF-8
+          string: |
+            {
+                "resource": [
+                    {
+                        "id": "VX-9",
+                        "thumbnail": {
+                            "path": "file:///opt/vidispine/thumbnails/"
+                        }
+                    }
+                ]
+            }
+        http_version: 
+      recorded_at: "Wed, 19 Aug 2015 11:36:08 GMT"
+  recorded_with: "VCR 2.9.3"

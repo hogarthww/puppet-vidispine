@@ -1,0 +1,18 @@
+fixtures:
+  repositories:
+    apt:
+      repo: "https://github.com/puppetlabs/puppetlabs-apt.git"
+      ref: "1.8.0"
+    stdlib:
+      repo: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
+      ref: "4.10.0"
+    inifile:
+      repo: "https://github.com/puppetlabs/puppetlabs-inifile.git"
+      ref: "1.1.4"
+    staging:
+      repo: "https://github.com/nanliu/puppet-staging.git"
+      ref: "1.0.2"
+    glassfish:
+      repo: "https://github.hogarthww.com/puppet/hww-glassfish.git"
+      ref: "2.0.0"
+

@@ -1,0 +1,40 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: post
+        uri: "http://admin:admin@localhost:8080/API/resource/transcoder"
+        body: 
+          encoding: US-ASCII
+          string: |
+            <resource>
+              <transcoder>
+                <url>http://transcoder.zonza.mock:8888/</url>
+              </transcoder>
+            </resource>
+        headers: 
+          Accept: 
+            - application/json
+          User-Agent: 
+            - Ruby
+          Content-Type: 
+            - application/xml
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/json
+        body: 
+          encoding: US-ASCII
+          string: |
+            {
+                "id": "VX-11",
+                "transcoder": {
+                    "directAccess": [],
+                    "url": "http://transcoder.zonza.mock:8888/"
+                }
+            }
+        http_version: 
+      recorded_at: "Thu, 03 Sep 2015 14:04:28 GMT"
+  recorded_with: "VCR 2.9.3"

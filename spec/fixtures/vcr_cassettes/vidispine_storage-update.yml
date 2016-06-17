@@ -1,0 +1,98 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: get
+        uri: "http://admin:admin@localhost:8080/API/storage/"
+        body: 
+          encoding: US-ASCII
+          string: ""
+        headers: 
+          Accept: 
+            - application/json
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/json
+        body: 
+          encoding: UTF-8
+          string: |
+            {
+                "storage": [
+                    {
+                        "autoDetect": true,
+                        "capacity": 84696301568,
+                        "freeCapacity": 77888880640,
+                        "highWatermark": 84696301568,
+                        "id": "VX-2",
+                        "lowWatermark": 84696301568,
+                        "metadata": {
+                            "field": [
+                                {
+                                    "key": "storageName",
+                                    "value": "storage1"
+                                }
+                            ]
+                        },
+                        "showImportables": true,
+                        "state": "NONE",
+                        "timestamp": "2015-07-27T15:49:19.305Z",
+                        "type": "LOCAL"
+                    }
+                ]
+            }
+        http_version: 
+      recorded_at: "Mon, 27 Jul 2015 14:39:29 GMT"
+    - request: 
+        method: put
+        uri: "http://admin:admin@localhost:8080/API/storage/VX-2"
+        body: 
+          encoding: UTF-8
+          string: |
+            <StorageDocument xmlns="http://xml.vidispine.com/schema/vidispine">
+                <metadata>
+                  <field>
+                    <key>storageName</key>
+                    <value>storage1</value>
+                  </field>
+                </metadata>
+                <scanInterval>60</scanInterval>
+                <autoDetect>true</autoDetect>
+            </StorageDocument>
+        headers: 
+          Content-Type: 
+            - application/xml
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/xml
+        body: 
+          encoding: UTF-8
+          string: |
+            <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+            <StorageDocument xmlns="http://xml.vidispine.com/schema/vidispine">
+              <id>VX-2</id>
+              <state>NONE</state>
+              <type>LOCAL</type>
+              <capacity>1000000</capacity>
+              <freeCapacity>1000000</freeCapacity>
+              <metadata>
+                <field>
+                  <key>storageName</key>
+                  <value>storage1</value>
+                </field>
+              </metadata>
+              <lowWatermark>1000000</lowWatermark>
+              <highWatermark>1000000</highWatermark>
+              <scanInterval>60</scanInterval>
+              <autoDetect>true</autoDetect>
+              <showImportables>true</showImportables>
+            </StorageDocument>
+        http_version: 
+      recorded_at: "Mon, 27 Jul 2015 16:19:51 GMT"
+  recorded_with: "VCR 2.9.3"

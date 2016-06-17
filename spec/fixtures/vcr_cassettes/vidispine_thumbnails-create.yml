@@ -1,0 +1,36 @@
+--- 
+  http_interactions: 
+    - request: 
+        method: post
+        uri: "http://admin:admin@localhost:8080/API/resource/thumbnail"
+        body: 
+          encoding: UTF-8
+          string: |
+              <resource>
+                      <thumbnail>
+                          <path>file:///opt/vidispine/thumbnails/</path>
+                      </thumbnail>
+                  </resource>
+        headers: 
+          Content-Type: 
+            - application/xml
+      response: 
+        status: 
+          code: 200
+          message: OK
+        headers: 
+          Content-Type: 
+            - application/xml
+        body: 
+          encoding: UTF-8
+          string: |
+            <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+            <ResourceDocument xmlns="http://xml.vidispine.com/schema/vidispine">
+              <id>VX-10</id>
+              <thumbnail>
+                <path>file:///opt/vidispine/thumbnails/</path>
+              </thumbnail>
+            </ResourceDocument>
+        http_version: 
+      recorded_at: "Wed, 19 Aug 2015 11:36:08 GMT"
+  recorded_with: "VCR 2.9.3"
